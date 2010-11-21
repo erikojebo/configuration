@@ -1,0 +1,4 @@
+Clone this repository to your home folder and copy the dotfiles in the root of
+the repo to your home folders. The dotfiles in the configuration directory are
+simple pointers to the actual configuration files that are located in the
+corresponding sub directories of the configuration directory.
