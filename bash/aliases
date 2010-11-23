@@ -1,4 +1,12 @@
 alias gs='git status'
 alias ga='git add .'
+alias gd='git diff'
+alias gdc='git diff --cached'
+
 alias gc='git commit -m'
 alias gac='git commit -am'
+
+function take() {
+   mkdir $1
+   cd $1
+}
