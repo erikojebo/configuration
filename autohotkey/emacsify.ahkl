@@ -1,3 +1,5 @@
+; To run his script you need to have Autohotkey_L
+
 ; Combine this script with KeyTweak to remap caps lock to the Right control
 ; button. This allows for using the left control button to access standard
 ; Windows hotkeys, such as copy and paste, while still having the option
@@ -7,7 +9,8 @@
 ; holding CapsLock+n for example
 #MaxHotkeysPerInterval 200
 
-SetTitleMatchMode, 2 ; Title contains string
+; Use 'conains' as the mach mode for window titles
+SetTitleMatchMode, 2
 
 ;; Hotkeys enabled in all applications except those with emacs like keybindings
 #If !IsLinuxApplicationActive()
