@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Git removes all files marked as deleted by git.
+# Handy if files are deleted from a non-git-aware IDE or something like that.
+git rm $(git ls-files -d)
