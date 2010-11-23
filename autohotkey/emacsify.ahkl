@@ -57,6 +57,10 @@ RCtrl & q::Send +{F10}
 RCtrl & k::Send +{End}^x
 RCtrl & y::Send ^v
 
+; Scroll up/down
+RCtrl & v::Send {PgDn}
+!v::Send {PgUp}
+
 ; Beginning/end of document
 !SC056::Send ^{Home}
 +!SC056::Send ^{End}
