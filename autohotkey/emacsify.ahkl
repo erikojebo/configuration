@@ -1,5 +1,9 @@
 ; To run his script you need to have Autohotkey_L
 
+; Maybe add conditoin that scroll lock should be on to enable the shortcuts?
+; That would enable to rebind even the most standard Windows controls since
+; it could easily be switched off, for example when pair programming
+
 ; Combine this script with KeyTweak to remap caps lock to the Right control
 ; button. This allows for using the left control button to access standard
 ; Windows hotkeys, such as copy and paste, while still having the option
@@ -11,6 +15,21 @@
 
 ; Use 'conains' as the mach mode for window titles
 SetTitleMatchMode, 2
+
+; Bind alternative hotkeys to turn caps lock on and off, since the caps lock
+; key is rebound to RCtrl
+ScrollLock::CapsLock
+RCtrl & Tab::
+capsLockIsOn := GetKeyState("CapsLock", "T")
+if (capsLockIsOn)
+{
+  SetCapsLockState, off
+}
+else
+{
+  SetCapsLockState, on
+}
+return
 
 ;; Hotkeys enabled in all applications except those with emacs like keybindings
 #If !IsLinuxApplicationActive()
