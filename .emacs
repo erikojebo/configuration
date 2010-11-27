@@ -1,1 +1,1 @@
-(load "~\configuration\emacs\emacs_init")
+(load "~/configuration/emacs/emacs_init")
