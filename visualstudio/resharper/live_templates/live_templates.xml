@@ -1,0 +1,155 @@
+<TemplatesExport family="Live Templates">
+  <Template uid="e319cbd6-04e0-43d6-a873-82eb511ef4b3" shortcut="ae" description="NUnit Assert Equals" text="Assert.AreEqual($EXPECTED$, $ACTUAL$);$END$" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables>
+      <Variable name="EXPECTED" expression="constant(&quot;expected&quot;)" initialRange="0" />
+      <Variable name="ACTUAL" expression="constant(&quot;actual&quot;)" initialRange="0" />
+    </Variables>
+    <CustomProperties />
+  </Template>
+  <Template uid="46d4ddae-d54c-481d-ba43-448c137dff64" shortcut="aif" description="Assert.IsFalse" text="Assert.IsFalse($actual$);" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables>
+      <Variable name="actual" expression="constant(&quot;actual&quot;)" initialRange="0" />
+    </Variables>
+    <CustomProperties />
+  </Template>
+  <Template uid="3f6b0d1b-a324-4d26-972a-7adb2522c694" shortcut="ain" description="NUnit Assert.IsNull" text="Assert.IsNull($END$);" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+  <Template uid="faf9d060-21b8-443e-8286-ea5d77de8d76" shortcut="ainn" description="NUnit Assert.IsNotNull" text="Assert.IsNotNull($END$);" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+  <Template uid="b52bbba8-9fd3-492b-ae85-03e0e78e6403" shortcut="ait" description="NUnit assert istrue" text="Assert.IsTrue($END$);" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+  <Template uid="7e23eddf-ad5d-43e9-993b-a632b1d4dbe2" shortcut="as" description="NUnit Assert.AreSame" text="Assert.AreSame($EXPECTED$, $ACTUAL$);" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables>
+      <Variable name="EXPECTED" expression="constant(&quot;expected&quot;)" initialRange="0" />
+      <Variable name="ACTUAL" expression="constant(&quot;actual&quot;)" initialRange="0" />
+    </Variables>
+    <CustomProperties />
+  </Template>
+  <Template uid="a9ccd633-efb0-4e5a-b5c3-050123056ea0" shortcut="at" description="NUnit assert that" text="Assert.That($END$);" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+  <Template uid="9847d122-df96-43b0-9bad-c74d976fa833" shortcut="fact" description="Test case with the Fact attribute" text="[Fact]&#xD;&#xA;public void $Fact$()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables>
+      <Variable name="Fact" expression="constant(&quot;Fact&quot;)" initialRange="0" />
+    </Variables>
+    <CustomProperties />
+  </Template>
+  <Template uid="ec932641-2a3e-49fe-961a-2ec2d4db158f" shortcut="get" description="Get only" text="{&#xD;&#xA;	get&#xD;&#xA;	{&#xD;&#xA;		$END$&#xD;&#xA;	}&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+  <Template uid="26f0394b-6bdf-4957-af3c-a1b64631acb9" shortcut="gps" description="Get/private set" text="{ get; private set; }" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+  <Template uid="b89ae9d3-df4f-41a4-9fde-b0dbab5606a9" shortcut="gs" description="Get/Set" text="{ get; set; }" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+  <Template uid="840504c3-c9fe-49d8-8505-74358846f325" shortcut="ignore" description="NUnit ignore attribute" text="[Ignore]" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+  <Template uid="ae535199-8f5f-43cf-8035-b64f21115bc2" shortcut="nie" description="NotImplementedException" text="throw new NotImplementedException();" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+  <Template uid="e4999df9-3091-4117-9886-07e4af296990" shortcut="np" description="INotifyPropertyChanged Property" text="private $dataType$ _$variableName$;&#xD;&#xA;public $dataType$ $propertyName$&#xD;&#xA;{&#xD;&#xA;	get { return _$variableName$; }&#xD;&#xA;	set&#xD;&#xA;	{&#xD;&#xA;		if (value == _$variableName$)&#xD;&#xA;		{&#xD;&#xA;			return;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;		_$variableName$ = value;&#xD;&#xA;		FirePropertyChanged&lt;$viewModelType$, $dataType$&gt;(x =&gt; x.$propertyName$);&#xD;&#xA;	}&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables>
+      <Variable name="dataType" expression="suggestVariableType()" initialRange="1" />
+      <Variable name="variableName" expression="decapitalize(propertyName)" initialRange="-1" />
+      <Variable name="propertyName" expression="constant(&quot;Name&quot;)" initialRange="0" />
+      <Variable name="viewModelType" expression="typeName()" initialRange="-1" />
+    </Variables>
+    <CustomProperties />
+  </Template>
+  <Template uid="078d8ff7-0b2e-44ee-9305-10c4cd7fc645" shortcut="session" description="NHibernate session" text="using (var session = $SESSION_FACTORY$.OpenSession())&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables>
+      <Variable name="SESSION_FACTORY" expression="constant(&quot;SessionFactorySingleton&quot;)" initialRange="0" />
+    </Variables>
+    <CustomProperties />
+  </Template>
+  <Template uid="d84467e8-45af-4522-9352-e8122e02f301" shortcut="setup" description="NUnit setup" text="[SetUp]&#xD;&#xA;public void SetUp()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+  <Template uid="b4aa722f-e42c-4f04-bea0-28f4c302d86d" shortcut="td" description="NUnit teardown" text="[TearDown]&#xD;&#xA;public void TearDown()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+  <Template uid="b77ec8c4-999f-46d6-90a8-38514b3f74aa" shortcut="test" description="NUnit test with one part name" text="[Test]&#xD;&#xA;public void $FACT$()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables>
+      <Variable name="FACT" expression="constant(&quot;Fact&quot;)" initialRange="0" />
+    </Variables>
+    <CustomProperties />
+  </Template>
+  <Template uid="557a1628-fea5-45c6-ba8c-923f2f342bf2" shortcut="test2" description="NUnit test with two part name" text="[Test]&#xD;&#xA;public void $METHOD$_$FACT$()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}&#xD;&#xA;" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables>
+      <Variable name="METHOD" expression="constant(&quot;Method&quot;)" initialRange="0" />
+      <Variable name="FACT" expression="constant(&quot;Fact&quot;)" initialRange="0" />
+    </Variables>
+    <CustomProperties />
+  </Template>
+  <Template uid="47cd2337-b67b-4b0b-b8a1-971a6fee5ebb" shortcut="test3" description="NUnit Test Case" text="[Test]&#xD;&#xA;public void $METHOD$_$GIVEN$_$EXPECTED$()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables>
+      <Variable name="METHOD" expression="constant(&quot;METHOD&quot;)" initialRange="0" />
+      <Variable name="GIVEN" expression="constant(&quot;GIVEN&quot;)" initialRange="0" />
+      <Variable name="EXPECTED" expression="constant(&quot;EXPECTED&quot;)" initialRange="0" />
+    </Variables>
+    <CustomProperties />
+  </Template>
+  <Template uid="da35c481-50e3-4c8d-a904-50132242bfd4" shortcut="tf" description="NUnit test fixture attribute" text="[TestFixture]" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+  <Template uid="3b0242d3-582e-4351-ba3d-20d24f392337" shortcut="tfsu" description="NUnit test fixture setup" text="[TestFixtureSetUp]&#xD;&#xA;public void TestFixtureSetUp()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+  <Template uid="dee7dc62-2e7a-4590-9ced-4994be314505" shortcut="tftd" description="NUnit test fixture teardown" text="[TestFixtureTearDown]&#xD;&#xA;public void TestFixtureTearDown()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+  <Template uid="1a08126b-9c53-43aa-9263-6df779117f3c" shortcut="transaction" description="NHibernate Transaction" text="using (var session = $SESSION_FACTORY$.OpenSession())&#xD;&#xA;using (var transaction = session.BeginTransaction())&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;&#xD;&#xA;	transaction.Commit();&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables>
+      <Variable name="SESSION_FACTORY" expression="constant(&quot;SessionFactorySingleton&quot;)" initialRange="0" />
+    </Variables>
+    <CustomProperties />
+  </Template>
+  <Template uid="f1fb016c-5681-4c8b-9529-0347addfee29" shortcut="u" description="curly braces" text="{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables />
+    <CustomProperties />
+  </Template>
+</TemplatesExport>
