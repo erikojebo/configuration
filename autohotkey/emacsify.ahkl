@@ -13,7 +13,7 @@
 ; holding CapsLock+n for example
 #MaxHotkeysPerInterval 200
 
-; Use 'conains' as the mach mode for window titles
+; Use 'contains' as the mach mode for window titles
 SetTitleMatchMode, 2
 
 ; Bind alternative hotkeys to turn caps lock on and off, since the caps lock

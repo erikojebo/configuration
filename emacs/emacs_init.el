@@ -25,16 +25,17 @@
   (nth 1 argList))
 
 
-;;Load the camelCase file
+;; Load the camelCase file
 (load "~/configuration/emacs/plugins/camelcase_mode/camelCase-mode")
 
 ;; Load autohotkey mode
+(load "~/configuration/emacs/plugins/ahk_mode/ahk-mode")
 (setq ahk-syntax-directory "~/configuration/emacs/plugins/ahk_mode/ahk-syntax/")
 (add-to-list 'auto-mode-alist '("\\.ahk$" . ahk-mode))
 (add-to-list 'auto-mode-alist '("\\.ahkl$" . ahk-mode))
 (autoload 'ahk-mode "ahk-mode")
 
-;;Start camelCase-mode whenever a file is 'found' (opened)
+;; Start camelCase-mode whenever a file is 'found' (opened)
 (add-hook 'find-file-hook '(lambda () (camelCase-mode 1)))
 
 ;; Remove menubar
