@@ -7,3 +7,9 @@ If you want to use the Autohotkey script, then the easies way is to create a
 symlink from the file in the checkout to, for example, the startup folder in
 the start menu. That way, all modifications are made to the actual file under
 version control and not to a copy.
+
+When on a Windows machine with Cygwin installed, adding an environment
+variable called HOME pointing to the cygwin /home/username/ directory avoids
+having to checkout the configuration repository in your
+c:\Users\Username\AppData\Roaming folder, or whatever, in addition to checking
+it out into your cygwin home directory.
