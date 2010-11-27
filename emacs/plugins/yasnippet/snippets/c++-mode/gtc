@@ -1,0 +1,5 @@
+#name : Google Test Case
+# --
+TEST_F(`(file-name-nondirectory (file-name-sans-extension (buffer-file-name)))`Test, ${1:<test-name-here>}) {
+$0
+}

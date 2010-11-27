@@ -1,0 +1,3 @@
+#name : ASSERT_LE(<value1>, <value2>);
+# --
+ASSERT_LE(${1:<value1>}, ${2:<value2>});

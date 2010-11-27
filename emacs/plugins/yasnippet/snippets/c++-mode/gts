@@ -1,0 +1,23 @@
+#name : Google Test Suite
+# --
+#include "include/${1:<class-to-test>}.hpp"
+#include <gtest/gtest.h>
+
+namespace {
+
+// The fixture for testing class ${1:$(capitalize text)}
+class $1Test : public ::testing::Test {
+protected:
+virtual void SetUp() {$2
+}
+};
+
+TEST_F($1Test, ${3:<first-test-case-name>}) {
+$0
+}
+}  // namespace
+
+int main(int argc, char **argv) {
+::testing::InitGoogleTest(&argc, argv);
+return RUN_ALL_TESTS();
+}

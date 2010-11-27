@@ -1,8 +1,6 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
-(defalias 'yes-or-no-p 'y-or-n-p)
-
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
@@ -27,28 +25,17 @@
   (nth 1 argList))
 
 
-(add-to-list 'load-path "~/.emacs.d/")
-
 ;;Load the camelCase file
-(load "camelCase-mode")
+(load "~/configuration/emacs/plugins/camelcase_mode/camelCase-mode")
 
 ;; Load autohotkey mode
-(setq ahk-syntax-directory "~/.emacs.d/ahk-syntax/")
+(setq ahk-syntax-directory "~/configuration/emacs/plugins/ahk_mode/ahk-syntax/")
 (add-to-list 'auto-mode-alist '("\\.ahk$" . ahk-mode))
 (add-to-list 'auto-mode-alist '("\\.ahkl$" . ahk-mode))
 (autoload 'ahk-mode "ahk-mode")
 
 ;;Start camelCase-mode whenever a file is 'found' (opened)
 (add-hook 'find-file-hook '(lambda () (camelCase-mode 1)))
-
-; Setup color-theme
-;(add-to-list 'load-path "~/elisp")
-;(add-to-list 'load-path "~/elisp/color-theme-6.6.0")
-
-;; Load color-theme 'subtle hacker'
-;(require 'color-theme)
-;(color-theme-initialize)
-;(color-theme-subtle-hacker)
 
 ;; Remove menubar
 (menu-bar-mode -1)
@@ -139,15 +126,12 @@
 
 (setq show-paren-delay 0)
 
-(require 'dropdown-list)
-
 ;; YASnippet
-(add-to-list 'load-path
-	     "~/.emacs.d/plugins/yasnippet")
-(require 'yasnippet)
+(load "~/configuration/emacs/plugins/yasnippet/dropdown-list")
+(load "~/configuration/emacs/plugins/yasnippet/yasnippet")
 
 (yas/initialize)
-(yas/load-directory "~/.emacs.d/plugins/yasnippet/snippets")
+(yas/load-directory "~/configuration/emacs/plugins/yasnippet/snippets")
 (setf yas/global-mode t)
 
 (setq yas/prompt-functions '(yas/dropdown-prompt))
