@@ -1,0 +1,603 @@
+<Configuration>
+  <SettingsComponent>
+    <string>
+      <setting name="ExportTemplatesDialog.FileName">C:\Documents and Settings\eojebo\Desktop\ReSharper NUnit Test Fixture File Template.xml</setting>
+      <setting name="JetBrains.ReSharper.Intentions.CSharp.QuickFixes.CreateClassFromNewFixBase.DefaultInterfacePrefix">I</setting>
+      <setting name="JiraProxyHost">
+      </setting>
+      <setting name="KeyboardScheme">Idea</setting>
+      <setting name="LocalizationOptions.ResourceNameTemplate">$TypeName$_$MemberName$_$Value$</setting>
+    </string>
+    <integer>
+      <setting name="bracketMatchHighlightingPosition">2</setting>
+      <setting name="bracketMatchHighlightingStyle">0</setting>
+      <setting name="jetbrains.resharper.livetemplates.editor.splitterposition">412</setting>
+      <setting name="JiraProxyPort">0</setting>
+      <setting name="livetemplates.defaultgrouping">0</setting>
+      <setting name="MoveToResource.MoveSameElementsScope">1</setting>
+      <setting name="RefactoringWizardFormLocationX">270</setting>
+      <setting name="RefactoringWizardFormLocationY">-145</setting>
+      <setting name="SMART_BRACE_INSERT">1</setting>
+      <setting name="UserInputDeferTime">300</setting>
+    </integer>
+    <boolean>
+      <setting name="CodeViewManager.AutoExpandResults">False</setting>
+      <setting name="CreateVariableFixBase">True</setting>
+      <setting name="CSharpLocalizationOptions.DontAnalyseVerbatimStrings">True</setting>
+      <setting name="FixMouseWheel">True</setting>
+      <setting name="FORMAT_BLOCK_ON_RBRACE">True</setting>
+      <setting name="FORMAT_STATEMENT_ON_SEMICOLON">True</setting>
+      <setting name="GotoFile.IncludeFolders">False</setting>
+      <setting name="HideVsMenuItems">True</setting>
+      <setting name="InlineMethodWorkflowRemoveInitialDeclaration">True</setting>
+      <setting name="InlineMethodWorkflowReplaceAllUsages">True</setting>
+      <setting name="JetBrains.ReSharper.Refactorings.Rename.RenameFile">True</setting>
+      <setting name="JetBrains.ReSharper.Refactorings.Rename.SearchInStrings">True</setting>
+      <setting name="JetBrains.ReSharper.Refactorings.RenameNamespace.SearchInStrings">True</setting>
+      <setting name="jetbrains.resharper.treeview.filter">True</setting>
+      <setting name="JiraIsAnonymous">False</setting>
+      <setting name="JiraProxyAuthentication">False</setting>
+      <setting name="JiraUseDefaultProxy">True</setting>
+      <setting name="MoveToResource.MoveSameElements">True</setting>
+      <setting name="NavigateByControlClick">True</setting>
+      <setting name="PopupListCyclicScroll">True</setting>
+      <setting name="showMemoryUsage">False</setting>
+      <setting name="skipResultsForSingleHierarchyItem">True</setting>
+      <setting name="skipResultsForSingleUsage">True</setting>
+      <setting name="SMART_INDENT_ON_ENTER_NEW">False</setting>
+      <setting name="SMART_PARENTH_INSERT">True</setting>
+      <setting name="SolutionAnalysisIndicator.RoundProgress">True</setting>
+      <setting name="SolutionAnalysisIndicator.ShowErorsCount">True</setting>
+      <setting name="SynchronizeOnFrameActivation">True</setting>
+      <setting name="USE_VS_ICONS">True</setting>
+      <setting name="UseCamelHumps">True</setting>
+      <setting name="UseVarForIntroduceVariableRefactoring">True</setting>
+      <setting name="UseVarForIntroduceVariableRefactoringEvident">True</setting>
+    </boolean>
+  </SettingsComponent>
+  <HighlightingSettings>
+    <SeverityTable>
+      <MemberCanBeMadeStatic.Local>HINT</MemberCanBeMadeStatic.Local>
+      <SuggestUseVarKeywordEvident>HINT</SuggestUseVarKeywordEvident>
+      <InconsistentNaming>SUGGESTION</InconsistentNaming>
+      <RedundantThisQualifier>HINT</RedundantThisQualifier>
+      <FieldCanBeMadeReadOnly.Local>HINT</FieldCanBeMadeReadOnly.Local>
+      <ClassWithVirtualMembersNeverInherited.Local>HINT</ClassWithVirtualMembersNeverInherited.Local>
+      <PossibleNullReferenceException>HINT</PossibleNullReferenceException>
+      <AccessToModifiedClosure>HINT</AccessToModifiedClosure>
+      <DoNotCallOverridableMethodsInConstructor>SUGGESTION</DoNotCallOverridableMethodsInConstructor>
+      <RedundantArgumentName>HINT</RedundantArgumentName>
+      <UseObjectOrCollectionInitializer>HINT</UseObjectOrCollectionInitializer>
+      <ConvertIfStatementToNullCoalescingExpression>HINT</ConvertIfStatementToNullCoalescingExpression>
+      <LoopCanBeConvertedToQuery>HINT</LoopCanBeConvertedToQuery>
+      <ConvertIfStatementToConditionalTernaryExpression>HINT</ConvertIfStatementToConditionalTernaryExpression>
+    </SeverityTable>
+  </HighlightingSettings>
+  <MetadataViewerSettings ShowExternalAnnotations="False" ShowNonVisibleMembers="False" ShowXmlDoc="False" ReorderMembers="True" Language="CSHARP" />
+  <ExternalSourcesSettings EnableNavigation="True" FirstTimeFormShown="True">
+    <ProvidersOrder enabled="True" id="objectBrowser" />
+    <ProvidersOrder enabled="True" id="metadata" />
+    <ProvidersOrder enabled="True" id="pdb" />
+  </ExternalSourcesSettings>
+  <Pdb EnableDownloading="True" />
+  <LiveTemplatesManager>
+    <UserTemplates>
+      <Template uid="e319cbd6-04e0-43d6-a873-82eb511ef4b3" shortcut="ae" description="NUnit Assert Equals" text="Assert.AreEqual($EXPECTED$, $ACTUAL$);$END$" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables>
+          <Variable name="EXPECTED" expression="constant(&quot;expected&quot;)" initialRange="0" />
+          <Variable name="ACTUAL" expression="constant(&quot;actual&quot;)" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="46d4ddae-d54c-481d-ba43-448c137dff64" shortcut="aif" description="Assert.IsFalse" text="Assert.IsFalse($actual$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables>
+          <Variable name="actual" expression="constant(&quot;actual&quot;)" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="3f6b0d1b-a324-4d26-972a-7adb2522c694" shortcut="ain" description="NUnit Assert.IsNull" text="Assert.IsNull($END$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="faf9d060-21b8-443e-8286-ea5d77de8d76" shortcut="ainn" description="NUnit Assert.IsNotNull" text="Assert.IsNotNull($END$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="b52bbba8-9fd3-492b-ae85-03e0e78e6403" shortcut="ait" description="NUnit assert istrue" text="Assert.IsTrue($END$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="7e23eddf-ad5d-43e9-993b-a632b1d4dbe2" shortcut="as" description="NUnit Assert.AreSame" text="Assert.AreSame($EXPECTED$, $ACTUAL$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables>
+          <Variable name="EXPECTED" expression="constant(&quot;expected&quot;)" initialRange="0" />
+          <Variable name="ACTUAL" expression="constant(&quot;actual&quot;)" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="a9ccd633-efb0-4e5a-b5c3-050123056ea0" shortcut="at" description="NUnit assert that" text="Assert.That($END$);" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="9847d122-df96-43b0-9bad-c74d976fa833" shortcut="fact" description="Test case with the Fact attribute" text="[Fact]&#xD;&#xA;public void $Fact$()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables>
+          <Variable name="Fact" expression="constant(&quot;Fact&quot;)" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="ec932641-2a3e-49fe-961a-2ec2d4db158f" shortcut="get" description="Get only" text="{&#xD;&#xA;	get&#xD;&#xA;	{&#xD;&#xA;		$END$&#xD;&#xA;	}&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="26f0394b-6bdf-4957-af3c-a1b64631acb9" shortcut="gps" description="Get/private set" text="{ get; private set; }" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="b89ae9d3-df4f-41a4-9fde-b0dbab5606a9" shortcut="gs" description="Get/Set" text="{ get; set; }" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="840504c3-c9fe-49d8-8505-74358846f325" shortcut="ignore" description="NUnit ignore attribute" text="[Ignore]" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="e4999df9-3091-4117-9886-07e4af296990" shortcut="np" description="INotifyPropertyChanged Property" text="private $dataType$ _$variableName$;&#xD;&#xA;public $dataType$ $propertyName$&#xD;&#xA;{&#xD;&#xA;	get { return _$variableName$; }&#xD;&#xA;	set&#xD;&#xA;	{&#xD;&#xA;		if (value == _$variableName$)&#xD;&#xA;		{&#xD;&#xA;			return;&#xD;&#xA;		}&#xD;&#xA;&#xD;&#xA;		_$variableName$ = value;&#xD;&#xA;		FirePropertyChanged&lt;$viewModelType$, $dataType$&gt;(x =&gt; x.$propertyName$);&#xD;&#xA;	}&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables>
+          <Variable name="dataType" expression="suggestVariableType()" initialRange="1" />
+          <Variable name="variableName" expression="decapitalize(propertyName)" initialRange="-1" />
+          <Variable name="propertyName" expression="constant(&quot;Name&quot;)" initialRange="0" />
+          <Variable name="viewModelType" expression="typeName()" initialRange="-1" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="078d8ff7-0b2e-44ee-9305-10c4cd7fc645" shortcut="session" description="NHibernate session" text="using (var session = $SESSION_FACTORY$.OpenSession())&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables>
+          <Variable name="SESSION_FACTORY" expression="constant(&quot;SessionFactorySingleton&quot;)" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="d84467e8-45af-4522-9352-e8122e02f301" shortcut="setup" description="NUnit setup" text="[SetUp]&#xD;&#xA;public void SetUp()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="b4aa722f-e42c-4f04-bea0-28f4c302d86d" shortcut="td" description="NUnit teardown" text="[TearDown]&#xD;&#xA;public void TearDown()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="557a1628-fea5-45c6-ba8c-923f2f342bf2" shortcut="test2" description="NUnit test with two part name" text="[Test]&#xD;&#xA;public void $METHOD$_$FACT$()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}&#xD;&#xA;" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables>
+          <Variable name="METHOD" expression="constant(&quot;Method&quot;)" initialRange="0" />
+          <Variable name="FACT" expression="constant(&quot;Fact&quot;)" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="da35c481-50e3-4c8d-a904-50132242bfd4" shortcut="tf" description="NUnit test fixture attribute" text="[TestFixture]" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="3b0242d3-582e-4351-ba3d-20d24f392337" shortcut="tfsu" description="NUnit test fixture setup" text="[TestFixtureSetUp]&#xD;&#xA;public void TestFixtureSetUp()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="dee7dc62-2e7a-4590-9ced-4994be314505" shortcut="tftd" description="NUnit test fixture teardown" text="[TestFixtureTearDown]&#xD;&#xA;public void TestFixtureTearDown()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="1a08126b-9c53-43aa-9263-6df779117f3c" shortcut="transaction" description="NHibernate Transaction" text="using (var session = $SESSION_FACTORY$.OpenSession())&#xD;&#xA;using (var transaction = session.BeginTransaction())&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;&#xD;&#xA;	transaction.Commit();&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables>
+          <Variable name="SESSION_FACTORY" expression="constant(&quot;SessionFactorySingleton&quot;)" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="f1fb016c-5681-4c8b-9529-0347addfee29" shortcut="u" description="curly braces" text="{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="ae535199-8f5f-43cf-8035-b64f21115bc2" shortcut="nie" description="NotImplementedException" text="throw new NotImplementedException();" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+      <Template uid="47cd2337-b67b-4b0b-b8a1-971a6fee5ebb" shortcut="test3" description="NUnit Test Case" text="[Test]&#xD;&#xA;public void $METHOD$_$GIVEN$_$EXPECTED$()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables>
+          <Variable name="METHOD" expression="constant(&quot;METHOD&quot;)" initialRange="0" />
+          <Variable name="GIVEN" expression="constant(&quot;GIVEN&quot;)" initialRange="0" />
+          <Variable name="EXPECTED" expression="constant(&quot;EXPECTED&quot;)" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+      <Template uid="b77ec8c4-999f-46d6-90a8-38514b3f74aa" shortcut="test" description="NUnit test with one part name" text="[Test]&#xD;&#xA;public void $FACT$()&#xD;&#xA;{&#xD;&#xA;	$END$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables>
+          <Variable name="FACT" expression="constant(&quot;Fact&quot;)" initialRange="0" />
+        </Variables>
+        <CustomProperties />
+      </Template>
+    </UserTemplates>
+    <PredefinedChanges>
+      <Changed />
+    </PredefinedChanges>
+    <FileTemplates />
+    <DisabledTemplates />
+  </LiveTemplatesManager>
+  <SurroundManager>
+    <QuickLists>
+      <QuickList name="Other Files">
+        <Removed />
+      </QuickList>
+      <QuickList name="C# files">
+        <TemplateReference uid="d00002ec-552b-43a7-855a-4d9056bc5e44" name="if" />
+        <TemplateReference uid="0d6efb3f-0a28-49ac-a840-a5c18a10820c" name="while" />
+        <TemplateReference uid="38772f22-c779-4535-87ae-f2cbfc28d8bb" name="for" />
+        <TemplateReference uid="3e5873f5-71b2-4323-a98d-c864e3553e95" name="do..while" />
+        <TemplateReference uid="539867cb-c2bb-4a76-9be4-43499424a817" name="#region" />
+        <TemplateReference uid="bf9aa46f-cf30-446c-80d3-943eade77764" name="#if..#endif" />
+        <TemplateReference uid="5525b896-5c99-477c-aa55-871b4e64d487" name="{}" />
+        <TemplateReference uid="2c7fbadc-e259-40d3-9346-89277c463fdc" name="try..catch" />
+        <TemplateReference uid="03562c81-32c2-43e8-95f2-ccae5fce50fc" name="try..finally" />
+        <TemplateReference uid="2cdb716b-61fd-4a31-b148-2052fa256b96" name="cast" />
+        <TemplateReference uid="d1a7844c-e289-438a-aa26-31bbe4694112" name="tag" />
+        <TemplateReference uid="bfed504b-c6a2-492a-8098-6067ce44f7ca" name="lock" />
+        <TemplateReference uid="ce403579-55e1-4d4d-869c-de09fe5bf5a5" name="namespace" />
+        <TemplateReference uid="2025ca6a-c03e-4da6-ab1b-a4e6c572a94a" name="()" />
+        <Removed />
+      </QuickList>
+      <QuickList name="Visual Basic files">
+        <TemplateReference uid="6a01b8ff-4981-4873-9bc3-bf8e1c434865" name="If" />
+        <TemplateReference uid="389a11c8-54d3-4e96-9b10-0d6736b93044" name="If..Else" />
+        <TemplateReference uid="8c6134b0-b6f4-48a3-a5bc-3878f9a96f04" name="SyncLock" />
+        <TemplateReference uid="ab9b078f-4a86-45d8-b5fb-e27910cbb720" name="Using" />
+        <TemplateReference uid="9ee3a98e-24ed-4993-98ae-ac77c05bc93f" name="CType" />
+        <TemplateReference uid="c4d6ceb3-d45f-4d8e-838d-d1e64a1f671b" name="DirectCast" />
+        <TemplateReference uid="c5765f81-208e-4342-9e83-460d2906a8f5" name="TryCast" />
+        <Removed />
+      </QuickList>
+      <QuickList name="XML files">
+        <TemplateReference uid="c44a28a4-c56c-4ff4-b8db-9b563ae61b01" name="using" />
+        <Removed />
+      </QuickList>
+      <QuickList name="ASP.NET files">
+        <TemplateReference uid="db3304b5-a0fe-433f-a745-2407f990073e" name="tag" />
+        <TemplateReference uid="8600f923-3358-4842-acb7-2588dbc8e506" name="link" />
+        <TemplateReference uid="02e32ab5-abf1-4580-8c6c-a122642f941e" name="foreach" />
+        <TemplateReference uid="68c3e345-0a7d-41cf-93ec-de9b0334be7e" name="foreach" />
+        <Removed />
+      </QuickList>
+      <QuickList name="Other files">
+        <Removed />
+      </QuickList>
+      <QuickList name="Resx files">
+        <Removed />
+      </QuickList>
+    </QuickLists>
+    <UserTemplates>
+      <Template uid="106e8e0f-1dcb-4911-a71c-9f018601ba1a" shortcut="" description="Property get declaration" text="get&#xD;&#xA;{&#xD;&#xA;	$SELECTION$&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Categories />
+        <Variables />
+        <CustomProperties />
+      </Template>
+    </UserTemplates>
+    <PredefinedChanges>
+      <Changed />
+    </PredefinedChanges>
+    <FileTemplates />
+  </SurroundManager>
+  <ContextActions>
+    <JetBrains.ReSharper.Intentions.CSharp.ContextActions.NonI18n.CSharpSurroundWithQuotesAction>False</JetBrains.ReSharper.Intentions.CSharp.ContextActions.NonI18n.CSharpSurroundWithQuotesAction>
+    <JetBrains.ReSharper.Intentions.CSharp.ContextActions.InlineAsAnonymousTypeAction>False</JetBrains.ReSharper.Intentions.CSharp.ContextActions.InlineAsAnonymousTypeAction>
+  </ContextActions>
+  <FileTemplatesManager>
+    <QuickLists>
+      <QuickList name="Other Projects">
+        <Removed />
+      </QuickList>
+      <QuickList name="C# projects">
+        <TemplateReference uid="560aab2c-307f-4c70-a99a-a3ec249e3153" name="Class" />
+        <TemplateReference uid="3667aa6f-7d24-4446-89df-536819a6d103" name="Interface" />
+        <TemplateReference uid="d03eb89b-79ff-472e-baab-217c25589c77" name="Struct" />
+        <TemplateReference uid="30ac107b-32b0-4f0a-95a3-763001e1dbf6" name="Enum" />
+        <TemplateReference uid="e1e99eae-34bb-4f41-ac86-f6d5caf1f28e" name="NUnit Test Fixture" />
+        <Removed />
+      </QuickList>
+      <QuickList name="Visual Basic projects">
+        <TemplateReference uid="b1ee1e2c-928e-43dd-97a7-2cd7e208d02e" name="Class" />
+        <TemplateReference uid="797a996f-97ef-4788-a0a6-0eb6e4f7e99e" name="Interface" />
+        <TemplateReference uid="3a76e258-e766-40f6-a093-00c04f653a65" name="Structure" />
+        <TemplateReference uid="7899541c-0e97-4670-8034-04bcc3b1ff03" name="Enum" />
+        <TemplateReference uid="2a5b7d0d-34bc-4537-a50a-b2e94d885702" name="Module" />
+        <Removed />
+      </QuickList>
+      <QuickList name="ASP.NET (C#) projects">
+        <TemplateReference uid="33b864ee-57c8-41d4-8935-e4c52774fca2" name="Web form without master page" />
+        <TemplateReference uid="4ae22a01-d37a-4407-8cf6-ef841f7dcab6" name="Web form with master page" />
+        <TemplateReference uid="d602a016-05af-48b6-bbfb-bb2ac28d13a6" name="Master page without base master page" />
+        <TemplateReference uid="a1b0a253-d992-43b7-9673-2c1f6f7fca7f" name="Master page with base master page" />
+        <TemplateReference uid="ef7287d8-1fd7-460f-9855-c2ee3cdf5ee4" name="Web control" />
+        <Removed />
+      </QuickList>
+      <QuickList name="ASP.NET (VB.NET) projects">
+        <TemplateReference uid="fee25fcf-ac69-4449-bb6c-55369553c527" name="Web form without master page" />
+        <TemplateReference uid="16e0ecb6-672c-484c-994c-86d57e73e343" name="Web form with master page" />
+        <TemplateReference uid="56c19cde-128d-438d-8c64-3b5380508d3d" name="Master page without base master page" />
+        <TemplateReference uid="672311b7-067e-4a57-b32f-79c7a06fa74f" name="Master page with base master page" />
+        <TemplateReference uid="6553602b-0f80-4ada-9b76-95055c0a747f" name="Web control" />
+        <Removed />
+      </QuickList>
+    </QuickLists>
+    <UserTemplates>
+      <Template uid="e1e99eae-34bb-4f41-ac86-f6d5caf1f28e" shortcut="" description="NUnit Test Fixture" text="using System;&#xD;&#xA;using System.Collections.Generic;&#xD;&#xA;using System.Linq;&#xD;&#xA;using NUnit.Framework;&#xD;&#xA;using Rhino.Mocks;&#xD;&#xA;using Is = Rhino.Mocks.Constraints.Is;&#xD;&#xA;&#xD;&#xA;namespace $NameSpace$&#xD;&#xA;{&#xD;&#xA;	[TestFixture]&#xD;&#xA;	public class $ClassName$&#xD;&#xA;	{&#xD;&#xA;		$END$&#xD;&#xA;	}&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
+        <Context>
+          <ProjectLanguageContext language="CSharp" />
+        </Context>
+        <Categories />
+        <Variables>
+          <Variable name="NameSpace" expression="fileDefaultNamespace()" initialRange="-1" />
+          <Variable name="ClassName" expression="getFileNameWithoutExtension()" initialRange="-1" />
+        </Variables>
+        <CustomProperties>
+          <Property key="FileName" value="FooTests" />
+          <Property key="Extension" value="cs" />
+          <Property key="ValidateFileName" value="False" />
+        </CustomProperties>
+      </Template>
+    </UserTemplates>
+    <PredefinedChanges>
+      <Changed />
+    </PredefinedChanges>
+    <FileTemplates />
+  </FileTemplatesManager>
+  <TodoManager ActiveGrouping="0">
+    <Pattern Name="Todo" Id="961894CCC510410ABE2B99132B253C80" Regexp="(\W|^)(?&lt;TAG&gt;TODO)(\W|$)(.*)" CaseSensitive="False" Color="Blue" Icon="Normal" LookInComments="True" LookInIdentifiers="False" LookInStringLiterals="False" />
+    <Pattern Name="Note" Id="961894CCC510410ABE2B99132B253C81" Regexp="(\W|^)(?&lt;TAG&gt;NOTE)(\W|$)(.*)" CaseSensitive="False" Color="ffff8000" Icon="Warning" LookInComments="True" LookInIdentifiers="False" LookInStringLiterals="False" />
+    <Pattern Name="Bug" Id="9F4E80481F12431CB36D19D6738780F1" Regexp="(\W|^)(?&lt;TAG&gt;BUG)(\W|$)(.*)" CaseSensitive="False" Color="Red" Icon="Error" LookInComments="True" LookInIdentifiers="False" LookInStringLiterals="False" />
+    <Pattern Name="Not Implemented" Id="9F4E80481F12431CB36D19D6738780F2" Regexp="NotImplementedException" CaseSensitive="False" Color="Red" Icon="Edit" LookInComments="False" LookInIdentifiers="True" LookInStringLiterals="False" />
+    <Filter Name="Todos" Id="6E3EB9662CFB491EBD2103D8654051DF" Active="False">
+      <PatternRef Id="961894CCC510410ABE2B99132B253C80" />
+    </Filter>
+    <Filter Name="Notes" Id="0069D9FE451E44B181256291430424FC" Active="False">
+      <PatternRef Id="961894CCC510410ABE2B99132B253C81" />
+    </Filter>
+    <Filter Name="Bugs" Id="A674BC0145094E3D8C9C867C0FDAF288" Active="False">
+      <PatternRef Id="9F4E80481F12431CB36D19D6738780F1" />
+    </Filter>
+    <Filter Name="Not Implemented" Id="A674BC0145094E3D8C9C867C0FDAF289" Active="False">
+      <PatternRef Id="9F4E80481F12431CB36D19D6738780F2" />
+    </Filter>
+  </TodoManager>
+  <ExceptionReporting>
+    <UserName>
+    </UserName>
+    <Password>E.FVL8jaRtGis=</Password>
+    <Anonymous>False</Anonymous>
+  </ExceptionReporting>
+  <DefaultTextControlSchemeManager>
+    <CaretRow>True</CaretRow>
+  </DefaultTextControlSchemeManager>
+  <CodeStyleSettings>
+    <CSharp>
+      <FormatSettings>
+        <ALIGN_MULTILINE_ARGUMENT>False</ALIGN_MULTILINE_ARGUMENT>
+        <ALIGN_MULTILINE_ARRAY_AND_OBJECT_INITIALIZER>False</ALIGN_MULTILINE_ARRAY_AND_OBJECT_INITIALIZER>
+        <ALIGN_MULTILINE_EXTENDS_LIST>False</ALIGN_MULTILINE_EXTENDS_LIST>
+        <ALIGN_MULTILINE_FOR_STMT>False</ALIGN_MULTILINE_FOR_STMT>
+        <ALIGN_MULTILINE_PARAMETER>False</ALIGN_MULTILINE_PARAMETER>
+        <ALIGN_MULTIPLE_DECLARATION>False</ALIGN_MULTIPLE_DECLARATION>
+        <ALIGN_MULTLINE_TYPE_PARAMETER_CONSTRAINS>False</ALIGN_MULTLINE_TYPE_PARAMETER_CONSTRAINS>
+        <ALIGN_MULTLINE_TYPE_PARAMETER_LIST>False</ALIGN_MULTLINE_TYPE_PARAMETER_LIST>
+        <BLANK_LINES_AROUND_FIELD>0</BLANK_LINES_AROUND_FIELD>
+        <CASE_BLOCK_BRACES>NEXT_LINE</CASE_BLOCK_BRACES>
+        <EMPTY_BLOCK_STYLE>TOGETHER_SAME_LINE</EMPTY_BLOCK_STYLE>
+        <FORCE_ATTRIBUTE_STYLE>SEPARATE</FORCE_ATTRIBUTE_STYLE>
+        <FORCE_FIXED_BRACES_STYLE>ALWAYS_ADD</FORCE_FIXED_BRACES_STYLE>
+        <FORCE_FOR_BRACES_STYLE>ALWAYS_ADD</FORCE_FOR_BRACES_STYLE>
+        <FORCE_FOREACH_BRACES_STYLE>ALWAYS_ADD</FORCE_FOREACH_BRACES_STYLE>
+        <FORCE_IFELSE_BRACES_STYLE>ALWAYS_ADD</FORCE_IFELSE_BRACES_STYLE>
+        <FORCE_WHILE_BRACES_STYLE>ALWAYS_ADD</FORCE_WHILE_BRACES_STYLE>
+        <INDENT_ANONYMOUS_METHOD_BLOCK>False</INDENT_ANONYMOUS_METHOD_BLOCK>
+        <INDENT_EMBRACED_INITIALIZER_BLOCK>False</INDENT_EMBRACED_INITIALIZER_BLOCK>
+        <KEEP_BLANK_LINES_IN_CODE>1</KEEP_BLANK_LINES_IN_CODE>
+        <KEEP_BLANK_LINES_IN_DECLARATIONS>1</KEEP_BLANK_LINES_IN_DECLARATIONS>
+        <MODIFIERS_ORDER IsNull="False">
+          <Item>public</Item>
+          <Item>protected</Item>
+          <Item>internal</Item>
+          <Item>private</Item>
+          <Item>new</Item>
+          <Item>abstract</Item>
+          <Item>virtual</Item>
+          <Item>override</Item>
+          <Item>sealed</Item>
+          <Item>static</Item>
+          <Item>readonly</Item>
+          <Item>extern</Item>
+          <Item>unsafe</Item>
+          <Item>volatile</Item>
+        </MODIFIERS_ORDER>
+        <PLACE_FIELD_ATTRIBUTE_ON_SAME_LINE>False</PLACE_FIELD_ATTRIBUTE_ON_SAME_LINE>
+        <PLACE_WHILE_ON_NEW_LINE>True</PLACE_WHILE_ON_NEW_LINE>
+        <SPACE_AFTER_TYPECAST_PARENTHESES>False</SPACE_AFTER_TYPECAST_PARENTHESES>
+        <SPACE_AROUND_MULTIPLICATIVE_OP>True</SPACE_AROUND_MULTIPLICATIVE_OP>
+        <SPACE_BEFORE_SIZEOF_PARENTHESES>False</SPACE_BEFORE_SIZEOF_PARENTHESES>
+        <SPACE_BEFORE_TYPEOF_PARENTHESES>False</SPACE_BEFORE_TYPEOF_PARENTHESES>
+        <SPACE_WITHIN_SINGLE_LINE_ARRAY_INITIALIZER_BRACES>True</SPACE_WITHIN_SINGLE_LINE_ARRAY_INITIALIZER_BRACES>
+        <STICK_COMMENT>False</STICK_COMMENT>
+        <WRAP_AFTER_DECLARATION_LPAR>True</WRAP_AFTER_DECLARATION_LPAR>
+        <WRAP_AFTER_INVOCATION_LPAR>True</WRAP_AFTER_INVOCATION_LPAR>
+        <WRAP_BEFORE_BINARY_OPSIGN>True</WRAP_BEFORE_BINARY_OPSIGN>
+        <WRAP_BEFORE_FIRST_TYPE_PARAMETER_CONSTRAINT>True</WRAP_BEFORE_FIRST_TYPE_PARAMETER_CONSTRAINT>
+        <WRAP_LIMIT>140</WRAP_LIMIT>
+        <WRAP_LINES>False</WRAP_LINES>
+      </FormatSettings>
+      <UsingsSettings />
+      <Naming2>
+        <EventHandlerPatternLong>$object$_On$event$</EventHandlerPatternLong>
+        <EventHandlerPatternShort>$event$Handler</EventHandlerPatternShort>
+        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="TypesAndNamespaces" />
+        <PredefinedRule Inspect="True" Prefix="I" Suffix="" Style="AaBb" ElementKind="Interfaces" />
+        <PredefinedRule Inspect="True" Prefix="T" Suffix="" Style="AaBb" ElementKind="TypeParameters" />
+        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="MethodPropertyEvent" />
+        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="Locals" />
+        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="LocalConstants" />
+        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="Parameters" />
+        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="PublicFields" />
+        <PredefinedRule Inspect="True" Prefix="_" Suffix="" Style="aaBb" ElementKind="PrivateInstanceFields" />
+        <PredefinedRule Inspect="True" Prefix="_" Suffix="" Style="aaBb" ElementKind="PrivateStaticFields" />
+        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="Constants" />
+        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="PrivateConstants" />
+        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="StaticReadonly" />
+        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="PrivateStaticReadonly" />
+        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="EnumMember" />
+        <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="Other" />
+      </Naming2>
+      <CustomMemberReorderingPatterns><![CDATA[<?xml version="1.0" encoding="utf-8" ?>
+
+<!--
+I. Overall
+
+I.1 Each pattern can have <Match>....</Match> element. For the given type declaration, the pattern with the match, evaluated to 'true' with the largest weight, will be used 
+I.2 Each pattern consists of the sequence of <Entry>...</Entry> elements. Type member declarations are distributed between entries
+I.3 If pattern has RemoveAllRegions="true" attribute, then all regions will be cleared prior to reordering. Otherwise, only auto-generated regions will be cleared
+I.4 The contents of each entry is sorted by given keys (First key is primary,  next key is secondary, etc). Then the declarations are grouped and en-regioned by given property
+
+II. Available match operands
+
+Each operand may have Weight="..." attribute. This weight will be added to the match weight if the operand is evaluated to 'true'.
+The default weight is 1
+
+II.1 Boolean functions:
+II.1.1 <And>....</And>
+II.1.2 <Or>....</Or>
+II.1.3 <Not>....</Not>
+
+II.2 Operands
+II.2.1 <Kind Is="..."/>. Kinds are: class, struct, interface, enum, delegate, type, constructor, destructor, property, indexer, method, operator, field, constant, event, member
+II.2.2 <Name Is="..." [IgnoreCase="true/false"] />. The 'Is' attribute contains regular expression
+II.2.3 <HasAttribute CLRName="..." [Inherit="true/false"] />. The 'CLRName' attribute contains regular expression
+II.2.4 <Access Is="..."/>. The 'Is' values are: public, protected, internal, protected internal, private
+II.2.5 <Static/>
+II.2.6 <Abstract/>
+II.2.7 <Virtual/>
+II.2.8 <Override/>
+II.2.9 <Sealed/>
+II.2.10 <Readonly/>
+II.2.11 <ImplementsInterface CLRName="..."/>. The 'CLRName' attribute contains regular expression
+II.2.12 <HandlesEvent />
+-->
+
+<Patterns xmlns="urn:shemas-jetbrains-com:member-reordering-patterns">
+
+  
+  
+</Patterns>
+]]></CustomMemberReorderingPatterns>
+    </CSharp>
+    <VB>
+      <FormatSettings />
+      <ImportsSettings />
+      <Naming2>
+        <EventHandlerPatternLong>$object$_On$event$</EventHandlerPatternLong>
+        <EventHandlerPatternShort>$event$Handler</EventHandlerPatternShort>
+      </Naming2>
+    </VB>
+    <Web>
+      <Naming2>
+        <UserRule Name="ASP_TAG_NAME" Inspect="True" Prefix="" Suffix="" Style="AaBb" />
+        <UserRule Name="ASP_TAG_PREFIX" Inspect="True" Prefix="" Suffix="" Style="AaBb" />
+        <UserRule Name="ASP_FIELD" Inspect="True" Prefix="" Suffix="" Style="AaBb" />
+        <UserRule Name="ASP_HTML_CONTROL" Inspect="True" Prefix="" Suffix="" Style="AaBb" />
+      </Naming2>
+    </Web>
+    <Xaml>
+      <Naming2>
+        <UserRule Name="XAML_FIELD" Inspect="True" Prefix="_" Suffix="" Style="aaBb" />
+        <UserRule Name="NAMESPACE_ALIAS" Inspect="True" Prefix="" Suffix="" Style="AaBb" />
+        <UserRule Name="XAML_RESOURCE" Inspect="True" Prefix="" Suffix="" Style="AaBb" />
+      </Naming2>
+    </Xaml>
+    <XML>
+      <FormatSettings>
+        <MaxBlankLines>1</MaxBlankLines>
+        <MaxSingleLineTagLength>60</MaxSingleLineTagLength>
+        <ProcessingInstructionAttributeIndenting>OneStep</ProcessingInstructionAttributeIndenting>
+        <ProcessingInstructionAttributesFormat>DoNotTouch</ProcessingInstructionAttributesFormat>
+        <ProcessingInstructionSpaceAfterLastAttr>True</ProcessingInstructionSpaceAfterLastAttr>
+        <TagAttributeIndenting>OneStep</TagAttributeIndenting>
+        <TagAttributesFormat>DoNotTouch</TagAttributesFormat>
+      </FormatSettings>
+    </XML>
+    <GenerateMemberBody />
+    <Naming2>
+      <EventHandlerPatternLong>On$object$$event$</EventHandlerPatternLong>
+      <EventHandlerPatternShort>$event$Handler</EventHandlerPatternShort>
+      <PredefinedRule Inspect="True" Prefix="_" Suffix="" Style="aaBb" ElementKind="PrivateInstanceFields" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="TypesAndNamespaces" />
+      <PredefinedRule Inspect="True" Prefix="I" Suffix="" Style="AaBb" ElementKind="Interfaces" />
+      <PredefinedRule Inspect="True" Prefix="T" Suffix="" Style="AaBb" ElementKind="TypeParameters" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="MethodPropertyEvent" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="Locals" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="LocalConstants" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="aaBb" ElementKind="Parameters" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="PublicFields" />
+      <PredefinedRule Inspect="True" Prefix="_" Suffix="" Style="aaBb" ElementKind="PrivateStaticFields" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="Constants" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="PrivateConstants" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="StaticReadonly" />
+      <PredefinedRule Inspect="True" Prefix="_" Suffix="" Style="aaBb" ElementKind="PrivateStaticReadonly" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="EnumMember" />
+      <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="Other" />
+    </Naming2>
+  </CodeStyleSettings>
+  <CodeCleanup SilentCleanup="Custom" RecentlyUsed="Custom">
+    <Profile name="Custom">
+      <CSArrangeThisQualifier>False</CSArrangeThisQualifier>
+      <CSRemoveCodeRedundancies>False</CSRemoveCodeRedundancies>
+      <CSUseAutoProperty>True</CSUseAutoProperty>
+      <CSMakeFieldReadonly>True</CSMakeFieldReadonly>
+      <CSUseVar>
+        <BehavourStyle>DISABLED</BehavourStyle>
+        <LocalVariableStyle>IMPLICIT_WHEN_INITIALIZER_HAS_TYPE</LocalVariableStyle>
+        <ForeachVariableStyle>ALWAYS_EXPLICIT</ForeachVariableStyle>
+      </CSUseVar>
+      <CSUpdateFileHeader>False</CSUpdateFileHeader>
+      <VBOptimizeImports>False</VBOptimizeImports>
+      <VBShortenReferences>False</VBShortenReferences>
+      <XMLReformatCode>True</XMLReformatCode>
+      <CSOptimizeUsings>
+        <OptimizeUsings>True</OptimizeUsings>
+        <EmbraceInRegion>False</EmbraceInRegion>
+        <RegionName>
+        </RegionName>
+      </CSOptimizeUsings>
+      <CSShortenReferences>True</CSShortenReferences>
+      <VBReformatCode>False</VBReformatCode>
+      <CSReformatCode>True</CSReformatCode>
+      <CSharpFormatDocComments>False</CSharpFormatDocComments>
+      <CSReorderTypeMembers>False</CSReorderTypeMembers>
+    </Profile>
+  </CodeCleanup>
+  <ParameterInfoPopupController>
+    <DelegatesAsLambdas>True</DelegatesAsLambdas>
+  </ParameterInfoPopupController>
+</Configuration>
