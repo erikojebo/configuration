@@ -2,3 +2,8 @@ Clone this repository to your home folder and copy the dotfiles in the root of
 the repo to your home folders. The dotfiles in the configuration directory are
 simple pointers to the actual configuration files that are located in the
 corresponding sub directories of the configuration directory.
+
+If you want to use the Autohotkey script, then the easies way is to create a
+symlink from the file in the checkout to, for example, the startup folder in
+the start menu. That way, all modifications are made to the actual file under
+version control and not to a copy.
