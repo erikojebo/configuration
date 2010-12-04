@@ -1,5 +1,5 @@
 alias gs='git status'
-alias ga='git add .'
+alias ga='git add . --all'
 alias gd='git diff'
 alias gdc='git diff --cached'
 alias gl='git log'
