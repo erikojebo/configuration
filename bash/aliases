@@ -3,7 +3,7 @@ alias ga='git add .'
 alias gd='git diff'
 alias gdc='git diff --cached'
 
-alias gc='git commit -m'
+#alias gc='git commit -m'
 alias gac='git commit -am'
 
 function take() {
