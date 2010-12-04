@@ -35,6 +35,9 @@
 (add-to-list 'auto-mode-alist '("\\.ahkl$" . ahk-mode))
 (autoload 'ahk-mode "ahk-mode")
 
+;; Load ruby mode for rakefiles
+(add-to-list 'auto-mode-alist '("rakefile$" . ruby-mode))
+
 ;; Start camelCase-mode whenever a file is 'found' (opened)
 (add-hook 'find-file-hook '(lambda () (camelCase-mode 1)))
 
