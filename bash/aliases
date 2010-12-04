@@ -4,6 +4,9 @@ alias gd='git diff'
 alias gdc='git diff --cached'
 alias gl='git log'
 
+alias push='git push origin master'
+alias pull='git pull origin master'
+
 #alias gc='git commit -m'
 alias gac='git commit -am'
 
