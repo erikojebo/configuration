@@ -1,8 +1,8 @@
 class FileEntry
-  attr_reader :name
+  attr_reader :path
 
-  def initialize(name)
-    @name = name
+  def initialize(path)
+    @path = path
   end
 
   def file?
@@ -13,7 +13,9 @@ class FileEntry
     false
   end
 
-  def path
-    "/path/#{@name}"
+  def name
+    path_with_leading_slash = "/" + path
+    match = path_with_leading_slash.match(/.*\/(.*)/)
+    match.captures.first
   end
 end

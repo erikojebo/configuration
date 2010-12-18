@@ -1,95 +1,5 @@
 require 'directory_tree'
-
-class ContainsFileMatcher
-  def initialize(path, name)
-    @expected_path = path
-    @expected_name = name
-  end
-
-  def matches?(directory_entry)
-    directory_entry.files.each do |file| 
-      if file.path == @expected_path && 
-          file.name == @expected_name &&
-          file.file?
-        return true
-      end
-    end
-
-    @all_files = directory_entry.files.map { |f| "Path: #{f.path}, Name: #{f.name}" } * "\n"
-
-    false
-  end
-  
-  def description
-    "contains file"
-  end
-  
-  def failure_message
-    " expected to contain file, but no file with matching path and name was found\n" + 
-      "Actual files:\n#{@all_files}"
-  end
-  
-  def negative_failure_message
-    " expected not to contain file, but a file with matching name and path was found\n" + 
-      "Actual files:\n#{@all_files}"
-  end
-end
-
-def contain_file(path, name)
-  ContainsFileMatcher.new(path, name)
-end
-
-class ContainsDirectoryMatcher
-  def initialize(path, name)
-    @expected_path = path
-    @expected_name = name
-  end
-
-  def matches?(directory_entry)
-    directory_entry.directories.each do |directory| 
-      if directory.path == @expected_path && 
-          directory.name == @expected_name &&
-          directory.directory?
-        return true
-      end
-    end
-
-    @all_directories = directory_entry.directories.map { |d| "Path: #{d.path}, Name: #{d.name}" } * "\n"
-
-    false
-  end
-  
-  def description
-    "contains directory"
-  end
-  
-  def failure_message
-    " expected to contain directory, but no directory with matching path and name was found\n" + 
-      "Actual directories:\n#{@all_directories}"
-  end
-  
-  def negative_failure_message
-    " expected not to contain directory, but a directory with matching name and path was found\n" + 
-      "Actual directories:\n#{@all_directories}"
-  end
-end
-
-def contain_directory(path, name)
-  ContainsDirectoryMatcher.new(path, name)
-end
-
-# use splat hash in 1.9 to allow for calls looking like this:
-# set_entries_for_path(path: "/path", files: [], directories: [])
-def set_entries_for_path(path, directories, files)
-  files_and_directories = directories.concat files
-  fake_entries = [".", ".."].concat files_and_directories
-
-  stub = Dir.should_receive(:foreach).at_least(:once)
-  fake_entries.each { |e| stub.and_yield(e) }
-
-  directories.each { |entry| File.stub!(:file?).with(entry).and_return(false) }
-  files.each { |entry| File.stub!(:file?).with(entry).and_return(true) }
-end
+require 'file_hierarchy_reader_spec_helpers'
 
 describe "FileHierarchyReader reading directory containing single one file and one directory" do
   before(:each) do
@@ -141,7 +51,7 @@ describe "FileHierarchyReader reading directory with multiple files and director
   end
 end
 
-describe "FileHierarchyReader reading directory with sub directories containing files" do
+describe "FileHierarchyReader reading directory with two nested sub directories containing one file each" do
   before(:each) do
     set_entries_for_path("/path", ["child"], ["file_name"])
     set_entries_for_path("/path/child", ["grand_child"], ["child_file"])
@@ -151,10 +61,11 @@ describe "FileHierarchyReader reading directory with sub directories containing 
     @dir = @tree.read("/path")
   end
 
-  it "adds entries for files in sub directories" do
-    @tree.entries.size.should == 3
-    @dir.should contain_file("/path/file_name", "file_name")
-    @dir.should contain_file("/path/child/child_file", "child_file")
-    @dir.should contain_file("/path/child/grand_child/grand_child_file", "grand_child_file")
+  it "adds entries for file in first level sub directory" do
+    @dir.directories.size.should == 1
+
+    child_dir = @dir.directories.first
+    child_dir.files.size.should == 1
+    child_dir.should contain_file("/path/child/child_file", "child_file")
   end
 end

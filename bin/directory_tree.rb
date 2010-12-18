@@ -14,9 +14,10 @@ class FileHierarchyReader
       entry_path = File.join(path, entry)
       
       if File.file? entry
-        files.push FileEntry.new(entry)
+        files.push FileEntry.new(entry_path)
       else
-        directories.push DirectoryEntry.new(entry_path)
+        dir = read(entry_path)
+        directories.push dir
       end
     end
 
