@@ -1,0 +1,36 @@
+#!/usr/bin/ruby
+
+# Prints a graphical representation of a directory tree including files
+
+require File.dirname(__FILE__) + '/' + 'directory_stack'
+
+class TreeLister
+
+  def initialize
+    @directory_stack = DirectoryStack.new("")
+  end
+
+  def relative_reference?(file)
+    file == "." || file == ".."
+  end
+
+  def list(file)
+    return if relative_reference?(file)
+
+    if File.file? File.join(@directory_stack.current, file)
+      puts "-" * @directory_stack.depth + " " + file
+      return
+    end
+
+    @directory_stack.push file
+
+    puts "-" * @directory_stack.depth + " " + @directory_stack.current
+    Dir.foreach(@directory_stack.current) { |f| list f }
+
+    @directory_stack.pop
+  end
+end
+
+lister = TreeLister.new
+lister.list(Dir.pwd)
+
