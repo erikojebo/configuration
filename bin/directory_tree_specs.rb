@@ -1,8 +1,8 @@
 require 'directory_tree'
 
-describe DirectoryTree do
+describe FileHierarchyReader do
   before(:each) do
-    @tree = DirectoryTree.new
+    @tree = FileHierarchyReader.new
   end
 
   it "has no entries for empty directory" do

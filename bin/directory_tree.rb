@@ -2,7 +2,7 @@ require 'path'
 require 'file_entry'
 require 'directory_entry'
 
-class DirectoryTree
+class FileHierarchyReader
   attr_reader :entries
 
   def load_path(path)
