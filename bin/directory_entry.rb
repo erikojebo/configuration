@@ -1,8 +1,14 @@
 require 'path'
+require 'file_entry'
 
 class DirectoryEntry
-  def initialize(path)
+
+  attr_reader :files, :directories
+
+  def initialize(path, directories = [], files = [])
     @path = path
+    @files = files
+    @directories = directories
   end
 
   def directory?

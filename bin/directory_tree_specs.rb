@@ -14,10 +14,11 @@ describe FileHierarchyReader do
   it "has single file entry for directory containing single file" do
     set_entries_for_path("/path", [], ["file_name"])
 
-    @tree.load_path("/path")
+    @dir = @tree.read("/path")
 
-    @tree.entries.size.should == 1
-    tree_should_have_file_entry(0, "/path/file_name", "file_name")
+    @dir.files.size.should == 1
+    @dir.files.first.name.should == "file_name"
+    @dir.files.first.path.should == "/path/file_name"
   end
 
   it "has file entry for each file in directory containing multiple files" do

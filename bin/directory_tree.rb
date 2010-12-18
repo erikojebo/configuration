@@ -5,6 +5,24 @@ require 'directory_entry'
 class FileHierarchyReader
   attr_reader :entries
 
+  def read(path)
+    files = []
+    directories = []
+    
+    Dir.foreach(path) do |entry|
+      next if entry == "." || entry == ".."
+      entry_path = File.join(path, entry)
+      
+      if File.file? entry
+        files.push FileEntry.new(entry)
+      else
+        directories.push DirectoryEntry.new(entry_path)
+      end
+    end
+
+    directory_entry = DirectoryEntry.new(path, directories, files)
+  end
+
   def load_path(path)
     @entries = []
 

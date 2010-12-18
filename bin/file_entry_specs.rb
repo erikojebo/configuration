@@ -6,11 +6,11 @@ describe "FileEntry" do
   end
   
   it "is a file" do
-    @entry.file?.should be(true)
+    @entry.should be_file
   end
 
   it "is not a directory" do
-    @entry.directory?.should be(false)
+    @entry.should_not be_directory
   end
 
 end

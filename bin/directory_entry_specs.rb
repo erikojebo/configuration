@@ -1,17 +1,43 @@
 require 'directory_entry'
 
-
 describe "Directory entry" do
   before(:each) do
-    @entry = DirectoryEntry.new("/path")
+    @files = [ FileEntry.new("file1"), FileEntry.new("file2") ]
+    @directories = [ DirectoryEntry.new("/dir1"), DirectoryEntry.new("/dir2") ]
+    @entry = DirectoryEntry.new("/path", @directories, @files)
   end
 
   it "is a directory" do
-    @entry.directory?.should be(true)
+    @entry.should be_directory
   end
 
   it "is not a file" do
-    @entry.file?.should be(false)
+    @entry.should_not be_file
+  end
+
+  it "contains files with which it was initialized" do
+    @entry.files.first.should == @files.first
+    @entry.files.last.should == @files.last
+  end
+
+  it "contains directories with which it was initialized" do
+    @entry.directories.first.should == @directories.first
+    @entry.directories.last.should == @directories.last
+  end
+end
+
+
+describe "Directory entry created without files or sub directories" do
+  before(:each) do
+    @entry = DirectoryEntry.new("path")
+  end
+  
+  it "contains no files" do
+    @entry.files.size.should == 0
+  end
+
+  it "contains no directories" do
+    @entry.directories.size.should == 0
   end
 end
 
