@@ -1,0 +1,12 @@
+#name : rspec describe
+#contributor : Erik Öjebo
+#key : desc
+# --
+describe "${1:something}" do
+  before(:each) do
+  end
+
+  it "${2:spec}" do
+    $0           
+  end
+end
