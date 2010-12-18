@@ -37,4 +37,24 @@ class DirectoryEntry
   def path
     @path.with_trailing_slash
   end
+
+  def total_directory_count
+    directories_in_sub_dirs = directories.map{|d| d.total_directory_count}.inject{|sum, x| sum + x}
+
+    if (directories_in_sub_dirs)
+      return directories.size + directories_in_sub_dirs
+    end
+
+    directories.size
+  end
+
+  def total_file_count
+    files_in_sub_dirs = directories.map{|d| d.total_file_count}.inject{|sum, x| sum + x}
+
+    if (files_in_sub_dirs)
+      return files.size + files_in_sub_dirs
+    end
+
+    files.size
+  end
 end

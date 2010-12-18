@@ -47,6 +47,14 @@ describe "Directory entry created without files or sub directories" do
   it "contains no directories" do
     @entry.directories.size.should == 0
   end
+
+  it "has total directory count 0" do
+    @entry.total_directory_count.should == 0
+  end
+
+  it "has total file count 0" do
+    @entry.total_file_count.should == 0
+  end
 end
 
 describe "Directory entry for sub directory without trailing shash" do
@@ -84,5 +92,45 @@ describe "Directory entry for relative path without parent" do
 
   it "considers name to be path except trailing slash" do
     @entry.name.should == "sub_directory"
+  end
+end
+
+describe "Directory entry containing 1 file and 1 sub directory" do
+  before(:each) do
+    sub_dir = DirectoryEntry.new("/path/sub_dir")
+    file = FileEntry.new("/path/file")
+    @entry = DirectoryEntry.new("/path", [ sub_dir ], [ file ])
+  end
+
+  it "has total file count 1" do
+    @entry.total_file_count.should == 1
+  end
+
+  it "has total directory count 1" do
+    @entry.total_directory_count.should == 1
+  end
+end
+
+describe "Directory entry containing 2 files and 2 nested sub directories with 2 files each" do
+  before(:each) do
+    sub_dir = DirectoryEntry.new("/path/sub_dir")
+    file1 = FileEntry.new("/path/file1")
+    file2 = FileEntry.new("/path/file2")
+    child_file1 = FileEntry.new("/path/childfile1")
+    child_file2 = FileEntry.new("/path/childfile2")
+    grand_file1 = FileEntry.new("/path/childfile1")
+    grand_file2 = FileEntry.new("/path/childfile2")
+
+    grand_child_entry = DirectoryEntry.new("/path/child/grand_child", [], [grand_file1, grand_file2])
+    child_entry = DirectoryEntry.new("/path/child", [grand_child_entry], [child_file1, child_file2])
+    @entry = DirectoryEntry.new("/path", [ child_entry ], [ file1, file2 ])
+  end
+
+  it "has total file count 6" do
+    @entry.total_file_count.should == 6
+  end
+
+  it "has total directory count 2" do
+    @entry.total_directory_count.should == 2
   end
 end
