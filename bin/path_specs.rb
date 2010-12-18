@@ -1,11 +1,11 @@
 require 'path'
 
-describe "with_ending_slash" do
+describe "with_trailing_slash" do
   it "returnes string with ending slash unchanged" do
-    "string_with_ending_slash/".with_ending_slash.should == "string_with_ending_slash/"
+    "string_with_trailing_slash/".with_trailing_slash.should == "string_with_trailing_slash/"
   end
 
   it "appends single forward slash to string without ending slash" do
-    "string_without_ending_slash".with_ending_slash.should == "string_without_ending_slash/"
+    "string_without_ending_slash".with_trailing_slash.should == "string_without_ending_slash/"
   end
 end

@@ -35,6 +35,6 @@ class DirectoryEntry
   end
 
   def path
-    @path.with_ending_slash
+    @path.with_trailing_slash
   end
 end

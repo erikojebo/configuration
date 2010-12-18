@@ -1,5 +1,5 @@
 class String
-  def with_ending_slash
+  def with_trailing_slash
     return self if self =~ /\/$/
     self + "/"
   end
