@@ -1,4 +1,4 @@
-require 'directory_tree'
+require 'file_hierarchy_reader'
 require 'file_hierarchy_reader_spec_helpers'
 
 describe "FileHierarchyReader reading directory containing single one file and one directory" do
