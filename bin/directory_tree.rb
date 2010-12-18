@@ -1,20 +1,6 @@
 require 'path'
-
-class FileEntry
-  attr_reader :name
-
-  def initialize(name)
-    @name = name
-  end
-
-  def file?
-    true
-  end
-
-  def path
-    "/path/#{@name}"
-  end
-end
+require 'file_entry'
+require 'directory_entry'
 
 class DirectoryTree
   attr_reader :entries
@@ -24,7 +10,8 @@ class DirectoryTree
 
     Dir.foreach(path) do |entry|
       next if entry == "." || entry == ".."
-      entry = File.file?(entry) ? FileEntry.new(entry) : DirectoryEntry.new(entry)
+      entry_path = File.join(path, entry)
+      entry = File.file?(entry) ? FileEntry.new(entry) : DirectoryEntry.new(entry_path)
       @entries.push entry
     end
   end

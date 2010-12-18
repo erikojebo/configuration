@@ -14,7 +14,13 @@ class DirectoryEntry
   end
 
   def name
-    match = @path.match /.*\/(.*)$/
+    # Make sure the path to match agains starts with a slash so that
+    # there is always at least two slashes between which to extract
+    # the name
+    path_with_leading_slash = '/' + path
+
+    # Extract text between last two forward slashes
+    match = path_with_leading_slash.match /.*\/(.*)\/$/
     match.captures.first
   end
 

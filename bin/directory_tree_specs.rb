@@ -17,7 +17,7 @@ describe DirectoryTree do
     @tree.load_path("/path")
 
     @tree.entries.size.should == 1
-    tree_should_have_file_entry(1, "/path/file_name", "file_name")
+    tree_should_have_file_entry(0, "/path/file_name", "file_name")
   end
 
   it "has file entry for each file in directory containing multiple files" do
@@ -26,8 +26,8 @@ describe DirectoryTree do
     @tree.load_path("/path")
 
     @tree.entries.size.should == 2
-    tree_should_have_file_entry(1, "/path/file_name", "file_name")
-    tree_should_have_file_entry(1, "/path/file_name", "file_name")
+    tree_should_have_file_entry(0, "/path/file_name", "file_name")
+    tree_should_have_file_entry(1, "/path/other_file_name", "other_file_name")
   end
 
   it "has single directory entry for directory containing single directory" do
@@ -41,24 +41,41 @@ describe DirectoryTree do
     @tree.entries.first.path.should == "/path/sub_directory/"
   end
 
-  # it "adds entries for files in sub directories" do
-  #   set_entries_for_path("/path", ["child"], ["file_name"])
-  #   set_entries_for_path("/path/child", ["grand_child"], ["child_file"])
-  #   set_entries_for_path("/path/child/grand_child", [], ["grand_child_file"])
-  #   @tree.load_path("/path")
+  it "has directory entry for each directory in directory containing multiple directories" do
+    set_entries_for_path("/path", ["sub_directory", "other_sub_directory"], [])
 
-  #   @tree.entries.size.should == 3
-  #   should_have_file_entry(1, "/path/file_name", "file_name")
-  #   should_have_file_entry(1, "/path/file_name", "file_name")
-  # end
+    @tree.load_path "/path"
 
-  def tree_should_have_file_entry(index, path, name)
-    @tree.entries.first.file?.should be(true)
-    @tree.entries.first.name.should == name
-    @tree.entries.first.path.should == path
+    @tree.entries.size.should == 2
+    tree_should_have_directory_entry(0, "/path/sub_directory/", "sub_directory")
+    tree_should_have_directory_entry(1, "/path/other_sub_directory/", "other_sub_directory")
   end
 
-  # use spat hash in 1.9 to allow for calls looking like this:
+  it "adds entries for files in sub directories" do
+    set_entries_for_path("/path", ["child"], ["file_name"])
+    set_entries_for_path("/path/child", ["grand_child"], ["child_file"])
+    set_entries_for_path("/path/child/grand_child", [], ["grand_child_file"])
+    @tree.load_path("/path")
+
+    @tree.entries.size.should == 3
+    should_have_file_entry(0, "/path/file_name", "file_name")
+    should_have_file_entry(1, "/path/child/child_file", "child_file")
+    should_have_file_entry(2, "/path/child/grand_child_file", "grand_child_file")
+  end
+
+  def tree_should_have_file_entry(index, path, name)
+    @tree.entries[index].file?.should be(true)
+    @tree.entries[index].name.should == name
+    @tree.entries[index].path.should == path
+  end
+
+  def tree_should_have_directory_entry(index, path, name)
+    @tree.entries[index].directory?.should be(true)
+    @tree.entries[index].name.should == name
+    @tree.entries[index].path.should == path
+  end
+
+  # use splat hash in 1.9 to allow for calls looking like this:
   # set_entries_for_path(path: "/path", files: [], directories: [])
   def set_entries_for_path(path, directories, files)
     files_and_directories = directories.concat files
