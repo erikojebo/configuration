@@ -61,11 +61,29 @@ describe "FileHierarchyReader reading directory with two nested sub directories 
     @dir = @tree.read("/path")
   end
 
-  it "adds entries for file in first level sub directory" do
+  it "adds entry for file in first level sub directory" do
     @dir.directories.size.should == 1
 
     child_dir = @dir.directories.first
     child_dir.files.size.should == 1
     child_dir.should contain_file("/path/child/child_file", "child_file")
+  end
+
+  it "adds entry for file in second level sub directory" do
+    child_dir = @dir.directories.first
+
+    child_dir.directories.size.should == 1
+
+    grand_child_dir = child_dir.directories.first
+
+    grand_child_dir.files.size.should == 1
+    grand_child_dir.should contain_file("/path/child/grand_child/grand_child_file", "grand_child_file")
+  end
+
+  it "adds entry for second level child directory" do
+    child_dir = @dir.directories.first
+
+    child_dir.directories.size.should == 1
+    child_dir.should contain_directory("/path/child/grand_child/", "grand_child")
   end
 end
