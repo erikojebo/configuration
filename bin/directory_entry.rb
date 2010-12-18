@@ -19,6 +19,10 @@ class DirectoryEntry
     false
   end
 
+  def entries
+    directories.concat files
+  end
+
   def name
     # Make sure the path to match agains starts with a slash so that
     # there is always at least two slashes between which to extract
