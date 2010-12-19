@@ -8,7 +8,7 @@ class StringContainsMatcher
 
   def matches?(actual)
     @actual = actual
-    actual =~ /#{@expected_substring}/
+    actual =~ /#{Regexp.escape(@expected_substring)}/m
   end
 
   def description
@@ -80,5 +80,27 @@ describe "FileHierarchyPrinter printing directory with single sub directory" do
 
   it "prints '1 directory, 0 files' as summary" do
     @output.should contain("1 directory")
+  end
+end
+
+describe "FileHierarchyPrinter printing directory with 1 file and 1 directory" do
+  before(:each) do
+    sub_dir = DirectoryEntry.new("/path/sub_directory/")
+    file = FileEntry.new("/path/file_name")
+    dir = DirectoryEntry.new('/path', [ sub_dir ], [ file ])
+    printer = FileHierarchyPrinter.new
+    @output = printer.print_to_string(dir)
+  end
+
+  it "prints file name before directory name, directly under root dot" do
+    @output.should contain(
+".
+|-- file_name
+`-- sub_directory
+")
+  end
+  
+  it "prints summary 1 directory, 1 file" do
+    @output.should contain("1 directory, 1 file")
   end
 end
