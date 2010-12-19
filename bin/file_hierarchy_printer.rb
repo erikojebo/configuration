@@ -1,7 +1,7 @@
 class FileHierarchyPrinter
   def print_to_string(directory_entry)
     @root = directory_entry
-    @indent_level = 0
+    @indentation = ""
 
     summary = create_summary
 
@@ -19,12 +19,17 @@ class FileHierarchyPrinter
     entries = entry.files.concat entry.directories
 
     entries.each_with_index do |e, i|
-      listing += "    " * @indent_level
-      listing += i == entries.size-1 ? "`" : "|"
+      is_last_entry = i == entries.size - 1
+
+      listing += @indentation
+      listing += is_last_entry ? "`" : "|"
       listing += "-- #{e.name}\n"
-      @indent_level += 1
+
+      indentation = is_last_entry ? "    " : "|   "
+      old_indentation = @indentation.dup
+      @indentation << indentation
       listing += create_listing(e) if e.directory?
-      @indent_level -= 1
+      @indentation = old_indentation
     end
 
     listing
