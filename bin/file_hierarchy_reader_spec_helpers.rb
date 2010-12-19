@@ -87,16 +87,17 @@ def set_entries_for_path(path, directories, files)
   fake_entries.each { |e| stub.and_yield(e) }
 
   directories.each do |entry| 
-    entry_path = File.join(path, entry)
-
-    File.stub!(:file?).with(entry_path).and_return(false)
-    File.stub!(:directory?).with(entry_path).and_return(true)
+    stub_is_file(path, entry, false)
   end
 
   files.each do |entry| 
-    entry_path = File.join(path, entry)
-
-    File.stub!(:file?).with(entry_path).and_return(true)
-    File.stub!(:directory?).with(entry_path).and_return(false)
+    stub_is_file(path, entry, true)
   end
+end
+
+def stub_is_file(path, entry, is_file)
+  entry_path = File.join(path, entry)
+
+  File.stub!(:file?).with(entry_path).and_return(is_file)
+  File.stub!(:directory?).with(entry_path).and_return(!is_file)
 end
