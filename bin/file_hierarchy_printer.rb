@@ -1,6 +1,7 @@
 class FileHierarchyPrinter
   def print_to_string(directory_entry)
     @root = directory_entry
+    @indent_level = 0
 
     summary = create_summary
 
@@ -14,11 +15,16 @@ class FileHierarchyPrinter
   def create_listing(entry)
     listing = ""
 
+    # Output files before directories
     entries = entry.files.concat entry.directories
 
     entries.each_with_index do |e, i|
+      listing += "    " * @indent_level
       listing += i == entries.size-1 ? "`" : "|"
       listing += "-- #{e.name}\n"
+      @indent_level += 1
+      listing += create_listing(e) if e.directory?
+      @indent_level -= 1
     end
 
     listing

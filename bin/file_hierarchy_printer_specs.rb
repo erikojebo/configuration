@@ -104,3 +104,62 @@ describe "FileHierarchyPrinter printing directory with 1 file and 1 directory" d
     @output.should contain("1 directory, 1 file")
   end
 end
+
+describe "FileHierarchyPrinter printing directory with 1 sub directory containing 1 file" do
+  before(:each) do
+    file = FileEntry.new("/path/sub_directory/file_name")
+    sub_dir = DirectoryEntry.new("/path/sub_directory/", [], [ file ])
+    dir = DirectoryEntry.new('/path', [ sub_dir ], [])
+    printer = FileHierarchyPrinter.new
+    @output = printer.print_to_string(dir)
+  end
+
+  it "prints file in sub dir indented under sub dir name" do
+    @output.should contain(
+".
+`-- sub_directory
+    `-- file_name
+")
+  end
+  
+  it "prints summary 1 directory, 1 file" do
+    @output.should contain("1 directory, 1 file")
+  end
+end
+
+describe "FileHierarchyPrinter printing multi-level directory tree containing multiple files" do
+  before(:each) do
+    file1 = FileEntry.new("/path/sub_directory/file_name1")
+    file2 = FileEntry.new("/path/sub_directory/file_name2")
+    child_file1 = FileEntry.new("/path/sub_directory/child_file_name1")
+    child_file2 = FileEntry.new("/path/sub_directory/child_file_name2")
+    grand_child_file2 = FileEntry.new("/path/sub_directory/grand_child_file_name2")
+
+    grand_child_dir1 = DirectoryEntry.new("/path/grand_child_dir1/", [], [])
+    grand_child_dir2 = DirectoryEntry.new("/path/grand_child_dir2/", [], [ grand_child_file2 ])
+    child_dir = DirectoryEntry.new("/path/child_dir/", [ grand_child_dir1, grand_child_dir2 ], [ child_file1, child_file2 ])
+
+    dir = DirectoryEntry.new('/path', [ child_dir ], [ file1, file2 ])
+    printer = FileHierarchyPrinter.new
+    @output = printer.print_to_string(dir)
+  end
+
+  it "prints file in sub dir indented under sub dir name" do
+    @output.should contain(
+".
+|-- file_name1
+|-- file_name2
+`-- child_dir
+    |-- child_file_name1
+    |-- child_file_name2
+    |-- grand_child_dir1
+    `-- grand_child_dir2
+        `-- grand_child_file_name2
+")
+  end
+  
+  it "prints summary 3 directory, 6 files" do
+    @output.should contain("3 directories, 5 files")
+  end
+end
+
