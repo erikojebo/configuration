@@ -1,19 +1,20 @@
 class FileHierarchyPrinter
   def print_to_string(directory_entry)
+    @root = directory_entry
 
-    summary = create_summary directory_entry
+    summary = create_summary
 
-    listing = ".\n" + create_listing(directory_entry)
+    listing = ".\n" + create_listing(@root)
 
     "#{listing}\n\n#{summary}\n"
   end
 
   private
   
-  def create_listing(directory_entry)
+  def create_listing(entry)
     listing = ""
 
-    entries = directory_entry.files.concat directory_entry.directories
+    entries = entry.files.concat entry.directories
 
     entries.each_with_index do |e, i|
       listing += i == entries.size-1 ? "`" : "|"
@@ -23,15 +24,15 @@ class FileHierarchyPrinter
     listing
   end
 
-  def create_summary(directory_entry)
-    directory_summary = "#{directory_entry.total_directory_count} directories"
-    file_summary = "#{directory_entry.total_file_count} files"
+  def create_summary
+    directory_summary = "#{@root.total_directory_count} directories"
+    file_summary = "#{@root.total_file_count} files"
 
-    if directory_entry.total_directory_count == 1
+    if @root.total_directory_count == 1
       directory_summary = "1 directory"
     end
     
-    if directory_entry.total_file_count == 1
+    if @root.total_file_count == 1
       file_summary = "1 file"
     end
 
