@@ -86,6 +86,17 @@ def set_entries_for_path(path, directories, files)
   stub = Dir.should_receive(:foreach).with(path).at_least(:once)
   fake_entries.each { |e| stub.and_yield(e) }
 
-  directories.each { |entry| File.stub!(:file?).with(entry).and_return(false) }
-  files.each { |entry| File.stub!(:file?).with(entry).and_return(true) }
+  directories.each do |entry| 
+    entry_path = File.join(path, entry)
+
+    File.stub!(:file?).with(entry_path).and_return(false)
+    File.stub!(:directory?).with(entry_path).and_return(true)
+  end
+
+  files.each do |entry| 
+    entry_path = File.join(path, entry)
+
+    File.stub!(:file?).with(entry_path).and_return(true)
+    File.stub!(:directory?).with(entry_path).and_return(false)
+  end
 end
