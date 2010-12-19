@@ -4,7 +4,6 @@ class FileHierarchyPrinter
     @indentation = ""
 
     summary = create_summary
-
     listing = ".\n" + create_listing(@root)
 
     "#{listing}\n\n#{summary}\n"
@@ -25,15 +24,24 @@ class FileHierarchyPrinter
       listing += is_last_entry ? "`" : "|"
       listing += "-- #{e.name}\n"
 
-      indentation = is_last_entry ? "    " : "|   "
-      old_indentation = @indentation.dup
-      @indentation << indentation
-      listing += create_listing(e) if e.directory?
-      @indentation = old_indentation
+      with_indentation(is_last_entry) do
+        listing += create_listing(e) if e.directory?
+      end
     end
 
     listing
   end
+
+  def with_indentation(is_last_entry)
+    additional_indentation = is_last_entry ? "    " : "|   "
+    old_indentation = @indentation.dup
+    @indentation << additional_indentation
+
+    yield
+    
+    @indentation = old_indentation
+  end
+
 
   def create_summary
     directory_summary = "#{@root.total_directory_count} directories"
