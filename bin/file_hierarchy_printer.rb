@@ -3,7 +3,16 @@ class FileHierarchyPrinter
 
     summary = create_summary directory_entry
 
-    listing = ".\n"
+    listing = ".\n" + create_listing(directory_entry)
+
+    "#{listing}\n\n#{summary}\n"
+  end
+
+  private
+  
+  def create_listing(directory_entry)
+    listing = ""
+
     entries = directory_entry.files.concat directory_entry.directories
 
     entries.each_with_index do |e, i|
@@ -11,11 +20,9 @@ class FileHierarchyPrinter
       listing += "-- #{e.name}\n"
     end
 
-    "#{listing}\n\n#{summary}\n"
+    listing
   end
 
-  private
-  
   def create_summary(directory_entry)
     directory_summary = "#{directory_entry.total_directory_count} directories"
     file_summary = "#{directory_entry.total_file_count} files"
