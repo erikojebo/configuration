@@ -1,6 +1,5 @@
-require 'path'
-require 'file_entry'
-require 'directory_entry'
+require File.dirname(__FILE__) + '/path'
+require File.dirname(__FILE__) + '/directory_entry'
 
 class FileHierarchyReader
   attr_reader :entries
@@ -13,11 +12,13 @@ class FileHierarchyReader
       next if entry == "." || entry == ".."
       entry_path = File.join(path, entry)
       
-      if File.file? entry
+      if File.file? entry_path
         files.push FileEntry.new(entry_path)
-      else
+      elsif File.directory? entry_path
         dir = read(entry_path)
         directories.push dir
+      else
+        fail "Neither file nor directory: #{entry}"
       end
     end
 

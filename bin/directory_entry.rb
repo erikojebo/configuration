@@ -1,5 +1,5 @@
-require 'path'
-require 'file_entry'
+require File.dirname(__FILE__) + '/path'
+require File.dirname(__FILE__) + '/file_entry'
 
 class DirectoryEntry
 
