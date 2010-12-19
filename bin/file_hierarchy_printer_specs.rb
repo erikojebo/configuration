@@ -137,7 +137,9 @@ describe "FileHierarchyPrinter printing multi-level directory tree containing mu
 
     grand_child_dir1 = DirectoryEntry.new("/path/grand_child_dir1/", [], [])
     grand_child_dir2 = DirectoryEntry.new("/path/grand_child_dir2/", [], [ grand_child_file2 ])
-    child_dir = DirectoryEntry.new("/path/child_dir/", [ grand_child_dir1, grand_child_dir2 ], [ child_file1, child_file2 ])
+    child_dir = DirectoryEntry.new("/path/child_dir/", 
+                                   [ grand_child_dir1, grand_child_dir2 ], 
+                                   [ child_file1, child_file2 ])
 
     dir = DirectoryEntry.new('/path', [ child_dir ], [ file1, file2 ])
     printer = FileHierarchyPrinter.new
@@ -163,3 +165,24 @@ describe "FileHierarchyPrinter printing multi-level directory tree containing mu
   end
 end
 
+describe "FileHierarchyPrinter printing directory with 2 sub dirs containing 1 file each" do
+  before(:each) do
+    child_file1 = FileEntry.new("/path/child_dir1/child_file1")
+    child_file2 = FileEntry.new("/path/child_dir2/child_file2")
+    child_dir1 = DirectoryEntry.new("/path/child_dir1/", [], [ child_file1 ])
+    child_dir2 = DirectoryEntry.new("/path/child_dir2/", [], [ child_file2 ])
+    dir = DirectoryEntry.new('/path', [ child_dir1, child_dir2 ], [])
+    printer = FileHierarchyPrinter.new
+    @output = printer.print_to_string(dir)
+  end
+
+  it "prints vertical bars to indicate outer directory scope when listing contents of first sub directory" do
+    @output.should contain(
+".
+|-- child_dir1
+|   `-- child_file1
+`-- child_dir2
+    `-- child_file2
+")
+  end
+end
