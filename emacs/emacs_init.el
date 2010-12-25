@@ -38,6 +38,14 @@
 ;; Load ruby mode for rakefiles
 (add-to-list 'auto-mode-alist '("rakefile$" . ruby-mode))
 
+;; Haskell mode
+(load "~/configuration/emacs/plugins/haskell-mode/haskell-site-file")
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+
 ;; Start camelCase-mode whenever a file is 'found' (opened)
 (add-hook 'find-file-hook '(lambda () (camelCase-mode 1)))
 
