@@ -1,0 +1,5 @@
+#!/usr/bin/ruby
+
+file_name = ARGV[0]
+`ghc -o #{file_name} #{file_name}.hs`
+`time -f "Real:\t%e\nUser:\t%U\nSystem:\t%S" ./#{file_name}`
