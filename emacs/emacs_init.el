@@ -38,6 +38,9 @@
 ;; Load ruby mode for rakefiles
 (add-to-list 'auto-mode-alist '("rakefile$" . ruby-mode))
 
+;; Load org-mode for .org files
+(add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
+
 ;; Haskell mode
 (load "~/configuration/emacs/plugins/haskell-mode/haskell-site-file")
 
