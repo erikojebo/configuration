@@ -49,6 +49,13 @@
     </Variables>
     <CustomProperties />
   </Template>
+  <Template uid="3a4c078c-0226-47a3-8ad4-577239e5eeba" shortcut="fail" description="Adds NUnit Assert.Fail()" text="Assert.Fail(&quot;$message$&quot;);$END$" reformat="True" shortenQualifiedReferences="True">
+    <Categories />
+    <Variables>
+      <Variable name="message" expression="constant(&quot;not implemented&quot;)" initialRange="0" />
+    </Variables>
+    <CustomProperties />
+  </Template>
   <Template uid="ec932641-2a3e-49fe-961a-2ec2d4db158f" shortcut="get" description="Get only" text="{&#xD;&#xA;	get&#xD;&#xA;	{&#xD;&#xA;		$END$&#xD;&#xA;	}&#xD;&#xA;}" reformat="True" shortenQualifiedReferences="True">
     <Categories />
     <Variables />
