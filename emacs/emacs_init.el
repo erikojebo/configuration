@@ -175,3 +175,12 @@
       (setq list (cdr list))
       (setq buffer (car list))))
   (message "Refreshing open files"))
+
+(defun indent-whole-buffer ()
+  "indent whole buffer"
+  (interactive)
+  (delete-trailing-whitespace)
+  (indent-region (point-min) (point-max) nil)
+  (untabify (point-min) (point-max)))
+
+(global-set-key (kbd "C-M-+") 'indent-whole-buffer)
