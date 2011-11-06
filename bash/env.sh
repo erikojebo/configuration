@@ -56,8 +56,25 @@ function formattedGitBranch {
     test -n "$_branch" && echo -e " @\e[0;32m $_branch"
 }
 
+BLACK=$(tput setaf 0)
+RED=$(tput setaf 1)
+GREEN=$(tput setaf 2)
+LIME_YELLOW=$(tput setaf 190)
+YELLOW=$(tput setaf 3)
+POWDER_BLUE=$(tput setaf 153)
+BLUE=$(tput setaf 4)
+MAGENTA=$(tput setaf 5)
+CYAN=$(tput setaf 6)
+WHITE=$(tput setaf 7)
+DARK_YELLOW=$(tput setaf 3)
+BRIGHT=$(tput bold)
+NORMAL=$(tput sgr0)
+BLINK=$(tput blink)
+REVERSE=$(tput smso)
+UNDERLINE=$(tput smul)
+TEST=$(tput setaf 6)
 
-PS1='\[\e[0;30m\]
-\u@\h \[\e[0;35m\]$PWD$(formattedGitBranch)
-\[\e[0;31m\]$ '
+PS1='\[${DARK_YELLOW}\]
+\u@\h \[${BLUE}\]$PWD$(formattedGitBranch)
+\[${BLACK}\]$ '
 export PS1
