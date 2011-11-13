@@ -176,6 +176,9 @@
       (setq buffer (car list))))
   (message "Refreshing open files"))
 
+
+; Indent whole buffer
+
 (defun indent-whole-buffer ()
   "indent whole buffer"
   (interactive)
@@ -184,3 +187,13 @@
   (untabify (point-min) (point-max)))
 
 (global-set-key (kbd "C-M-+") 'indent-whole-buffer)
+
+
+
+; Yank forwards
+
+(defun yank-pop-forwards (arg)
+      (interactive "p")
+      (yank-pop (- arg)))
+
+(global-set-key "\M-Y" 'yank-pop-forwards) ; M-Y (Meta-Shift-Y)
