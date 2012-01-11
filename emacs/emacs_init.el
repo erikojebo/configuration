@@ -184,6 +184,9 @@
         try-complete-lisp-symbol))
 
 ;; Rebindings
+(global-set-key (kbd "C-+") 'text-scale-increase)
+(global-set-key (kbd "C--") 'text-scale-decrease)
+
 (global-set-key (kbd "C-v") 'scroll-up-6-lines)
 (global-set-key (kbd "M-v") 'scroll-down-6-lines)
 (defun scroll-down-6-lines ()
