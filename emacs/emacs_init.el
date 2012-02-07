@@ -14,6 +14,10 @@
 (set-frame-position (selected-frame) 250 65)
 
 
+;; UTF-8 configuration
+(prefer-coding-system 'utf-8)
+
+
 ;;Define 'first' to return the first element of a list.
 (defun first (argList)
   "Return the first element of a list"
