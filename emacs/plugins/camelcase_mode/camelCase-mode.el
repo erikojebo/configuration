@@ -198,7 +198,23 @@
 
 ;;; COMMANDS:
 
-(defconst camelCase-regexp "\\([A-Z]?[a-z]+\\|[A-Z]+\\|[0-9]+\\)"
+;;; Original regex:
+;;;(defconst camelCase-regexp "\\([A-Z]?[a-z]+\\|[A-Z]+\\|[0-9]+\\)"
+
+(defun make-disjunctive-regexp
+  (expression-lists)
+  (let ((expressions (apply #'append expression-lists)))
+    (concat "\\(" (mapconcat 'identity  expressions "\\|") "\\)")))
+
+(defun escape-regexp-special-chars (&rest chars)
+  (mapcar '(lambda (x) (concat "\\" x)) chars))
+
+(defconst camelCase-regexp 
+  (make-disjunctive-regexp
+   (list
+    '("[A-Z]?[a-z]+" "[A-Z]+" "[0-9]+")
+    '(", " "(" ")" " = " ".")
+    (escape-regexp-special-chars "[" "]")))
   ;; capital must be before uppercase
   "regular expression that matches a camelCase word, defined as
 Capitalized, lowercase, or UPPERCASE sequence of letters,
@@ -227,8 +243,10 @@ or sequence of digits.")
 		      (and (looking-at camelCase-regexp)
 			   (not (= search-end (match-end 0))))))
 	      (forward-char -1))
-	    (point))
-	(setq case-fold-search old-case-fold-search)))))
+        (when (looking-at " ")
+          (forward-char 1)
+          (point)))
+      (setq case-fold-search old-case-fold-search)))))
 
 (defun camelCase-backward-word (count) 
   "move point backward COUNT camelCase words"
