@@ -200,25 +200,68 @@
 
 ;;; Original regex:
 ;;;(defconst camelCase-regexp "\\([A-Z]?[a-z]+\\|[A-Z]+\\|[0-9]+\\)"
+(defconst camelCase-regexp "\\(s-+\\| = \\|, \\|[A-Z]?[a-z]+\\|[A-Z]+\\|[0-9]+\\|()\\|(\\|)\\|\\[\\|\\]\\)"
 
-(defun make-disjunctive-regexp
-  (expression-lists)
-  (let ((expressions (apply #'append expression-lists)))
-    (concat "\\(" (mapconcat 'identity  expressions "\\|") "\\)")))
+;; (defun make-disjunctive-regexp
+;;   (expression-lists)
+;;   (let ((expressions (apply #'append expression-lists)))
+;;     (concat "\\(" (mapconcat 'identity  expressions "\\|") "\\)")))
 
-(defun escape-regexp-special-chars (&rest chars)
-  (mapcar '(lambda (x) (concat "\\" x)) chars))
+;; (defun escape-regexp-special-chars (&rest chars)
+;;   (mapcar '(lambda (x) (concat "\\" x)) chars))
 
-(defconst camelCase-regexp 
-  (make-disjunctive-regexp
-   (list
-    '("[A-Z]?[a-z]+" "[A-Z]+" "[0-9]+")
-    '(", " "(" ")" " = " ".")
-    (escape-regexp-special-chars "[" "]")))
+;; (defconst camelCase-regexp 
+;;   (make-disjunctive-regexp
+;;    (list
+;;     '("[A-Z]?[a-z]+" "[A-Z]+" "[0-9]+")
+;;     '(", " "(" ")" " = " ".")
+;;     (escape-regexp-special-chars "[" "]")))
   ;; capital must be before uppercase
   "regular expression that matches a camelCase word, defined as
 Capitalized, lowercase, or UPPERCASE sequence of letters,
 or sequence of digits.")
+
+(defun skip-to-next-camel-case-word-boudary ()
+  (skip-to-camel-case-word-boudary 1))
+
+(defun skip-to-camel-case-word-boudary (direction)
+  (let* ((previous (char-to-string (char-before (point))))
+         (current (char-to-string (char-after (point))))
+         (next (char-to-string (char-after (1+ (point)))))
+         (is-digit (string-match-p "[0-9]" current))
+         (is-lower (string-match-p "[a-z]" current))
+         (is-upper (string-match-p "[A-Z]" current))
+         (is-whitespace (string-match-p "\\s-" current))
+         (is-other (not (or is-digit is-lower is-upper is-whitespace)))
+         (is-prev-digit (string-match-p "[0-9]" previous))
+         (is-prev-lower (string-match-p "[a-z]" previous))
+         (is-prev-upper (string-match-p "[A-Z]" previous))
+         (is-prev-whitespace (string-match-p "\\s-" previous))
+         (is-prev-other 
+          (not (or is-prev-digit is-prev-lower is-prev-upper is-prev-whitespace)))
+         (is-next-digit (string-match-p "[0-9]" next))
+         (is-next-lower (string-match-p "[a-z]" next))
+         (is-next-upper (string-match-p "[A-Z]" next))
+         (is-next-whitespace (string-match-p "\\s-" next))
+         (is-next-other 
+          (not (or is-next-digit is-next-lower is-next-upper is-next-whitespace))))
+
+    (message (bool-to-string is-upper))
+    (cond (is-other (forward-char direction))
+          ((looking-at ", ") (forward-char (* 2 direction)))
+          ((or 
+            (and is-lower is-next-lower)
+            (and is-upper is-next-upper)
+            (and is-digit is-next-digit)
+            (and is-whitespace is-next-whitespace)
+            (and is-upper (not is-prev-upper)))
+           (forward-char direction)
+           (skip-to-camel-case-word-boudary direction))
+          (t (forward-char direction)))))
+
+(skip-to-next-camel-case-word-boudary)
+(defun bool-to-string (bool)
+  (if bool "t" "nil"))
 
 (defun camelCase-forward-word (count)
   "move point foward COUNT camelCase words"
@@ -231,22 +274,8 @@ or sequence of digits.")
     (let ((old-case-fold-search case-fold-search)
 	  (case-fold-search nil)) ;; search case sensitively
       (unwind-protect 
-	  (when (re-search-forward camelCase-regexp nil t count)
-	    ;; something matched, just check for special case.
-	    ;; If uppercase acronym is in camelCase word as in "URLNext",
-	    ;; search will leave point after N rather than after L.
-	    ;; So if match starting back one char doesn't end same place,
-	    ;; then back-up one char.
-	    (when (save-excursion     
-		    (let ((search-end (point)))
-		      (forward-char -1)
-		      (and (looking-at camelCase-regexp)
-			   (not (= search-end (match-end 0))))))
-	      (forward-char -1))
-        (when (looking-at " ")
-          (forward-char 1)
-          (point)))
-      (setq case-fold-search old-case-fold-search)))))
+    (skip-to-next-camel-case-word-boudary)
+	(setq case-fold-search old-case-fold-search)))))
 
 (defun camelCase-backward-word (count) 
   "move point backward COUNT camelCase words"

@@ -188,6 +188,9 @@
         try-complete-lisp-symbol))
 
 ;; Rebindings
+(global-set-key (kbd "C-x M-b") 'eval-buffer)
+(global-set-key (kbd "C-x M-d") 'eval-defun)
+
 (global-set-key (kbd "C-+") 'text-scale-increase)
 (global-set-key (kbd "C--") 'text-scale-decrease)
 
