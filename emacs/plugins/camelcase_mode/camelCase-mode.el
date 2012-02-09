@@ -268,7 +268,7 @@ or sequence of digits.")
             (looking-back-from-current "[A-Z]\\{2\\}")
             (looking-back-from-current "[0-9]\\{2\\}")
             (looking-back-from-current "\\s-\\{2\\}"))
-           (skip-to-camel-case-word-boundary))))
+           (skip-to-prev-camel-case-word-boundary))))
 
 
 
