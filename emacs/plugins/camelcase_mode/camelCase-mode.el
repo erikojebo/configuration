@@ -221,13 +221,7 @@
 Capitalized, lowercase, or UPPERCASE sequence of letters,
 or sequence of digits.")
 
-(defun skip-to-prev-camel-case-word-boundary ()
-  (skip-to-camel-case-word-boundary -1 nil))
-
 (defun skip-to-next-camel-case-word-boundary ()
-  (skip-to-camel-case-word-boundary 1 nil))
-
-(defun skip-to-camel-case-word-boundary (direction has-stepped)
   (let* ((previous (char-to-string (char-before (point))))
          (current (char-to-string (char-after (point))))
          (next (char-to-string (char-after (1+ (point)))))
@@ -236,12 +230,7 @@ or sequence of digits.")
          (is-upper (string-match-p "[A-Z]" current))
          (is-whitespace (string-match-p "\\s-" current))
          (is-other (not (or is-digit is-lower is-upper is-whitespace)))
-         (is-prev-digit (string-match-p "[0-9]" previous))
-         (is-prev-lower (string-match-p "[a-z]" previous))
          (is-prev-upper (string-match-p "[A-Z]" previous))
-         (is-prev-whitespace (string-match-p "\\s-" previous))
-         (is-prev-other 
-          (not (or is-prev-digit is-prev-lower is-prev-upper is-prev-whitespace)))
          (is-next-digit (string-match-p "[0-9]" next))
          (is-next-lower (string-match-p "[a-z]" next))
          (is-next-upper (string-match-p "[A-Z]" next))
@@ -249,32 +238,40 @@ or sequence of digits.")
          (is-next-other 
           (not (or is-next-digit is-next-lower is-next-upper is-next-whitespace))))
     
-    (if (= 1 direction)
-        
-        (cond ((looking-at ", ") (forward-char 2))
-              (is-other (forward-char direction))
-              ((or 
-                (and is-lower is-next-lower)
-                (and is-upper is-next-upper)
-                (and is-digit is-next-digit)
-                (and is-whitespace is-next-whitespace)
-                (and is-upper (not is-prev-upper)))
-               (forward-char direction)
-               (skip-to-camel-case-word-boundary direction t))
-              (t (forward-char direction)))
+    (cond ((looking-at ", ") (forward-char 2))
+          (is-other (forward-char 1))
+          ((or 
+            (and is-lower is-next-lower)
+            (and is-upper is-next-upper)
+            (and is-digit is-next-digit)
+            (and is-whitespace is-next-whitespace)
+            (and is-upper (not is-prev-upper)))
+           (forward-char 1)
+           (skip-to-next-camel-case-word-boundary))
+          (t (forward-char 1)))))
 
-      (cond ((looking-back ", ") (forward-char -2))
-             ((or 
-               (and is-lower is-prev-lower)
-               (and is-upper is-prev-upper)
-               (and is-digit is-prev-digit)
-               (and is-whitespace is-prev-whitespace)
-               (and (not is-lower) is-prev-lower))
-              (forward-char direction)
-              (skip-to-camel-case-word-boundary direction t))
-             ((and is-lower is-prev-upper) (forward-char direction))
-             ((not has-stepped) (forward-char direction))))))
-  
+(defun bool-to-string (b) (if b "t" "nil"))
+
+(defun looking-back-from-current (regexp &optional limit greedy)
+  "Like looking-back but from char after point and backwards"
+  (save-excursion
+    (forward-char 1)
+    (looking-back regexp limit greedy)))
+
+(defun skip-to-prev-camel-case-word-boundary ()
+    (backward-char 1)
+    (cond ((looking-back ",") (backward-char 1))
+          ((looking-back "=") (backward-char 1))
+          ((looking-back-from-current "[A-Z][a-z]") (backward-char))
+          ((or
+            (looking-back-from-current "[a-z]\\{2\\}")
+            (looking-back-from-current "[A-Z]\\{2\\}")
+            (looking-back-from-current "[0-9]\\{2\\}")
+            (looking-back-from-current "\\s-\\{2\\}"))
+           (skip-to-camel-case-word-boundary))))
+
+
+
 
 (defun camelCase-forward-word (count)
   "move point foward COUNT camelCase words"
