@@ -1,5 +1,5 @@
 # Move to the startup directory
-cd /cygdrive/c/
+# cd /cygdrive/c/
 
 # Load the actual config files.
 # Make sure the configuration folder is checked out directly into the home folder
