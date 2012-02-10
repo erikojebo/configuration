@@ -198,65 +198,22 @@
 
 ;;; COMMANDS:
 
-;;; Original regex:
-;;;(defconst camelCase-regexp "\\([A-Z]?[a-z]+\\|[A-Z]+\\|[0-9]+\\)"
-(defconst camelCase-regexp "\\(s-+\\| = \\|, \\|[A-Z]?[a-z]+\\|[A-Z]+\\|[0-9]+\\|()\\|(\\|)\\|\\[\\|\\]\\)"
-
-;; (defun make-disjunctive-regexp
-;;   (expression-lists)
-;;   (let ((expressions (apply #'append expression-lists)))
-;;     (concat "\\(" (mapconcat 'identity  expressions "\\|") "\\)")))
-
-;; (defun escape-regexp-special-chars (&rest chars)
-;;   (mapcar '(lambda (x) (concat "\\" x)) chars))
-
-;; (defconst camelCase-regexp 
-;;   (make-disjunctive-regexp
-;;    (list
-;;     '("[A-Z]?[a-z]+" "[A-Z]+" "[0-9]+")
-;;     '(", " "(" ")" " = " ".")
-;;     (escape-regexp-special-chars "[" "]")))
-  ;; capital must be before uppercase
-  "regular expression that matches a camelCase word, defined as
-Capitalized, lowercase, or UPPERCASE sequence of letters,
-or sequence of digits.")
+;;; Requires looking-back-from-current defined in functions.el
 
 (defun skip-to-next-camel-case-word-boundary ()
-  (let* ((previous (char-to-string (char-before (point))))
-         (current (char-to-string (char-after (point))))
-         (next (char-to-string (char-after (1+ (point)))))
-         (is-digit (string-match-p "[0-9]" current))
-         (is-lower (string-match-p "[a-z]" current))
-         (is-upper (string-match-p "[A-Z]" current))
-         (is-whitespace (string-match-p "\\s-" current))
-         (is-other (not (or is-digit is-lower is-upper is-whitespace)))
-         (is-prev-upper (string-match-p "[A-Z]" previous))
-         (is-next-digit (string-match-p "[0-9]" next))
-         (is-next-lower (string-match-p "[a-z]" next))
-         (is-next-upper (string-match-p "[A-Z]" next))
-         (is-next-whitespace (string-match-p "\\s-" next))
-         (is-next-other 
-          (not (or is-next-digit is-next-lower is-next-upper is-next-whitespace))))
-    
-    (cond ((looking-at ", ") (forward-char 2))
-          (is-other (forward-char 1))
-          ((or 
-            (and is-lower is-next-lower)
-            (and is-upper is-next-upper)
-            (and is-digit is-next-digit)
-            (and is-whitespace is-next-whitespace)
-            (and is-upper (not is-prev-upper)))
-           (forward-char 1)
-           (skip-to-next-camel-case-word-boundary))
-          (t (forward-char 1)))))
-
-(defun bool-to-string (b) (if b "t" "nil"))
-
-(defun looking-back-from-current (regexp &optional limit greedy)
-  "Like looking-back but from char after point and backwards"
-  (save-excursion
-    (forward-char 1)
-    (looking-back regexp limit greedy)))
+  (cond ((looking-at ", ") (forward-char 2))
+        ((looking-at " = ") (forward-char 3))
+        ((looking-at "[A-Z]\\{2\\}[a-z]") (forward-char 1))
+        ((or 
+          (looking-at-p "[a-z]\\{2\\}")
+          (looking-at-p "[A-Z]\\{2\\}")
+          (looking-at-p "[0-9]\\{2\\}")
+          (looking-at-p "\\s-\\{2\\}")
+          (looking-at-p "[A-Z][a-z]")
+          (looking-back-from-current "[^A-Z][A-Z]"))
+         (forward-char 1)
+         (skip-to-next-camel-case-word-boundary))
+        (t (forward-char 1))))
 
 (defun skip-to-prev-camel-case-word-boundary ()
     (backward-char 1)
@@ -269,9 +226,6 @@ or sequence of digits.")
             (looking-back-from-current "[0-9]\\{2\\}")
             (looking-back-from-current "\\s-\\{2\\}"))
            (skip-to-prev-camel-case-word-boundary))))
-
-
-
 
 (defun camelCase-forward-word (count)
   "move point foward COUNT camelCase words"

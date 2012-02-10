@@ -1,3 +1,5 @@
+(load "~/configuration/emacs/functions.el")
+
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
@@ -5,8 +7,17 @@
 (put 'upcase-region 'disabled nil)
 
 ;; Set window size
-(add-to-list 'default-frame-alist (cons 'width 120))
-(add-to-list 'default-frame-alist (cons 'height 56))
+;(add-to-list 'default-frame-alist (cons 'width 120))
+;(add-to-list 'default-frame-alist (cons 'height 56))
+
+(defun fullscreen (&optional f)
+       (interactive)
+       (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+	    		 '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+       (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+	    		 '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
+
+(fullscreen)
 
 ; try to improve slow performance on windows.
 (setq w32-get-true-file-attributes nil)
