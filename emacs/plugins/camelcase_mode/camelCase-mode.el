@@ -201,31 +201,33 @@
 ;;; Requires looking-back-from-current defined in functions.el
 
 (defun skip-to-next-camel-case-word-boundary ()
-  (cond ((looking-at ", ") (forward-char 2))
-        ((looking-at " = ") (forward-char 3))
-        ((looking-at "[A-Z]\\{2\\}[a-z]") (forward-char 1))
-        ((or 
-          (looking-at-p "[a-z]\\{2\\}")
-          (looking-at-p "[A-Z]\\{2\\}")
-          (looking-at-p "[0-9]\\{2\\}")
-          (looking-at-p "\\s-\\{2\\}")
-          (looking-at-p "[A-Z][a-z]")
-          (looking-back-from-current "[^A-Z][A-Z]"))
-         (forward-char 1)
-         (skip-to-next-camel-case-word-boundary))
-        (t (forward-char 1))))
+  (with-case-sensitive-search
+   (cond ((looking-at ", ") (forward-char 2))
+         ((looking-at " = ") (forward-char 3))
+         ((looking-at "[A-Z]\\{2\\}[a-z]") (forward-char 1))
+         ((or 
+           (looking-at-p "[a-z]\\{2\\}")
+           (looking-at-p "[A-Z]\\{2\\}")
+           (looking-at-p "[0-9]\\{2\\}")
+           (looking-at-p "\\s-\\{2\\}")
+           (looking-at-p "[A-Z][a-z]")
+           (looking-back-from-current "[^A-Z][A-Z]"))
+          (forward-char 1)
+          (skip-to-next-camel-case-word-boundary))
+         (t (forward-char 1)))))
 
 (defun skip-to-prev-camel-case-word-boundary ()
-    (backward-char 1)
-    (cond ((looking-back ",") (backward-char 1))
-          ((looking-back "=") (backward-char 1))
-          ((looking-back-from-current "[A-Z][a-z]") (backward-char))
-          ((or
-            (looking-back-from-current "[a-z]\\{2\\}")
-            (looking-back-from-current "[A-Z]\\{2\\}")
-            (looking-back-from-current "[0-9]\\{2\\}")
-            (looking-back-from-current "\\s-\\{2\\}"))
-           (skip-to-prev-camel-case-word-boundary))))
+  (with-case-sensitive-search
+   (backward-char 1)
+   (cond ((looking-back ",") (backward-char 1))
+         ((looking-back "=") (backward-char 1))
+         ((looking-back-from-current "[A-Z][a-z]") (backward-char))
+         ((or
+           (looking-back-from-current "[a-z]\\{2\\}")
+           (looking-back-from-current "[A-Z]\\{2\\}")
+           (looking-back-from-current "[0-9]\\{2\\}")
+           (looking-back-from-current "\\s-\\{2\\}"))
+          (skip-to-prev-camel-case-word-boundary)))))
 
 (defun camelCase-forward-word (count)
   "move point foward COUNT camelCase words"
@@ -235,11 +237,7 @@
   ;; point is left at END of match.
   (if (< count 0)
       (camelCase-backward-word (- count))
-    (let ((old-case-fold-search case-fold-search)
-	  (case-fold-search nil)) ;; search case sensitively
-      (unwind-protect 
-    (skip-to-next-camel-case-word-boundary)
-	(setq case-fold-search old-case-fold-search)))))
+    (skip-to-next-camel-case-word-boundary)))
 
 (defun camelCase-backward-word (count) 
   "move point backward COUNT camelCase words"
@@ -251,15 +249,11 @@
   ;; for multiple words, have to do whole thing COUNT times.
   (if (< count 0)
       (camelCase-forward-word (- count))
-    (let ((start-position (point))
-	  (old-case-fold-search case-fold-search)
-	  (case-fold-search nil)) ;; search case-sensitively
-      (unwind-protect 
-	  (while (< 0 count) 
-	    (setq count (1- count))
-        (skip-to-prev-camel-case-word-boundary))
-	(setq case-fold-search old-case-fold-search))
-      (if (= start-position (point)) nil (point)))))
+    (let ((start-position (point)))
+        (while (< 0 count) 
+          (setq count (1- count))
+          (skip-to-prev-camel-case-word-boundary))
+        (if (= start-position (point)) nil (point)))))
 
 (defun camelCase-forward-kill-word (count) 
   "kill text between current point and end of next camelCase word"

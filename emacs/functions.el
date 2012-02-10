@@ -6,8 +6,8 @@
     (forward-char 1)
     (looking-back regexp limit greedy)))
 
-(defmacro with-case-sensitive-search (body)
+(defmacro with-case-sensitive-search (&rest body)
   `(let ((old-case-fold-search case-fold-search)
          (case-fold-search nil)) ;; search case sensitively
-     (unwind-protect ,body
+     (unwind-protect ,@body
        (setq case-fold-search old-case-fold-search))))
