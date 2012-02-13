@@ -7,3 +7,4 @@
 . ~/configuration/bash/env.sh
 . ~/configuration/bash/config.sh
 . ~/configuration/bash/aliases.sh
+. ~/configuration/bash/scripts.sh
