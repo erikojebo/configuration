@@ -1,0 +1,2 @@
+define_key(content_buffer_normal_keymap, "b", "back");
+define_key(content_buffer_normal_keymap, "B", "bookmark");
