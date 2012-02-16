@@ -11,3 +11,7 @@
          (case-fold-search nil)) ;; search case sensitively
      (unwind-protect ,@body
        (setq case-fold-search old-case-fold-search))))
+
+(defun add-load-path (path)
+  (setq load-path
+        (cons path load-path)))

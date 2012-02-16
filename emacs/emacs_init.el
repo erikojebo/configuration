@@ -161,6 +161,9 @@
 
 (setq show-paren-delay 0)
 
+(delete-selection-mode t)
+(pending-delete-mode t)
+
 ;; YASnippet
 (load "~/configuration/emacs/plugins/yasnippet/dropdown-list")
 (load "~/configuration/emacs/plugins/yasnippet/yasnippet")
@@ -170,6 +173,16 @@
 (setf yas/global-mode t)
 
 (setq yas/prompt-functions '(yas/dropdown-prompt))
+
+
+;; Expand region
+
+(add-load-path "~/configuration/emacs/plugins/expand-region.el/")
+
+(require 'expand-region)
+(global-set-key (kbd "M-j") 'er/expand-region)
+(global-set-key (kbd "M-J") 'er/contract-region)
+
 
 
 ;; SmartTab
