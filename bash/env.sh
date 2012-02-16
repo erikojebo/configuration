@@ -14,6 +14,7 @@ export EDITOR='emacs'
 # means that the home folder is searched first of all folders in the path to
 # find a given command.
 export PATH=~/configuration/bin:$PATH
+export PATH=~/bin:$PATH
 
 # Terminal prompt text
 txtblk='\e[0;30m' # Black - Regular
