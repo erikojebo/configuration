@@ -3,6 +3,9 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
+(setq max-lisp-eval-depth '40000)
+(setq max-specpdl-size '100000)
+
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 
