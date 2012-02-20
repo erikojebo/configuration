@@ -2,6 +2,10 @@
 (defun string-to-list (x) (coerce x 'list))
 
 (defun camelcase-to-underscore (s)
+  "Converts a string from the format camelCaseString to camel_case_string
+Also works with more complex expressions such as:
+var fooBar = new FooBar().calculateSomething() which becomes
+var foo_bar = new foo_bar().calculate_something()"
   (let* ((char-index 0)
          (string-length (length s))
          (last-index (1- string-length))
@@ -16,6 +20,7 @@
               (and (uppercase-p current-char)
                    (/= char-index 0)
                    (/= char-index last-index)
+                   (not (whitespace-p (get-char prev-index)))
                    (or
                     (lowercase-p (get-char prev-index))
                     (lowercase-p (get-char next-index))))
@@ -29,11 +34,14 @@
 
 (defun uppercase-p (x)
   (with-case-sensitive-search
-   (if (string-match-p "[A-Z]" (to-string x)) t nil)))
+   (to-bool (string-match-p "[A-Z]" (to-string x)))))
 
 (defun lowercase-p (x)
   (with-case-sensitive-search
-   (if (string-match-p "[a-z]" (to-string x)) t nil)))
+   (to-bool (string-match-p "[a-z]" (to-string x)))))
+
+(defun whitespace-p (x)
+  (to-bool (string-match-p "^\\s-$" (to-string x))))
 
 (defun to-string (x)
   "Converts the input to a string in the way that is appropriate
@@ -49,13 +57,19 @@ for that type of input."
   (if x t nil))
 
 (defmacro assert-equal (expected expression)
+  "Prints message if the given expression does not evaluate to the expected value"
   (eval-when-compile
     (let ((actual expression))
       `(unless (equal ,expected ,actual)
-         (message (format "FAIL: Expected (equal %s %s). Actual value: %s"
+         (message (format "FAIL: Expected (equal %s %s). Actual value: '%s'"
                           ,expected 
                           (quote ,expression)
                           ,actual))))))
+
+(assert-equal t (whitespace-p " "))
+(assert-equal nil (whitespace-p "a"))
+(assert-equal nil (whitespace-p " a"))
+(assert-equal t (whitespace-p "\t"))
 
 (assert-equal t (to-bool 1))
 (assert-equal nil (to-bool nil))
@@ -79,3 +93,4 @@ for that type of input."
 (assert-equal "_foo_bar" (camelcase-to-underscore "_fooBar"))
 (assert-equal "foo_bar.baz_zap()" (camelcase-to-underscore "fooBar.bazZap()"))
 (assert-equal "foo_bar" (camelcase-to-underscore "FooBar"))
+(assert-equal " foo_bar " (camelcase-to-underscore " FooBar "))
