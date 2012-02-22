@@ -3,6 +3,37 @@
 (defun list-to-string (x) (coerce x 'string))
 (defun string-to-list (x) (coerce x 'list))
 
+(defun camelcase-to-underscore-region (&optional start end)
+  (interactive "r")
+  (let ((safe-start (if start start (mark)))
+        (safe-end (if end end (point))))
+    (replace-buffer-text 
+     safe-start safe-end 
+     (camelcase-to-underscore (buffer-substring safe-start safe-end)))))
+
+(defun underscore-to-camelcase-region (&optional start end)
+  (interactive "r")
+  (let ((safe-start (if start start (mark)))
+        (safe-end (if end end (point))))
+    (replace-buffer-text 
+     safe-start safe-end 
+     (underscore-to-camelcase (buffer-substring safe-start safe-end)))))
+
+
+(defun get-region-text ()
+  "Returns the text in the currently active region"
+  (buffer-substring (mark) (point)))
+
+(defun replace-region-text (s)
+  "Replaces the text in the currently active region with the given string"
+  (replace-buffer-text (mark) (point)))
+
+(defun replace-buffer-text (start end s)
+  (save-excursion
+        (delete-region start end)
+        (goto-char start)
+        (insert s)))
+
 (defun camelcase-to-underscore (s)
   "Converts a string from the format camelCaseString to camel_case_string
 Also works with more complex expressions such as:
