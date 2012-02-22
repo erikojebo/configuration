@@ -29,6 +29,37 @@ var foo_bar = new foo_bar().calculate_something()"
         (incf char-index))
       (list-to-string result))))
 
+(defun underscore-to-camelcase (s)
+  "Converts a string from the format an_underscore_string to anUnderscoreString"
+  (let* ((char-index 0)
+         (string-length (length s))
+         (last-index (1- string-length))
+         (result '()))
+    (flet ((append-char-to-result (c) (setq result (append-item result c)))
+           (get-char (i) (aref s i))
+           (letter-p (c) (string-match-p "[a-zA-Z]" (char-to-string c))))
+      (while (< char-index string-length)
+        (let ((current-char (aref s char-index))
+              (next-index (1+ char-index))
+              (prev-index (1- char-index)))
+          (cond ((and 
+                  (/= char-index 0)
+                  (letter-p current-char)
+                  (equal ?_ (get-char prev-index)))
+                 (append-char-to-result (upcase current-char)))
+                ((not (equal ?_ current-char))
+                 (append-char-to-result current-char))
+                ((and
+                  (/= char-index last-index)
+                  (not (letter-p (get-char next-index))))
+                 (append-char-to-result current-char)))
+          (incf char-index)))
+      (list-to-string result))))
+
+(defmacro none (p lst)
+  (let ((or-expression (cons 'or (eval lst))))
+  `(not ,or-expression)))
+
 (defun append-item (lst x)
   (append lst (list x)))
 
@@ -66,6 +97,8 @@ for that type of input."
                           (quote ,expression)
                           ,actual))))))
 
+(assert-equal t (none 'null '(1 2 3)))
+
 (assert-equal t (whitespace-p " "))
 (assert-equal nil (whitespace-p "a"))
 (assert-equal nil (whitespace-p " a"))
@@ -94,3 +127,14 @@ for that type of input."
 (assert-equal "foo_bar.baz_zap()" (camelcase-to-underscore "fooBar.bazZap()"))
 (assert-equal "foo_bar" (camelcase-to-underscore "FooBar"))
 (assert-equal " foo_bar " (camelcase-to-underscore " FooBar "))
+
+(assert-equal "" (underscore-to-camelcase ""))
+(assert-equal "a" (underscore-to-camelcase "a"))
+(assert-equal "ab" (underscore-to-camelcase "ab"))
+(assert-equal "fooBar" (underscore-to-camelcase "foo_bar"))
+(assert-equal "myTsqlGenerator" (underscore-to-camelcase "my_tsql_generator"))
+(assert-equal "_fooBar" (underscore-to-camelcase "_foo_bar"))
+(assert-equal "__fooBar" (underscore-to-camelcase "__foo_bar"))
+(assert-equal "fooBar.bazZap()" (underscore-to-camelcase "fooBar.bazZap()"))
+(assert-equal "fooBar" (underscore-to-camelcase "foo_bar"))
+(assert-equal " fooBar " (underscore-to-camelcase " foo_bar "))
