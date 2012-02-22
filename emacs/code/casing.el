@@ -47,9 +47,12 @@ var foo_bar = new foo_bar().calculate_something()"
           (cond ((and 
                   (/= char-index 0)
                   (letter-p current-char)
-                  (equal ?_ (get-char prev-index)))
+                  (equal ?_ (get-char prev-index))
+                  (some 'letter-p result))
                  (append-char-to-result (upcase current-char)))
-                ((not (equal ?_ current-char))
+                ((or
+                  (not (equal ?_ current-char))
+                  (notany 'letter-p result))
                  (append-char-to-result current-char))
                 ((and
                   (/= char-index last-index)
@@ -59,7 +62,8 @@ var foo_bar = new foo_bar().calculate_something()"
       (list-to-string result))))
 
 (defmacro none (p lst)
-  `(not ,(cons 'or (eval lst))))
+  (let ((result (mapcar (eval p) (eval lst))))
+    `(not ,(cons 'or result))))
 
 (defun append-item (lst x)
   (append lst (list x)))
