@@ -98,7 +98,7 @@ for that type of input."
   (eval-when-compile
     (let ((actual expression))
       `(unless (equal ,expected ,actual)
-         (message (format "FAIL: Expected (equal %s %s). Actual value: '%s'"
+         (message (format "FAIL: Expected (equal %S %S). Actual value: %S"
                           ,expected 
                           (quote ,expression)
                           ,actual))))))
