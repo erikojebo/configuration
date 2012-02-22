@@ -1,3 +1,5 @@
+(require 'cl)
+
 (defun list-to-string (x) (coerce x 'string))
 (defun string-to-list (x) (coerce x 'list))
 
@@ -57,8 +59,7 @@ var foo_bar = new foo_bar().calculate_something()"
       (list-to-string result))))
 
 (defmacro none (p lst)
-  (let ((or-expression (cons 'or (eval lst))))
-  `(not ,or-expression)))
+  `(not ,(cons 'or (eval lst))))
 
 (defun append-item (lst x)
   (append lst (list x)))
