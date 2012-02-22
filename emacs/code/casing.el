@@ -52,7 +52,8 @@ var foo_bar = new foo_bar().calculate_something()"
                  (append-char-to-result (upcase current-char)))
                 ((or
                   (not (equal ?_ current-char))
-                  (notany 'letter-p result))
+                  (notany 'letter-p result)
+                  (= char-index last-index))
                  (append-char-to-result current-char))
                 ((and
                   (/= char-index last-index)
@@ -143,3 +144,4 @@ for that type of input."
 (assert-equal "fooBar.bazZap()" (underscore-to-camelcase "fooBar.bazZap()"))
 (assert-equal "fooBar" (underscore-to-camelcase "foo_bar"))
 (assert-equal " fooBar " (underscore-to-camelcase " foo_bar "))
+(assert-equal "fooBar__" (underscore-to-camelcase "foo_bar__"))
