@@ -1,4 +1,6 @@
 (load "~/configuration/emacs/functions.el")
+(load "~/configuration/emacs/code/deletion.el")
+(load "~/configuration/emacs/code/casing.el")
 
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
