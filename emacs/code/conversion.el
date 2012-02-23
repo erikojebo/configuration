@@ -1,0 +1,1 @@
+(defun bool-to-string (b) (if b "t" "nil"))

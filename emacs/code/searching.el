@@ -1,5 +1,3 @@
-(defun bool-to-string (b) (if b "t" "nil"))
-
 (defun looking-back-from-current (regexp &optional limit greedy)
   "Like looking-back but from char after point and backwards"
   (save-excursion
@@ -12,6 +10,3 @@
      (unwind-protect ,@body
        (setq case-fold-search old-case-fold-search))))
 
-(defun add-load-path (path)
-  (setq load-path
-        (cons path load-path)))
