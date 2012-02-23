@@ -19,7 +19,6 @@
      safe-start safe-end 
      (underscore-to-camelcase (buffer-substring safe-start safe-end)))))
 
-
 (defun get-region-text ()
   "Returns the text in the currently active region"
   (buffer-substring (mark) (point)))
