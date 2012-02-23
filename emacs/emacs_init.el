@@ -270,3 +270,8 @@
       (yank-pop (- arg)))
 
 (global-set-key "\M-Y" 'yank-pop-forwards) ; M-Y (Meta-Shift-Y)
+
+
+; Rebindings
+
+(global-set-key (kbd "M-z") 'zap-to-before-char)
