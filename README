@@ -12,7 +12,9 @@ When on a Windows machine with Cygwin installed, adding an environment
 variable called HOME pointing to the cygwin /home/username/ directory avoids
 having to checkout the configuration repository in your
 c:\Users\Username\AppData\Roaming folder, or whatever, in addition to checking
-it out into your cygwin home directory.
+it out into your cygwin home directory. The reason for doing this is to make
+emacs use the cygwin home directory as the user's home directory, so that the
+same .emacs is used both in cygwin emacs and native windows emacs.
 
 
 SETTING UP A WINDOWS COMPUTER:
