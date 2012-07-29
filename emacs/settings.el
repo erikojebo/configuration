@@ -22,9 +22,10 @@
 (if window-system
     (fullscreen))
 
-; Fix copy paste in ubuntu
-(setq x-select-enable-clipboard t)
-(setq interprogram-paste-function 'x-cut-buffer-or-selection-value)
+(unless (eq system-type 'cygwin)
+                                        ; Fix copy paste in ubuntu
+  (setq x-select-enable-clipboard t)
+  (setq interprogram-paste-function 'x-cut-buffer-or-selection-value))
 
 ; try to improve slow performance on windows.
 (setq w32-get-true-file-attributes nil)
