@@ -12,17 +12,35 @@
 ;(add-to-list 'default-frame-alist (cons 'width 120))
 ;(add-to-list 'default-frame-alist (cons 'height 56))
 
+(defun linux-p ()
+  (not (or (eq system-type 'cygwin)
+           (eq system-type 'windows-nt))))
+
 (defun fullscreen (&optional f)
-       (interactive)
-       (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-	    		 '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
-       (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
-	    		 '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0)))
+  (interactive)
+  (when (linux-p)
+    (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                           '(2 "_NET_WM_STATE_MAXIMIZED_VERT" 0))
+    (x-send-client-message nil 0 nil "_NET_WM_STATE" 32
+                           '(2 "_NET_WM_STATE_MAXIMIZED_HORZ" 0))))
 
 (if window-system
-    (fullscreen))
+    (progn
+      (fullscreen)
 
-(unless (eq system-type 'cygwin)
+      ;; Remove menubar
+      (menu-bar-mode -1)
+
+      ;; Remove toolbar
+      (tool-bar-mode -1)
+
+      ;; Remove scrollbar
+      (scroll-bar-mode -1)
+
+      ;; Don't show the GNU splash screen
+      (setq inhibit-startup-message t)))
+
+(when (linux-p)
                                         ; Fix copy paste in ubuntu
   (setq x-select-enable-clipboard t)
   (setq interprogram-paste-function 'x-cut-buffer-or-selection-value))
@@ -35,18 +53,6 @@
 
 ;; UTF-8 configuration
 (prefer-coding-system 'utf-8)
-
-;; Remove menubar
-(menu-bar-mode -1)
-
-;; Remove toolbar
-(tool-bar-mode -1)
-
-;; Remove scrollbar
-(scroll-bar-mode -1)
-
-;; Don't show the GNU splash screen
-(setq inhibit-startup-message t)
 
 ;; Make emacs silently delete excessive backup files
 (setq delete-old-versions t)
