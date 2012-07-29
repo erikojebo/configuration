@@ -13,3 +13,15 @@ variable called HOME pointing to the cygwin /home/username/ directory avoids
 having to checkout the configuration repository in your
 c:\Users\Username\AppData\Roaming folder, or whatever, in addition to checking
 it out into your cygwin home directory.
+
+
+SETTING UP A WINDOWS COMPUTER:
+
+* Install cygwin
+** Install rxvt, ruby, ssh, git
+* Check out the configuration repo
+* Copy all dot files from configuration/ to ~/
+* Install AutoHotKey_L
+** Create symlink for emacsify.ahkl to Start menu/Startup
+* Install KeyTweak
+** Remap CapsLock to RCtrl
