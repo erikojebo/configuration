@@ -77,5 +77,5 @@ TEST=$(tput setaf 6)
 
 PS1='\[${DARK_YELLOW}\]
 \u@\h \[${BLUE}\]$PWD$(formattedGitBranch)
-\[${WHITE}\]$ '
+\[${BLACK}\]$ '
 export PS1
