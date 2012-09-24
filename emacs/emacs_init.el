@@ -10,6 +10,7 @@
 (load "~/configuration/emacs/code/lists.el")
 (load "~/configuration/emacs/code/casing.el")
 (load "~/configuration/emacs/code/commands.el")
+(load "~/configuration/emacs/code/remove-parens.el")
 (load "~/configuration/emacs/settings.el")
 (load "~/configuration/emacs/modes.el")
 (load "~/configuration/emacs/rebindings.el")
