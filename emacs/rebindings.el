@@ -12,3 +12,5 @@
 
 (global-set-key "\M-Y" 'yank-pop-forwards) ; M-Y (Meta-Shift-Y)
 (global-set-key (kbd "C-M-+") 'indent-whole-buffer)
+
+(global-set-key (kbd "M-t") 'transpose-words)
