@@ -76,7 +76,10 @@ Return
 
 RCtrl & s::
 If emacsSaveBegun = 1
-  Send ^s
+{
+  emacsSaveBegun = 0
+  Send ^s  
+}
 Else
   Send ^i
 Return
