@@ -52,7 +52,7 @@ RCtrl & d::Send {Del}
 +!b::Send +!{Left}
 
 ; Caps lock + Q => Left click menu
-RCtrl & q::Send +{F10} 
+RCtrl & q::Send +{F10}
 
 RCtrl & k::Send +{End}^x
 RCtrl & y::Send ^v
@@ -65,18 +65,31 @@ RCtrl & v::Send {PgDn}
 !SC056::Send ^{Home}
 +!SC056::Send ^{End}
 
+
 ;; Hotkeys for only Visual Studio
 #If IsVisualStudioActive()
 
-; Incremental search
-RCtrl & s::Send ^i
+; Incremental search / C-x-s save
+RCtrl & x::
+emacsSaveBegun = 1
+Return
+
+RCtrl & s::
+If emacsSaveBegun = 1
+  Send ^s
+Else
+  Send ^i
+Return
+
 RCtrl & r::Send +^i
+
+; Undo
+RCtrl & _::Send ^z
 
 ;; Hotkeys for all applications except Visual Studio and those with emacs like keybindings
 #If !IsVisualStudioActive() and !IsLinuxApplicationActive()
 ^l::Send {Home}+{End}+{Right}^x
 +^l::Send {Home}+{End}+{Right}{Del}
-
 
 ;; Hotkeys that should be applied to all applications
 #If
@@ -87,7 +100,7 @@ RCtrl & r::Send +^i
 
 
 ;; Helper methods
-IsLinuxApplicationActive() 
+IsLinuxApplicationActive()
 {
   return WinActive("emacs") or WinActive("Conkeror") or WinActive("bash")
 }
