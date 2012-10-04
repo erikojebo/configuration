@@ -1,6 +1,6 @@
 ; To run his script you need to have Autohotkey_L
 
-; Maybe add conditoin that scroll lock should be on to enable the shortcuts?
+; Maybe add condition that scroll lock should be on to enable the shortcuts?
 ; That would enable to rebind even the most standard Windows controls since
 ; it could easily be switched off, for example when pair programming
 
@@ -64,6 +64,13 @@ RCtrl & v::Send {PgDn}
 ; Beginning/end of document
 !SC056::Send ^{Home}
 +!SC056::Send ^{End}
+
+;; Hotkeys for only Visual Studio
+#If IsVisualStudioActive()
+
+; Incremental search
+RCtrl & s::Send ^i
+RCtrl & r::Send +^i
 
 ;; Hotkeys for all applications except Visual Studio and those with emacs like keybindings
 #If !IsVisualStudioActive() and !IsLinuxApplicationActive()
