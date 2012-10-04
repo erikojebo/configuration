@@ -14,3 +14,8 @@
 (global-set-key (kbd "C-M-+") 'indent-whole-buffer)
 
 (global-set-key (kbd "M-t") 'transpose-words)
+
+;; Make yank use numeric argument to repeat the command
+(global-set-key (kbd "C-y") (lambda (n)
+                                  (interactive "p")
+                                  (dotimes (i (abs n)) (yank))))
