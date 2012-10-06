@@ -18,7 +18,6 @@ SetTitleMatchMode, 2
 
 ; Bind alternative hotkeys to turn caps lock on and off, since the caps lock
 ; key is rebound to RCtrl
-ScrollLock::CapsLock
 RCtrl & Tab::
 capsLockIsOn := GetKeyState("CapsLock", "T")
 if (capsLockIsOn)
@@ -86,6 +85,9 @@ Return
 
 RCtrl & r::Send +^i
 
+; Escape
+RCtrl & g::Send {Esc}
+
 ; Undo
 RCtrl & _::Send ^z
 
@@ -100,6 +102,10 @@ RCtrl & _::Send ^z
 ; Alt + n/p => Scroll
 !n::Send {WheelDown}
 !p::Send {WheelUp}
+
+
+;; Modifications for using the Kinesis Advantage
+RCtrl & Enter::AltTab
 
 
 ;; Helper methods
