@@ -47,9 +47,8 @@
 
 
 ;; YASnippet
-(load "~/configuration/emacs/plugins/yasnippet/dropdown-list")
-(load "~/configuration/emacs/plugins/yasnippet/yasnippet")
-
+(add-to-list 'load-path "~/configuration/emacs/plugins/yasnippet")
+(require 'yasnippet)
 (yas/initialize)
 (yas/load-directory "~/configuration/emacs/plugins/yasnippet/snippets")
 (setf yas/global-mode t)
