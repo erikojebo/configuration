@@ -53,9 +53,6 @@ RCtrl & d::Send {Del}
 ; Caps lock + Q => Left click menu
 RCtrl & q::Send +{F10}
 
-RCtrl & k::Send +{End}^x
-RCtrl & y::Send ^v
-
 ; Scroll up/down
 RCtrl & v::Send {PgDn}
 !v::Send {PgUp}
@@ -63,6 +60,24 @@ RCtrl & v::Send {PgDn}
 ; Beginning/end of document
 !SC056::Send ^{Home}
 +!SC056::Send ^{End}
+
+; Escape
+RCtrl & g::Send {Esc}
+
+; Undo
+RCtrl & _::Send ^z
+
+; Copy
+Alt & w::Send ^c
+
+; Cut
+RCtrl & w::Send ^x
+
+; Paste
+RCtrl & y::Send ^v
+
+; Yank rest of line
+RCtrl & k::Send +{End}^x
 
 
 ;; Hotkeys for only Visual Studio
@@ -85,12 +100,6 @@ Return
 
 RCtrl & r::Send +^i
 
-; Escape
-RCtrl & g::Send {Esc}
-
-; Undo
-RCtrl & _::Send ^z
-
 ;; Hotkeys for all applications except Visual Studio and those with emacs like keybindings
 #If !IsVisualStudioActive() and !IsLinuxApplicationActive()
 ^l::Send {Home}+{End}+{Right}^x
@@ -102,6 +111,9 @@ RCtrl & _::Send ^z
 ; Alt + n/p => Scroll
 !n::Send {WheelDown}
 !p::Send {WheelUp}
+
+RAlt & d::Send <
+RAlt & f::Send >
 
 
 ;; Modifications for using the Kinesis Advantage
