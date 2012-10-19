@@ -5,6 +5,10 @@
 (add-hook 'find-file-hook '(lambda () (camelCase-mode 1)))
 
 
+;; Electric-pair-mode
+(add-hook 'find-file-hook '(lambda () (electric-pair-mode 1)))
+
+
 ;; Load autohotkey mode
 (load "~/configuration/emacs/plugins/ahk_mode/ahk-mode")
 (setq ahk-syntax-directory "~/configuration/emacs/plugins/ahk_mode/ahk-syntax/")

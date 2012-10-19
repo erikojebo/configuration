@@ -63,3 +63,9 @@ Goes backward if ARG is negative; error if CHAR not found."
   (when (and isearch-forward isearch-other-end)
     (goto-char isearch-other-end)))
 
+
+(defun align-repeat (start end regexp)
+    "Repeat alignment with respect to the given regular expression."
+    (interactive "r\nsAlign regexp: ")
+    (align-regexp start end 
+        (concat "\\(\\s-*\\)" regexp) 1 1 t))
