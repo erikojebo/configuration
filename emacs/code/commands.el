@@ -1,4 +1,4 @@
-(defun scroll-down-6-lines ()
+ (defun scroll-down-6-lines ()
   (interactive)
   (scroll-down 6))
 
@@ -69,3 +69,16 @@ Goes backward if ARG is negative; error if CHAR not found."
     (interactive "r\nsAlign regexp: ")
     (align-regexp start end 
         (concat "\\(\\s-*\\)" regexp) 1 1 t))
+
+(defun revert-buffer-no-confirm ()
+    "Revert buffer without confirmation."
+    (interactive) (revert-buffer t t))
+
+(defun revert-all-buffers ()
+    "Refreshes all open buffers from their respective files."
+    (interactive)
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+        (when (and (buffer-file-name) (not (buffer-modified-p)))
+          (revert-buffer t t t) )))
+    (message "Refreshed open files."))
