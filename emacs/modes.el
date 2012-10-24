@@ -69,6 +69,20 @@
 (global-set-key (kbd "M-J") 'er/contract-region)
 
 
+;; Multiple-cursors
+(add-load-path "~/configuration/emacs/plugins/multiple-cursors.el/")
+(require 'multiple-cursors)
+
+(define-prefix-command 'c-x-m-map)
+(global-set-key (kbd "C-x m") 'c-x-m-map)
+
+(define-key 'c-x-m-map (kbd "a") 'mc/edit-beginnings-of-lines)
+(define-key 'c-x-m-map (kbd "e") 'mc/edit-ends-of-lines)
+
+(global-set-key (kbd "M-i") 'mc/mark-next-like-this)
+(global-set-key (kbd "M-I") 'mc/mark-previous-like-this)
+(global-set-key (kbd "C-M-I") 'mc/mark-all-like-this)
+(global-set-key (kbd "C-;") 'mc/edit-lines)
 
 ;; SmartTab
 
@@ -100,3 +114,7 @@
         try-expand-dabbrev-from-kill
         try-complete-file-name
         try-complete-lisp-symbol))
+
+
+;; nXml-mode
+(setq nxml-slash-auto-complete-flag t)
