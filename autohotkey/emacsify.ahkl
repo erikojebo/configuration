@@ -123,7 +123,7 @@ RCtrl & Enter::AltTab
 ;; Helper methods
 IsLinuxApplicationActive()
 {
-  return WinActive("emacs") or WinActive("Conkeror") or WinActive("bash")
+  return WinActive("emacs") or WinActive("Conkeror") or WinActive("bash") or WinActive("Ubuntu")
 }
 
 IsVisualStudioActive()
