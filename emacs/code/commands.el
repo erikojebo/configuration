@@ -82,3 +82,9 @@ Goes backward if ARG is negative; error if CHAR not found."
         (when (and (buffer-file-name) (not (buffer-modified-p)))
           (revert-buffer t t t) )))
     (message "Refreshed open files."))
+
+(defun eval-and-replace (value)
+  "Evaluate the sexp at point and replace it with its value"
+  (interactive (list (eval-last-sexp nil)))
+  (kill-sexp -1)
+  (insert (format "%S" value)))
