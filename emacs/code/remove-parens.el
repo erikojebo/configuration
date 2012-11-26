@@ -1,8 +1,36 @@
+(defun delete-backward-char-or-auto-pair (arg)
+    "Delete one character backwards, or delete both one character backward and one forward point is between two paired characters, such as parens"
+    (interactive "P")
+    (let ((numeric-arg (prefix-numeric-value arg)))
+      (if
+          (or
+           (and (equal (char-before) "(")
+                (equal (char-after) ")"))
+           (and (equal (char-before) "[")
+                (equal (char-after) "]"))
+           (and (equal (char-before) "{")
+                (equal (char-after) "}"))
+           (and (equal (char-before) "\"")
+                (equal (char-after) "\""))
+           (and (equal (char-before) "'")
+                (equal (char-after) "'")))
+          (progn
+            (delete-backward-char numeric-arg)
+            (delete-char numeric-arg))
+        (delete-backward-char numeric-arg))))
+
+(defun char-before ()
+  (buffer-substring (1- (point)) (point)))
+
+(defun char-after ()
+  (buffer-substring (1+ (point)) (point)))
+
+
 (defun remove-parens ()
   (interactive)
   (save-excursion
     (let* ((start (point))
-          (char-before (buffer-substring (1- start) start))
+          (char-before (char-before))
           (current-char (buffer-substring start (1+ start))))
       (cond 
        ((or

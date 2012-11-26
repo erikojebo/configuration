@@ -19,3 +19,5 @@
 (global-set-key (kbd "C-y") (lambda (n)
                                   (interactive "p")
                                   (dotimes (i (abs n)) (yank))))
+
+(global-set-key (kbd "<backspace>") 'delete-backward-char-or-auto-pair)
