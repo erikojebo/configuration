@@ -8,6 +8,12 @@
 ;; Electric-pair-mode
 (add-hook 'find-file-hook '(lambda () (electric-pair-mode 1)))
 
+;; setting for auto-close brackets for electric-pair-mode regardless of current major mode syntax table
+(setq electric-pair-pairs '(
+                            (?\" . ?\")
+                            (?\' . ?\')
+                            (?\{ . ?\})
+                            ))
 
 ;; Load autohotkey mode
 (load "~/configuration/emacs/plugins/ahk_mode/ahk-mode")
