@@ -30,6 +30,13 @@
 ;; Load org-mode for .org files
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
+;; (eval-after-load "org-mode"
+;; ;;  '(local-set-key [tab] 'org-cycle-or-expand))
+;;   '(define-key org-mode-map (kbd "tab") 'org-cycle-or-expand))
+
+(add-hook 'org-mode-hook
+    (lambda ()
+        (define-key org-mode-map [tab] 'org-cycle-or-expand)))
 
 ;; Haskell mode
 (load "~/configuration/emacs/plugins/haskell-mode/haskell-site-file")
@@ -93,21 +100,7 @@
 ;; SmartTab
 
 (global-set-key [(tab)] 'smart-tab)
-(defun smart-tab ()
-  "This smart tab is minibuffer compliant: it acts as usual in
-    the minibuffer. Else, if mark is active, indents region. Else if
-    point is at the end of a symbol, expands it. Else indents the
-    current line."
-  (interactive)
-  (if (minibufferp)
-      (unless (minibuffer-complete)
-        (hippie-expand nil))
-    (if mark-active
-        (indent-region (region-beginning)
-                       (region-end))
-      (if (looking-at "\\_>")
-          (hippie-expand nil)
-        (indent-for-tab-command)))))
+
 
 ;; Hippie expand
 
