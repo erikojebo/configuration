@@ -47,23 +47,23 @@
 
 
 
+;; Remove menubar
+(menu-bar-mode -1)
+
+;; Don't show the GNU splash screen
+(setq inhibit-startup-message t)
+
 (if (display-graphic-p)
     (progn
       (if (windows-p)
           (set-frame-size-according-to-resolution)
         (fullscreen))
 
-      ;; Remove menubar
-      (menu-bar-mode -1)
-
       ;; Remove toolbar
       (tool-bar-mode -1)
 
       ;; Remove scrollbar
-      (scroll-bar-mode -1)
-
-      ;; Don't show the GNU splash screen
-      (setq inhibit-startup-message t)))
+      (scroll-bar-mode -1)))
 
 (when (linux-p)
                                         ; Fix copy paste in ubuntu
