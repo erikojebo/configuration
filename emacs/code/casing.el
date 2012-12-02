@@ -101,11 +101,11 @@ var foo_bar = new foo_bar().calculate_something()"
 
 (defun uppercase-p (x)
   (with-case-sensitive-search
-   (to-bool (string-match-p "[A-Z]" (to-string x)))))
+   (to-bool (string-match-p "[A-Z|Ä|Å|Ö]" (to-string x)))))
 
 (defun lowercase-p (x)
   (with-case-sensitive-search
-   (to-bool (string-match-p "[a-z]" (to-string x)))))
+   (to-bool (string-match-p "[a-z|å|ä|ö]" (to-string x)))))
 
 (defun whitespace-p (x)
   (to-bool (string-match-p "^\\s-$" (to-string x))))
