@@ -126,16 +126,22 @@
 	   ("\M-b"              camelCase-backward-word)
 	   ("\M-d"              camelCase-forward-kill-word)
 	   ("\M-DEL"            camelCase-backward-kill-word)
-	   ("\M-t"              camelCase-transpose-words)
+
+       ;; Transpose word should still work as usual
+       ;;("\M-t"              camelCase-transpose-words)
+
 	   ("\M-c"              camelCase-capitalize-word)
 	   ("\M-u"              camelCase-upcase-word)
 	   ("\M-l"              camelCase-downcase-word)
+
 	   ;((meta right)        camelCase-forward-word)
 	   ;((meta left)         camelCase-backward-word)
 	   ;((meta delete)       camelCase-forward-kill-word)
+
 	   ((meta backspace)    camelCase-backward-kill-word)
 	   ((control right)     camelCase-forward-word)
 	   ((control left)      camelCase-backward-word)
+
 	   ;((control delete)    camelCase-forward-kill-word)
 	   ;((control backspace) camelCase-backward-kill-word)
 	   ))
@@ -145,7 +151,7 @@
 	   ("\M-b"         camelCase-backward-word)
 	   ("\M-d"         camelCase-forward-kill-word)
 	   ("\M-DEL"       camelCase-backward-kill-word)
-	   ("\M-t"         camelCase-transpose-words)
+	   ;; ("\M-t"         camelCase-transpose-words)
 	   ("\M-c"         camelCase-capitalize-word)
 	   ("\M-u"         camelCase-upcase-word)
 	   ("\M-l"         camelCase-downcase-word)
@@ -204,14 +210,14 @@
   (with-case-sensitive-search
    (cond ((looking-at ", ") (forward-char 2))
          ((looking-at " = ") (forward-char 3))
-         ((looking-at "[A-Z]\\{2\\}[a-z]") (forward-char 1))
+         ((looking-at "[A-Z|Å|Ä|Ö]\\{2\\}[a-z|å|ä|ö]") (forward-char 1))
          ((or 
-           (looking-at-p "[a-z]\\{2\\}")
-           (looking-at-p "[A-Z]\\{2\\}")
+           (looking-at-p "[a-z|å|ä|ö]\\{2\\}")
+           (looking-at-p "[A-Z|Å|Ä|Ö]\\{2\\}")
            (looking-at-p "[0-9]\\{2\\}")
            (looking-at-p "\\s-\\{2\\}")
-           (looking-at-p "[A-Z][a-z]")
-           (looking-back-from-current "[^A-Z][A-Z]"))
+           (looking-at-p "[A-Z|Å|Ä|Ö][a-z|å|ä|ö]")
+           (looking-back-from-current "[^A-Z|Å|Ä|Ö][A-Z|Å|Ä|Ö]"))
           (forward-char 1)
           (skip-to-next-camel-case-word-boundary))
          (t (forward-char 1)))))
@@ -221,10 +227,10 @@
    (backward-char 1)
    (cond ((looking-back ",") (backward-char 1))
          ((looking-back "=") (backward-char 1))
-         ((looking-back-from-current "[A-Z][a-z]") (backward-char))
+         ((looking-back-from-current "[A-Z|Å|Ä|Ö][a-z|å|ä|ö]") (backward-char))
          ((or
-           (looking-back-from-current "[a-z]\\{2\\}")
-           (looking-back-from-current "[A-Z]\\{2\\}")
+           (looking-back-from-current "[a-z|å|ä|ö]\\{2\\}")
+           (looking-back-from-current "[A-Z|Å|Ä|Ö]\\{2\\}")
            (looking-back-from-current "[0-9]\\{2\\}")
            (looking-back-from-current "\\s-\\{2\\}"))
           (skip-to-prev-camel-case-word-boundary)))))

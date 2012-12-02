@@ -175,3 +175,4 @@ for that type of input."
 (assert-equal "fooBar" (underscore-to-camelcase "foo_bar"))
 (assert-equal " fooBar " (underscore-to-camelcase " foo_bar "))
 (assert-equal "fooBar__" (underscore-to-camelcase "foo_bar__"))
+(assert-equal "fooBär" (underscore-to-camelcase "foo_bär"))
