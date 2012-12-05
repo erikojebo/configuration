@@ -23,10 +23,6 @@
   "Returns the text in the currently active region"
   (buffer-substring (mark) (point)))
 
-(defun replace-region-text (s)
-  "Replaces the text in the currently active region with the given string"
-  (replace-buffer-text (mark) (point)))
-
 (defun replace-buffer-text (start end s)
   (save-excursion
         (delete-region start end)
