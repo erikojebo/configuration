@@ -1,4 +1,8 @@
+;;; Nisse-Tisse
 ;;; Requires looking-back-from-current defined in functions.el
+;;; Kalle är en grisbulle, sån tycker jaj.
+
+(looking-from-point-at-p 10 "[a-zA-ZåäöÅÄÖ]")
 
 (defun looking-back-from-point-at-p (point regex)
   (save-excursion
@@ -12,9 +16,11 @@
 
 (defun gosu-expand-selection (&optional start end)
   (interactive "r")
-  (let* ((whitespace-pattern "\\s-")
-         (word-char-pattern "[a-zA-Z|å|ä|ö|Å|Ä|Ö]")
-         (non-word-char-pattern "[-]")
+  (let* ((whitespace-pattern "[ |	|
+]")
+         (non-whitespace-pattern "[a-zA-ZåäöÅÄÖ\\-]")
+         (word-char-pattern "[a-zA-ZåäöÅÄÖ]")
+         (non-word-char-pattern "[\-]")
 
          (selection-start (if (and start mark-active) start (point)))
          (selection-end (if (and end mark-active) end (point)))
@@ -22,39 +28,73 @@
 
          (whitespace-before-p (looking-back-from-point-at-p selection-start whitespace-pattern))
          (whitespace-after-p (looking-from-point-at-p selection-end whitespace-pattern))
+
          (word-char-before-p (looking-back-from-point-at-p selection-start word-char-pattern))
-         (word-char-after-p (looking-from-point-at-p selection-start word-char-pattern))
+         (word-char-after-p (looking-from-point-at-p selection-end word-char-pattern))
          (non-word-char-before-p (looking-back-from-point-at-p selection-start non-word-char-pattern))
-         (non-word-char-after-p (looking-from-point-at-p selection-start non-word-char-pattern))
+         (non-word-char-after-p (looking-from-point-at-p selection-end non-word-char-pattern))
+
+         forward-skip-pattern
+         backward-skip-pattern
+         forward-search-pattern
+         backward-search-pattern
 
          new-selection-start
          new-selection-end)
 
     (progn
+      (message "selection-start: %d, selection-end: %d" selection-start selection-end)
+      (message "non-word-char before: %s" non-word-char-before-p)
+      (message "non-word-char after: %s" non-word-char-after-p)
+      (message "word-char before: %s" word-char-before-p)
+      (message "word-char after: %s" word-char-after-p)
+      (message "whitespace before: %s" whitespace-before-p)
+      (message "whitespace after: %s" whitespace-after-p)
       (setq new-selection-start selection-start)
       (setq new-selection-end selection-end)
       (cond
        ((and word-char-before-p word-char-after-p)
-        (goto-char selection-start)
-        (skip-chars-backward "a-zA-Z|å|ä|ö|Å|Ä|Ö")
-        (setq new-selection-start (point))
-        (goto-char selection-end)
-        (skip-chars-forward "a-zA-Z|å|ä|ö|Å|Ä|Ö")
-        (setq new-selection-end (point)))
+        (setq backward-skip-pattern word-char-pattern)
+        (setq forward-skip-pattern word-char-pattern))
        
        ((and word-char-before-p non-word-char-after-p)
-        (goto-char selection-start)
-        (skip-chars-backward "a-zA-Z|å|ä|ö|Å|Ä|Ö")
-        (setq new-selection-start (point)))
+        (setq backward-skip-pattern word-char-pattern))
 
        ((and non-word-char-before-p word-char-after-p)
+        (setq forward-skip-pattern word-char-pattern))
+       
+       ((and whitespace-before-p (not whitespace-after-p))
+        (setq forward-skip-pattern non-whitespace-pattern))
+
+       ((and (not whitespace-before-p) whitespace-after-p)
+        (setq backward-search-pattern whitespace-pattern))
+
+       )
+
+      (when backward-search-pattern
+        (goto-char selection-start)
+        (message "Searching backwards with pattern %s" backward-search-pattern)
+        (re-search-backward backward-search-pattern)
+        (setq new-selection-start (point)))
+      (when forward-search-pattern
         (goto-char selection-end)
-        (skip-chars-forward "a-zA-Z|å|ä|ö|Å|Ä|Ö")
-        (setq new-selection-end (point))))
+        (message "Searching forward with pattern %s" forward-search-pattern)
+        (re-search-forward forward-search-pattern)
+        (setq new-selection-end (point)))
+      (when backward-skip-pattern
+        (goto-char selection-start)
+        (message "Skipping backwards with pattern %s" backward-skip-pattern)
+        (skip-chars-backward backward-skip-pattern)
+        (setq new-selection-start (point)))
+      (when forward-skip-pattern
+        (goto-char selection-end)
+        (message "Skipping forwards with pattern %s" forward-skip-pattern)
+        (skip-chars-forward forward-skip-pattern)
+        (setq new-selection-end (point)))
       (goto-char new-selection-end)
       (set-mark new-selection-start))))
 
-;; Nisse-Kalle-Pelle
+;; Nisse-Kalle-Pelle kalle
 
 ;; K#alle => [Kalle]
 ;; Kalle-Svenson => [Kalle]-Svenson
@@ -77,4 +117,4 @@
 ;; Ord
 ;; Paragrafer
 
-;; Hela buffern
+;; Hela buffern-
