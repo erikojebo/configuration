@@ -1,8 +1,16 @@
-;;; Nisse-Tisse
+;;;
+;;; Nisse-Tisse Kalle
 ;;; Requires looking-back-from-current defined in functions.el
 ;;; Kalle är en grisbulle, sån tycker jaj.
 
-(looking-from-point-at-p 10 "[a-zA-ZåäöÅÄÖ]")
+
+(defun subset-of-line-p (start end)
+  (let ((selection (buffer-substring start end)))
+    (not (string-match-p "\n" selection))))
+
+(defun re-search-backward-to-after-match (regexp)
+  (re-search-backward regexp nil t) ;; suppress errors
+  (goto-char (match-end 0)))
 
 (defun looking-back-from-point-at-p (point regex)
   (save-excursion
@@ -69,18 +77,24 @@
        ((and (not whitespace-before-p) whitespace-after-p)
         (setq backward-search-pattern whitespace-pattern))
 
+       ((and whitespace-before-p whitespace-after-p
+             (subset-of-line-p selection-start selection-end))
+        (setq backward-search-pattern "\n")
+        (setq forward-search-pattern "\n"))
+       
+
        )
 
       (when backward-search-pattern
         (goto-char selection-start)
         (message "Searching backwards with pattern %s" backward-search-pattern)
-        (re-search-backward backward-search-pattern)
+        (re-search-backward-to-after-match backward-search-pattern)
         (setq new-selection-start (point)))
       (when forward-search-pattern
         (goto-char selection-end)
         (message "Searching forward with pattern %s" forward-search-pattern)
-        (re-search-forward forward-search-pattern)
-        (setq new-selection-end (point)))
+        (re-search-forward forward-search-pattern nil t) ;; suppress errors
+        (setq new-selection-end (- (point) 1)))
       (when backward-skip-pattern
         (goto-char selection-start)
         (message "Skipping backwards with pattern %s" backward-skip-pattern)
