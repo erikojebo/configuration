@@ -1,6 +1,15 @@
 ;; Load the camelCase file
 (load "~/configuration/emacs/plugins/camelcase_mode/camelCase-mode")
 
+;; Uniquify: replaces the postfixes <2>, <3>, etc for non-unique buffer names with more sensible stuff
+;; such as foo/bar.txt and baz/bar.txt
+(require 'uniquify)
+
+(setq 
+  uniquify-buffer-name-style 'forward
+  uniquify-separator "/")
+
+
 ;;; Start camelCase-mode whenever a file is 'found' (opened)
 (add-hook 'find-file-hook '(lambda () (camelCase-mode 1)))
 

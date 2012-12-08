@@ -1,9 +1,6 @@
 ; Library with common Lisp extensions for Emacs.
 (require 'cl)
 
-;; Uniquify (replace <2>, <3>, etc with more sensible stuff)
-(require 'uniquify)
-
 (load "~/configuration/emacs/helpers.el")
 (load "~/configuration/emacs/code/conversion.el")
 (load "~/configuration/emacs/code/searching.el")
