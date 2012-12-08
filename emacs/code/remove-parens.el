@@ -4,25 +4,25 @@
     (let ((numeric-arg (prefix-numeric-value arg)))
       (if
           (or
-           (and (equal (char-before) "(")
-                (equal (char-after) ")"))
-           (and (equal (char-before) "[")
-                (equal (char-after) "]"))
-           (and (equal (char-before) "{")
-                (equal (char-after) "}"))
-           (and (equal (char-before) "\"")
-                (equal (char-after) "\""))
-           (and (equal (char-before) "'")
-                (equal (char-after) "'")))
+           (and (equal (rp/char-before) "(")
+                (equal (rp/char-after) ")"))
+           (and (equal (rp/char-before) "[")
+                (equal (rp/char-after) "]"))
+           (and (equal (rp/char-before) "{")
+                (equal (rp/char-after) "}"))
+           (and (equal (rp/char-before) "\"")
+                (equal (rp/char-after) "\""))
+           (and (equal (rp/char-before) "'")
+                (equal (rp/char-after) "'")))
           (progn
             (delete-backward-char numeric-arg)
             (delete-char numeric-arg))
         (delete-backward-char numeric-arg))))
 
-(defun char-before ()
+(defun rp/char-before ()
   (buffer-substring (1- (point)) (point)))
 
-(defun char-after ()
+(defun rp/char-after ()
   (buffer-substring (1+ (point)) (point)))
 
 
@@ -30,15 +30,15 @@
   (interactive)
   (save-excursion
     (let* ((start (point))
-          (char-before (char-before))
+          (rp/char-before (rp/char-before))
           (current-char (buffer-substring start (1+ start))))
       (cond 
        ((or
-        (equal char-before ")")
-        (equal char-before "]")
-        (equal char-before "}"))
-        (let ((opening-char (regex-escape (matching-paren-char char-before)))
-              (closing-char (regex-escape char-before)))
+        (equal rp/char-before ")")
+        (equal rp/char-before "]")
+        (equal rp/char-before "}"))
+        (let ((opening-char (regex-escape (matching-paren-char rp/char-before)))
+              (closing-char (regex-escape rp/char-before)))
           (backward-char)
           (delete-char 1)
           (scan-backward-to-paren opening-char closing-char 0)
