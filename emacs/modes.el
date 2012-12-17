@@ -73,8 +73,7 @@
 
 
 ;; YASnippet
-(add-to-list 'load-path "~/configuration/emacs/plugins/yasnippet")
-(require 'yasnippet)
+(require 'yasnippet "~/configuration/emacs/plugins/yasnippet/yasnippet.el")
 (yas/initialize)
 (yas/load-directory "~/configuration/emacs/plugins/yasnippet/snippets")
 (setf yas/global-mode t)
@@ -83,9 +82,7 @@
 
 
 ;; Expand region
-
 (add-load-path "~/configuration/emacs/plugins/expand-region.el/")
-
 (require 'expand-region)
 (global-set-key (kbd "M-j") 'er/expand-region)
 (global-set-key (kbd "M-J") 'er/contract-region)
