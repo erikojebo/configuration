@@ -100,6 +100,15 @@ Return
 
 RCtrl & r::Send +^i
 
+;; Hotkeys for all applications except Linux-ish apps
+#If !IsLinuxApplicationActive()
+
+; Alt + n/p => Scroll
+!n::Send {WheelDown}
+!p::Send {WheelUp}
+
+#If
+
 ;; Hotkeys for all applications except Visual Studio and those with emacs like keybindings
 #If !IsVisualStudioActive() and !IsLinuxApplicationActive()
 ^l::Send {Home}+{End}+{Right}^x
@@ -107,10 +116,6 @@ RCtrl & r::Send +^i
 
 ;; Hotkeys that should be applied to all applications
 #If
-
-; Alt + n/p => Scroll
-!n::Send {WheelDown}
-!p::Send {WheelUp}
 
 RAlt & d::Send <
 RAlt & f::Send >

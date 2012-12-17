@@ -10,6 +10,10 @@
   uniquify-separator "/")
 
 
+;;; IDO mode
+(require 'ido)
+(ido-mode t)
+
 ;;; Start camelCase-mode whenever a file is 'found' (opened)
 (add-hook 'find-file-hook '(lambda () (camelCase-mode 1)))
 
