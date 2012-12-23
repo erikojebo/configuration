@@ -4,6 +4,25 @@
 ;;; Kalle är en grisbulle, sån tycker jaj.
 
 
+;; Del av ord hej
+;; hel symbol (whitespace till whitespace) || inom matchande braces
+;; hel rad || inom matchande braces
+;; hel paragraf (blankrad/start av buffer till blankrad eller slut av buffer)
+;; hela buffern
+
+
+
+(defun ges ()
+  (interactive "r")
+  (let* ((selection-start (if (and start mark-active) start (point)))
+         (selection-end (if (and end mark-active) end (point)))
+         (selected-text (buffer-substring selection-start selection-end)))
+    (cond
+     (ges-is-within-word (ges-select-word selection-start selection-end))
+     (get-is-within-sentence))
+    ))
+
+
 (defun subset-of-line-p (start end)
   (let ((selection (buffer-substring start end)))
     (not (string-match-p "\n" selection))))

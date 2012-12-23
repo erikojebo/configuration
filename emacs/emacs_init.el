@@ -1,6 +1,7 @@
 ; Library with common Lisp extensions for Emacs.
 (require 'cl)
 
+(require 'gosu-assert "~/configuration/emacs/code/assert.el")
 (load "~/configuration/emacs/helpers.el")
 (load "~/configuration/emacs/code/conversion.el")
 (load "~/configuration/emacs/code/searching.el")
