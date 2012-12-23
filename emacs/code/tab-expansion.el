@@ -4,16 +4,18 @@
     point is at the end of a symbol, expands it. Else indents the
     current line."
   (interactive)
-  (if (minibufferp)
-      (unless (minibuffer-complete)
-        (hippie-expand nil))
-    (if mark-active
-        (indent-region (region-beginning)
-                       (region-end))
-      (if (looking-at "\\_>")
-          (hippie-expand nil)
-        (indent-for-tab-command)))))
-
+  (cond
+   ((boundp 'ido-cur-item)
+    (ido-complete))
+   ((minibufferp)
+    (unless (minibuffer-complete)
+      (hippie-expand nil)))
+   (mark-active
+    (indent-region (region-beginning)
+                   (region-end)))
+   ((looking-at "\\_>")
+    (hippie-expand nil))
+   (t (indent-for-tab-command))))
 
 (defun org-cycle-or-expand ()
   (interactive)
