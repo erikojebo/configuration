@@ -28,6 +28,15 @@
                             (?\{ . ?\})
                             ))
 
+(add-hook 'emacs-lisp-mode-hook 'set-lisp-mode-electric-pairs)
+(add-hook 'lisp-mode-hook 'set-lisp-mode-electric-pairs)
+                                   
+(defun set-lisp-mode-electric-pairs ()
+  (setq electric-pair-pairs '((?\" . ?\")
+                              (?\{ . ?\})
+                              )))
+
+
 ;; Load autohotkey mode
 (load "~/configuration/emacs/plugins/ahk_mode/ahk-mode")
 (setq ahk-syntax-directory "~/configuration/emacs/plugins/ahk_mode/ahk-syntax/")
