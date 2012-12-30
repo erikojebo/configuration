@@ -1,4 +1,4 @@
- (defun scroll-down-6-lines ()
+(defun scroll-down-6-lines ()
   (interactive)
   (scroll-down 6))
 
@@ -88,3 +88,5 @@ Goes backward if ARG is negative; error if CHAR not found."
   (interactive (list (eval-last-sexp nil)))
   (kill-sexp -1)
   (insert (format "%S" value)))
+
+(defun in)

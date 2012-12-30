@@ -1,5 +1,6 @@
 (require 'cl)
 (require 'gosu-text-helpers "~/configuration/emacs/code/text.el")
+(require 'gosu-assert "~/configuration/emacs/code/assert.el")
 
 (defun camelcase-to-underscore-region (&optional start end)
   (interactive "r")
