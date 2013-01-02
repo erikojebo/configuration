@@ -1,6 +1,10 @@
 ;; Load the camelCase file
 (load "~/configuration/emacs/plugins/camelcase_mode/camelCase-mode")
 
+;;; Start camelCase-mode whenever a file is 'found' (opened)
+(add-hook 'find-file-hook '(lambda () (camelCase-mode 1)))
+
+
 ;; Uniquify: replaces the postfixes <2>, <3>, etc for non-unique buffer names with more sensible stuff
 ;; such as foo/bar.txt and baz/bar.txt
 (require 'uniquify)
@@ -13,9 +17,6 @@
 ;;; IDO mode
 (require 'ido)
 (ido-mode t)
-
-;;; Start camelCase-mode whenever a file is 'found' (opened)
-(add-hook 'find-file-hook '(lambda () (camelCase-mode 1)))
 
 
 ;; Electric-pair-mode

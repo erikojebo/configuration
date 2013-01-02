@@ -3,6 +3,8 @@
 
 (require 'gosu-assert "~/configuration/emacs/code/assert.el")
 
+(add-to-list 'load-path "~/configuration/emacs/plugins")
+
 (load "~/configuration/emacs/helpers.el")
 (load "~/configuration/emacs/code/conversion.el")
 (load "~/configuration/emacs/code/searching.el")

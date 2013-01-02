@@ -15,6 +15,15 @@
 
 (global-set-key (kbd "M-t") 'transpose-words)
 
+
+;; Quick-jump
+(require 'quick-jump)
+(global-set-key (kbd "C-c b") 'quick-jump-go-back)
+(global-set-key (kbd "C-c f") 'quick-jump-go-forward)
+(global-set-key (kbd "C-c <space>") 'quick-jump-push-marker)
+
+(global)
+
 ;; Make yank use numeric argument to repeat the command
 (global-set-key (kbd "C-y") (lambda (n)
                                   (interactive "p")
