@@ -1,4 +1,5 @@
-(require 'gosu-assert "~/configuration/code/assert.el")
+(provide 'gosu-search)
+(require 'gosu-assert "~/configuration/emacs/code/assert.el")
 
 (defun looking-back-from-current (regexp &optional limit greedy)
   "Like looking-back but from char after point and backwards"
@@ -23,3 +24,11 @@
   (save-excursion
     (goto-char point)
     (looking-at-p regex)))
+
+(defun re-search-backward-to-after-match (regexp &optional limit noerror repeat)
+  (re-search-backward regexp limit noerror repeat)
+  (goto-char (match-end 0)))
+
+(defun re-search-backward-to-before-match (regexp &optional limit noerror repeat)
+  (re-search-forward regexp limit noerror repeat)
+  (goto-char (match-beginning 0)))

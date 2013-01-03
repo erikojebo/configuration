@@ -1,45 +1,63 @@
-(require 'gosu-assert "~/configuration/code/assert.el")
-(require 'gosu-text-helpers "~/configuration/code/text.el")
+(require 'gosu-assert "~/configuration/emacs/code/assert.el")
+(require 'gosu-text-helpers "~/configuration/emacs/code/text.el")
+(require 'gosu-search "~/configuration/emacs/code/searching.el")
 (require 'cl)
-
-;;;
-;;; Nisse-Tisse Kalle
-;;; Requires looking-back-from-current defined in functions.el
-;;; Kalle är en grisbulle, sån tycker jaj.
-;; var a = function (a b c) {
-;;     console.log("hej");
-;; }
-
-;; Del av ord hej
-;; hel symbol (whitespace till whitespace) || inom matchande braces
-;; hel rad || inom matchande braces
-;; hel paragraf (blankrad/start av buffer till blankrad eller slut av buffer)
-;; hela buffern
-
 
 (defun gosu-expand-region (start end)
   (interactive "r")
   (let* ((region-start (if (and start mark-active) start (point)))
          (region-end (if (and end mark-active) end (point))))
     (cond 
-     ((and (looking-back-from-point-at-p region-start "[\'\(\)]")
-           (looking-from-point-at-p region-end "[\'\(\)]"))
+     ((and (looking-back-from-point-at-p region-start "['()]")
+           (looking-from-point-at-p region-end "['()]"))
 ;;      (message "found pairs")
       (set-mark (1- region-start))
       (goto-char (1+ region-end)))
+     ;; ((and
+     ;;   (looking-back-from-point-at-p start "apa")
+     ;;   (looking-from-point-at-p end ";"))
+     ;;  (message "foooooo")
+;;      (goto-char (1+ region-end)))
+     ((region-contains-entire-words-within-statement-p region-start region-end)
+      (expand-region-to-statement region-start region-end))
      (t
 ;;      (message "Expanding to word bounds")
       (goto-char region-start)
-      (backward-word)
+      (unless (looking-back "\\s-")
+        (backward-word))
       (set-mark (point))
       (goto-char region-end)
       (forward-word)))))
 
+(defun region-contains-entire-words-within-statement-p (start end)
+  (and 
+   (not (equal start end))
+   (looking-back-from-point-at-p start "\\s-\\|(\\|'\\|\\.")
+   (looking-from-point-at-p end "\\s-\\|)\\|'\\|\\.\\|;")
+   (not (string-match "\n" (buffer-substring start end)))))
+
+(defun expand-region-to-statement (start end)
+  (let (new-start new-end)
+;;    (message "expanding to entire statement")
+    (if (re-search-backward-to-after-match "{" nil t)
+        (forward-char 1)
+      (goto-char (point-min)))
+    (when (looking-at "\\s-")
+      (re-search-forward-to-before-match "\\S-" end t))
+    (setq new-start (point))
+    (if (and
+         (looking-from-point-at-p end ";")
+         (not (equal new-start start)))
+        (goto-char end)
+      (unless (re-search-forward-to-before-match "}" nil t)
+        (goto-char (point-max)))
+      (re-search-backward-to-after-match "\\S-" nil t))
+    (set-mark new-start)))
+  
+
 (defun foo ()
   (interactive)
-  (message "Point: %s"(point))
-  (message "%s" (char-to-string (char-after (point))))
-  (message "%s" (looking-back-from-point-at-p (point) "\'")))
+  (message "%s"(looking-back "{\\s-*")))
 
 
 (assert-expanded-region "" :original (1 1) :expanded (1 1) :scenario "empty buffer")
@@ -53,7 +71,14 @@
 (assert-expanded-region "console.log('message')" :original (15 18) :expanded (14 21) :scenario "Inside word within single quotes")
 (assert-expanded-region "console.log('message')" :original (14 21) :expanded (13 22) :scenario "Inside single quotes")
 (assert-expanded-region "console.log('message')" :original (13 22) :expanded (12 23) :scenario "Inside parens")
-
+(assert-expanded-region "console.log('message')" :original (12 23) :expanded (9 23) :scenario "JS method name")
+(assert-expanded-region "console.log('message')" :original (9 23) :expanded (1 23) :scenario "JS qualified method name")
+(assert-expanded-region "var a = function (first second) { return first + second; };"
+                        :original (55 55) :expanded (50 56) :scenario "Inside word")
+(assert-expanded-region "var a = function (first second) { return first + second; };"
+                        :original (50 56) :expanded (35 56) :scenario "Entire word in JS statement")
+(assert-expanded-region "var a = function (first second) { return first + second; };"
+                        :original (35 56) :expanded (35 57) :scenario "Entire JS statement without semi colon")
 
 (defmacro* assert-expanded-region (content &key (original '(1 1)) (expanded '(1 1)) (scenario nil))
   (let ((original-point (cadr original))
@@ -72,10 +97,6 @@
 ;; (defun subset-of-line-p (start end)
 ;;   (let ((selection (buffer-substring start end)))
 ;;     (not (string-match-p "\n" selection))))
-
-;; (defun re-search-backward-to-after-match (regexp)
-;;   (re-search-backward regexp nil t) ;; suppress errors
-;;   (goto-char (match-end 0)))
 
 ;; (defun gosu-expand-selection (&optional start end)
 ;;   (interactive "r")
