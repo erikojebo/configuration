@@ -111,8 +111,8 @@ RCtrl & r::Send +^i
 
 ;; Hotkeys for all applications except Visual Studio and those with emacs like keybindings
 #If !IsVisualStudioActive() and !IsLinuxApplicationActive()
-^l::Send {Home}+{End}+{Right}^x
-+^l::Send {Home}+{End}+{Right}{Del}
+>^l::Send {Home}+{End}+{Right}^x
++>^l::Send {Home}+{End}+{Right}{Del}
 
 ;; Hotkeys that should be applied to all applications
 #If
