@@ -1,3 +1,4 @@
+
 ;; Rebindings
 (global-set-key (kbd "C-x M-b") 'eval-buffer)
 (global-set-key (kbd "C-x M-d") 'eval-defun)
@@ -22,7 +23,6 @@
 (global-set-key (kbd "C-c f") 'quick-jump-go-forward)
 (global-set-key (kbd "C-c <space>") 'quick-jump-push-marker)
 
-(global)
 
 ;; Make yank use numeric argument to repeat the command
 (global-set-key (kbd "C-y") (lambda (n)
@@ -31,4 +31,9 @@
                                     (delete-region (region-beginning) (region-end)))
                                   (dotimes (i (abs n)) (yank))))
 
+
+;; For some reason, the global rebinding of backspace also messes up the
+;; backspace binding in the minor mode isearch-mode. So, to fix that,
+;; an explicit rebinding of backspace in isearch mode is made here.
 (global-set-key (kbd "<backspace>") 'delete-backward-char-or-auto-pair)
+(define-key isearch-mode-map (kbd "<backspace>") 'isearch-delete-char)

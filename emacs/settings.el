@@ -135,6 +135,7 @@
 ;; Parens
 (show-paren-mode 1)
 (setq show-paren-delay 0)
+(electric-pair-mode 1)
 
 ;; Delete region
 (delete-selection-mode t)

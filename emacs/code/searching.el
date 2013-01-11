@@ -29,6 +29,6 @@
   (re-search-backward regexp limit noerror repeat)
   (goto-char (match-end 0)))
 
-(defun re-search-backward-to-before-match (regexp &optional limit noerror repeat)
+(defun re-search-forward-to-before-match (regexp &optional limit noerror repeat)
   (re-search-forward regexp limit noerror repeat)
   (goto-char (match-beginning 0)))

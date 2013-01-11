@@ -2,28 +2,32 @@
     "Delete one character backwards, or delete both one character backward and one forward point is between two paired characters, such as parens"
     (interactive "P")
     (let ((numeric-arg (prefix-numeric-value arg)))
-      (if
-          (or
-           (and (equal (rp/char-before) "(")
-                (equal (rp/char-after) ")"))
-           (and (equal (rp/char-before) "[")
-                (equal (rp/char-after) "]"))
-           (and (equal (rp/char-before) "{")
-                (equal (rp/char-after) "}"))
-           (and (equal (rp/char-before) "\"")
-                (equal (rp/char-after) "\""))
-           (and (equal (rp/char-before) "'")
-                (equal (rp/char-after) "'")))
-          (progn
-            (delete-backward-char numeric-arg)
-            (delete-char numeric-arg))
-        (delete-backward-char numeric-arg))))
+      (cond
+       ((or
+         (and (equal (rp/char-before) "(")
+              (equal (rp/char-after) ")"))
+         (and (equal (rp/char-before) "[")
+              (equal (rp/char-after) "]"))
+         (and (equal (rp/char-before) "{")
+              (equal (rp/char-after) "}"))
+         (and (equal (rp/char-before) "\"")
+              (equal (rp/char-after) "\""))
+         (and (equal (rp/char-before) "'")
+              (equal (rp/char-after) "'")))
+        (progn
+          (delete-backward-char numeric-arg)
+          (delete-char numeric-arg)))
+        (t (delete-backward-char numeric-arg)))))
 
 (defun rp/char-before ()
-  (buffer-substring (1- (point)) (point)))
+  (if (> (point) (point-min))
+      (buffer-substring (1- (point)) (point))
+    nil))
 
 (defun rp/char-after ()
-  (buffer-substring (1+ (point)) (point)))
+  (if (< (point) (point-max))
+      (buffer-substring (1+ (point)) (point))
+    nil))
 
 
 (defun remove-parens ()
