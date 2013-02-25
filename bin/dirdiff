@@ -1,0 +1,38 @@
+#!/bin/bash
+
+if [ $# -eq 0 ] || [ "$1" == "--help" ]
+then
+    echo "Usage: dirdiff <path1> <path2> <args_to_find>"
+    echo "Examples:"
+    echo "  dirdiff /some/path/ /other/path/ -type d"
+    echo "  dirdiff /some/path/ /other/path/ -type f -iname '\"a*\"'"
+    exit 0
+fi
+
+dir1=$1
+dir2=$2
+
+file1=$(mktemp)
+file2=$(mktemp)
+
+find_args=${@:3}
+
+if [ "$find_args" != "" ]
+then
+    echo "Using find arguments: $find_args"
+fi
+
+eval "find . '$dir1' $find_args" | sed s:"$dir1":: | tr '[A-Z]' '[a-z]' > $file1
+eval "find . '$dir2' $find_args" | sed s:"$dir2":: | tr '[A-Z]' '[a-z]' > $file2
+
+#find "$dir1" $find_args | sed s:"$dir1":: | tr '[A-Z]' '[a-z]' > $file1
+#find "$dir2" $find_args | sed s:"$dir2":: | tr '[A-Z]' '[a-z]' > $file2
+
+echo "Items in $dir1 that do not exist in $dir2"
+grep -Fvxf $file2 $file1
+
+echo
+echo "Items in $dir2 that do not exist in $dir1"
+grep -Fvxf $file1 $file2
+
+rm $file1 $file2
