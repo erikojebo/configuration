@@ -25,9 +25,6 @@ fi
 eval "find . '$dir1' $find_args" | sed s:"$dir1":: | tr '[A-Z]' '[a-z]' > $file1
 eval "find . '$dir2' $find_args" | sed s:"$dir2":: | tr '[A-Z]' '[a-z]' > $file2
 
-#find "$dir1" $find_args | sed s:"$dir1":: | tr '[A-Z]' '[a-z]' > $file1
-#find "$dir2" $find_args | sed s:"$dir2":: | tr '[A-Z]' '[a-z]' > $file2
-
 echo "Items in $dir1 that do not exist in $dir2"
 grep -Fvxf $file2 $file1
 
