@@ -1,4 +1,7 @@
-(defun increment-numbers-in-region (start end arg)
+(provide 'gosu-increment-numbers-in-region)
+(require 'gosu-assert "~/configuration/emacs/code/assert.el")
+
+(defun gosu/increment-numbers-in-region (start end arg)
   (interactive "r\np")
   (goto-char start)
   (let ((increment (or arg 1)))
@@ -15,7 +18,7 @@
 var f2 = new Foo(13, 14);
 var f3 = new Foo(15, 16);
 var f4 = new Foo(17, 18);"
- (increment-numbers-in-region 21 76 nil)
+ (gosu/increment-numbers-in-region 21 76 nil)
  (assert-equal 
   "var f1 = new Foo(11, 13);
 var f3 = new Foo(14, 15);
@@ -28,7 +31,7 @@ var f4 = new Foo(17, 18);" (buffer-string)))
 var f2 = new Foo(13, 14);
 var f3 = new Foo(15, 16);
 var f4 = new Foo(17, 18);"
- (increment-numbers-in-region 21 76 2)
+ (gosu/increment-numbers-in-region 21 76 2)
  (assert-equal 
   "var f1 = new Foo(11, 14);
 var f4 = new Foo(15, 16);
@@ -41,7 +44,7 @@ var f4 = new Foo(17, 18);" (buffer-string)))
 var f2 = new Foo(13, 14);
 var f3 = new Foo(15, 16);
 var f4 = new Foo(17, 18);"
- (increment-numbers-in-region 21 76 -1)
+ (gosu/increment-numbers-in-region 21 76 -1)
  (assert-equal 
   "var f1 = new Foo(11, 11);
 var f1 = new Foo(12, 13);
@@ -55,7 +58,7 @@ var f4 = new Foo(17, 18);" (buffer-string)))
 var f2 = new Foo(13, 14);
 var f3 = new Foo(15, 16);
 var f4 = new Foo(17, 18);"
- (increment-numbers-in-region 21 76 100)
+ (gosu/increment-numbers-in-region 21 76 100)
  (assert-equal 
   "var f1 = new Foo(11, 112);
 var f102 = new Foo(113, 114);
