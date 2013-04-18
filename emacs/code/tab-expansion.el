@@ -4,6 +4,7 @@
     point is at the end of a symbol, expands it. Else indents the
     current line."
   (interactive)
+  ;;  (let ((default-command (key-binding [tab])))
   (cond
    ((boundp 'ido-cur-item)
     (ido-complete))
@@ -15,9 +16,10 @@
                    (region-end)))
    ((looking-at "\\_>") ;; end of a symbol?
     (unless (hippie-expand nil) ;; try to hippie expand, otherwise just tab
-      (funcall (or default-command (tab-to-tab-stop)))))
-   ;;(t (indent-for-tab-command)))))
-   (t (funcall current-default-command)))))
+      (funcall (or default-command 'tab-to-tab-stop))))
+   (t (funcall (or default-command 'indent-for-tab-command)))))
+;;        (call-interactively default-command)))
+;;      (t (call-interactively default-command)))))
 
 (defun org-cycle-or-expand ()
   (interactive)
