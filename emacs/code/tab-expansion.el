@@ -13,8 +13,9 @@
    (mark-active
     (indent-region (region-beginning)
                    (region-end)))
-   ((looking-at "\\_>")
-    (hippie-expand nil))
+   ((looking-at "\\_>") ;; end of a symbol?
+    (unless (hippie-expand nil) ;; try to hippie expand, otherwise just tab
+      (tab-to-tab-stop)))
    (t (indent-for-tab-command))))
 
 (defun org-cycle-or-expand ()
