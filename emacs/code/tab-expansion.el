@@ -1,4 +1,4 @@
-(defun smart-tab ()
+(defun smart-tab (&optional default-command)
   "This smart tab is minibuffer compliant: it acts as usual in
     the minibuffer. Else, if mark is active, indents region. Else if
     point is at the end of a symbol, expands it. Else indents the
@@ -15,11 +15,12 @@
                    (region-end)))
    ((looking-at "\\_>") ;; end of a symbol?
     (unless (hippie-expand nil) ;; try to hippie expand, otherwise just tab
-      (tab-to-tab-stop)))
-   (t (indent-for-tab-command))))
+      (funcall (or default-command (tab-to-tab-stop)))))
+   ;;(t (indent-for-tab-command)))))
+   (t (funcall current-default-command)))))
 
 (defun org-cycle-or-expand ()
   (interactive)
   (if (looking-back "^.+\\w\\b")
-      (smart-tab)
+      (smart-tab 'org-cycle)
     (org-cycle)))
