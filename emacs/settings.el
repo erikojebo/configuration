@@ -117,6 +117,9 @@
 ;; Set the fill-column
 (setq-default fill-column 78)
 
+;; Disable system beep sound
+(setq visible-bell t)
+
 ;; set highlight color
 ;(set-face-background 'region "DimGray")
 
