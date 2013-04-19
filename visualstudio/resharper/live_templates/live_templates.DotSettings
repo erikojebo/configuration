@@ -1,15 +1,17 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E86744D8AF4522459352E8122E02F301/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E86744D8AF4522459352E8122E02F301/Shortcut/@EntryValue">setup</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E86744D8AF4522459352E8122E02F301/Description/@EntryValue">NUnit setup</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E86744D8AF4522459352E8122E02F301/Text/@EntryValue">[SetUp]&#xD;
-public void SetUp()&#xD;
-{&#xD;
-	$END$&#xD;
-}</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E86744D8AF4522459352E8122E02F301/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E86744D8AF4522459352E8122E02F301/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E86744D8AF4522459352E8122E02F301/Categories/=Imported_00202012_002D08_002D23/@EntryIndexedValue">Imported 2012-08-23</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E86744D8AF4522459352E8122E02F301/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E86744D8AF4522459352E8122E02F301/Scope/=139FF4CE89E7094686FDA7BF5FFBBE92/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E86744D8AF4522459352E8122E02F301/Scope/=139FF4CE89E7094686FDA7BF5FFBBE92/Type/@EntryValue">Everywhere</s:String></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E60367096F03174CBEF6ADA71A970A9D/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E60367096F03174CBEF6ADA71A970A9D/Shortcut/@EntryValue">sw</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E60367096F03174CBEF6ADA71A970A9D/Description/@EntryValue">Stopwatch</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E60367096F03174CBEF6ADA71A970A9D/Text/@EntryValue">var stopwatch = new Stopwatch();&#xD;
+stopwatch.Start();&#xD;
+&#xD;
+$END$ &#xD;
+&#xD;
+stopwatch.Stop();&#xD;
+Console.WriteLine("Ellapsed time: {0} ms: ", stopwatch.ElapsedMilliseconds);</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E60367096F03174CBEF6ADA71A970A9D/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E60367096F03174CBEF6ADA71A970A9D/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E60367096F03174CBEF6ADA71A970A9D/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E60367096F03174CBEF6ADA71A970A9D/Scope/=C3001E7C0DA78E4487072B7E050D86C5/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E60367096F03174CBEF6ADA71A970A9D/Scope/=C3001E7C0DA78E4487072B7E050D86C5/Type/@EntryValue">InCSharpFile</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E60367096F03174CBEF6ADA71A970A9D/Scope/=C3001E7C0DA78E4487072B7E050D86C5/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String></wpf:ResourceDictionary>
