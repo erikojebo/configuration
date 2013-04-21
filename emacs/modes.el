@@ -117,10 +117,6 @@
 (global-set-key (kbd "C-M-I") 'mc/mark-all-like-this)
 (global-set-key (kbd "C-;") 'mc/edit-lines)
 
-;; SmartTab
-
-(global-set-key [(tab)] 'smart-tab)
-
 
 ;; Hippie expand
 
@@ -137,3 +133,7 @@
 
 ;; nXml-mode
 (setq nxml-slash-auto-complete-flag t)
+
+
+;; gosu-tab-mode
+(gosu-tab-mode t)
