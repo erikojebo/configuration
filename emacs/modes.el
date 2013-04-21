@@ -53,13 +53,6 @@
 ;; Load org-mode for .org files
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
-;; (eval-after-load "org-mode"
-;; ;;  '(local-set-key [tab] 'org-cycle-or-expand))
-;;   '(define-key org-mode-map (kbd "tab") 'org-cycle-or-expand))
-
-(add-hook 'org-mode-hook
-    (lambda ()
-        (define-key org-mode-map [tab] 'org-cycle-or-expand)))
 
 ;; Haskell mode
 (load "~/configuration/emacs/plugins/haskell-mode/haskell-site-file")

@@ -5,6 +5,8 @@
   :lighter " gosu-tab"
   :keymap (let ((map (make-sparse-keymap)))
             (define-key map (kbd "TAB") 'gosu-tab)
+            (define-key map (kbd "<tab>") 'gosu-tab)
+            (define-key map [tab] 'gosu-tab)
             map))
 
 (defun gosu-tab ()
@@ -46,11 +48,5 @@
      ;; None of the special conditions apply, so just do what ever TAB would normally
      ;; do in the current mode
     (t (call-original-key-binding)))))
-
-(defun org-cycle-or-expand ()
-  (interactive)
-  (if (looking-back "^.+\\w\\b")
-      (smart-tab 'org-cycle)
-    (org-cycle)))
 
 (gosu-tab-mode nil)
