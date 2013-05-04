@@ -81,7 +81,7 @@ RCtrl & k::Send +{End}^x
 
 
 ;; Hotkeys for only Visual Studio
-#If IsVisualStudioActive()
+#If IsVisualStudioActive() or IsManagementStudioActive()
 
 ; Incremental search / C-x-s save
 RCtrl & x::
@@ -134,4 +134,9 @@ IsLinuxApplicationActive()
 IsVisualStudioActive()
 {
   return WinActive("Visual Studio")
+}
+
+IsManagementStudioActive()
+{
+  return WinActive("SQL Server Management Studio")
 }
