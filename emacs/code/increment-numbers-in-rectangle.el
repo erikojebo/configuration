@@ -2,11 +2,16 @@
 (require 'gosu-increment-numbers-in-region "~/configuration/emacs/code/increment-numbers-in-region.el")
 
 (defun gosu/position-on-line (pos)
+  "Gets the offset from the beginning of the line"
   (save-excursion
     (goto-char pos)
     (- pos (line-beginning-position))))
 
-(defun gosu/increment-numbers-in-rectangle (start end arg)
+(defun gosu/progressively-increment-numbers-in-rectangle (start end arg)
+  (interactive "r\np")
+  (gosu/increment-numbers-in-rectangle start end arg arg))
+
+(defun gosu/increment-numbers-in-rectangle (start end arg &optional progressive-increment)
   (interactive "r\np")
   (save-excursion
     (goto-char start)
@@ -14,17 +19,21 @@
           (current-line-number (line-number-at-pos start))
           (end-line-number (line-number-at-pos end))
           (start-pos-on-line (gosu/position-on-line start))
-          (end-pos-on-line (gosu/position-on-line end)))
+          (end-pos-on-line (gosu/position-on-line end))
+          (increment arg)
+          (progressive-increment (or progressive-increment 0)))
       
       ;; Go on until we either move past the end line, or until we reach the last line of the
       ;; buffer, which will result in that we're still on the same line after callign forward-line 
       (while (and (<= current-line-number end-line-number) (< previous-line-number current-line-number))
         (gosu/increment-numbers-in-region (+ (line-beginning-position) start-pos-on-line)
                                           (+ (line-beginning-position) end-pos-on-line)
-                                          arg)
+                                          increment)
         (setq previous-line-number current-line-number)
         (forward-line 1)
-        (setq current-line-number (line-number-at-pos))))))
+        (setq current-line-number (line-number-at-pos))
+        (when increment 
+          (setq increment (+ increment progressive-increment)))))))
 
 ;; position-on-line should return number of chars from beginning of line
 ;; and should not touch the current position
@@ -74,3 +83,12 @@ line 4" (buffer-string)))
   "101 102 3
 104 105 6" (buffer-string)))
 
+;; Specifying a progressive increment should add more and more
+;; for each line
+(with-test-buffer 
+ "1 2 3
+4 5 6"
+ (gosu/progressively-increment-numbers-in-rectangle 1 10 100)
+ (assert-equal 
+  "101 102 3
+204 205 6" (buffer-string)))
