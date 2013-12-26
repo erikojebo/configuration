@@ -1,0 +1,6 @@
+var startTime = new Date().getTime();
+
+
+
+var endTime = new Date().getTime();
+console.log("Time (ms): "  + (endTime - startTime));
