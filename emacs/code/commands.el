@@ -88,3 +88,13 @@ Goes backward if ARG is negative; error if CHAR not found."
   (interactive (list (eval-last-sexp nil)))
   (kill-sexp -1)
   (insert (format "%S" value)))
+
+(defun duplicate-line()
+  (interactive)
+  (move-beginning-of-line 1)
+  (kill-line)
+  (yank)
+  (open-line 1)
+  (next-line 1)
+  (yank)
+)

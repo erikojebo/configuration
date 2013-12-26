@@ -15,7 +15,7 @@
 (global-set-key (kbd "C-M-+") 'indent-whole-buffer)
 
 (global-set-key (kbd "M-t") 'transpose-words)
-
+(global-set-key (kbd "C-c C-d") 'duplicate-line)
 
 ;; Quick-jump
 (require 'quick-jump)
