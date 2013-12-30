@@ -38,6 +38,7 @@ RCtrl & a::Send {Home}
 RCtrl & e::Send {End}
 RCtrl & b::Send {Left}
 RCtrl & f::Send {Right}
+RCtrl & j::Send {Enter}
 
 ; Delete char/word
 RCtrl & d::Send {Del}
