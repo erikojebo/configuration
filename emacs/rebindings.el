@@ -17,6 +17,9 @@
 (global-set-key (kbd "M-t") 'transpose-words)
 (global-set-key (kbd "C-ö C-d") 'duplicate-line)
 
+(global-set-key (kbd "C-/") 'comment-region)
+(global-set-key (kbd "C-M-/") 'uncomment-region)
+
 ;; Quick-jump
 (require 'quick-jump)
 (global-set-key (kbd "C-c b") 'quick-jump-go-back)
