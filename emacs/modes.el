@@ -130,3 +130,10 @@
 
 ;; gosu-tab-mode
 (gosu-tab-mode t)
+
+
+;; js2-mode
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (local-set-key (kbd "M-j") #'er/expand-region)
+            (local-set-key (kbd "M-J") #'er/contract-region)))

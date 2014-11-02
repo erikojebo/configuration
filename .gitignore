@@ -1,5 +1,2 @@
 \#*\#
 *~
-
-# Ignore the js2-mode directory for yasnippet since it is a symlink to the js-mode directory
-emacs/plugins/yasnippet/snippets/text-mode/js2-mode
