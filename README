@@ -22,7 +22,7 @@ SETTING UP A WINDOWS COMPUTER:
 * Install cygwin
 ** Install rxvt, ruby, ssh, git
 * Check out the configuration repo
-* Copy all dot files from configuration/ to ~/
+* Run the script init.sh in the configuration directory
 * Install AutoHotKey_L
 ** Create symlink for emacsify.ahkl to Start menu/Startup
 * Install KeyTweak
