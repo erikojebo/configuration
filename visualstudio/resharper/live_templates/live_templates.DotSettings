@@ -1,13 +1,12 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=55CC1DDAD01CCA419331EF65EB32155D/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=55CC1DDAD01CCA419331EF65EB32155D/Shortcut/@EntryValue">fun</s:String>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=55CC1DDAD01CCA419331EF65EB32155D/Text/@EntryValue">function($parameters$){
-  $END$
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31734D9B27A8434AA198B56339ABE9EA/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31734D9B27A8434AA198B56339ABE9EA/Shortcut/@EntryValue">f</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31734D9B27A8434AA198B56339ABE9EA/Description/@EntryValue">Function with empty parameter list</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31734D9B27A8434AA198B56339ABE9EA/Text/@EntryValue">function() {&#xD;
+	$END$&#xD;
 }</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=55CC1DDAD01CCA419331EF65EB32155D/Reformat/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=55CC1DDAD01CCA419331EF65EB32155D/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=55CC1DDAD01CCA419331EF65EB32155D/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=55CC1DDAD01CCA419331EF65EB32155D/Scope/=0FC5D7331749CF4293F31310DBE1C7B3/@KeyIndexDefined">True</s:Boolean>
-	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=55CC1DDAD01CCA419331EF65EB32155D/Scope/=0FC5D7331749CF4293F31310DBE1C7B3/Type/@EntryValue">InJavaScriptExpression</s:String>
-	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=55CC1DDAD01CCA419331EF65EB32155D/Field/=parameters/@KeyIndexDefined">True</s:Boolean>
-	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=55CC1DDAD01CCA419331EF65EB32155D/Field/=parameters/Order/@EntryValue">0</s:Int64></wpf:ResourceDictionary>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31734D9B27A8434AA198B56339ABE9EA/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31734D9B27A8434AA198B56339ABE9EA/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31734D9B27A8434AA198B56339ABE9EA/Applicability/=Live/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31734D9B27A8434AA198B56339ABE9EA/Scope/=FFA15E6CFCBE90499C572A859225B012/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=31734D9B27A8434AA198B56339ABE9EA/Scope/=FFA15E6CFCBE90499C572A859225B012/Type/@EntryValue">InJavaScriptFile</s:String></wpf:ResourceDictionary>
