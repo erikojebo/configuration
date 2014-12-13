@@ -54,25 +54,46 @@ RCtrl & d::Send {Del}
 ; Caps lock + Q => Left click menu
 RCtrl & q::Send +{F10}
 
-; Scroll up/down
+; Page up/down
 RCtrl & v::Send {PgDn}
 !v::Send {PgUp}
+
+; Alt + n/p => Scroll
+!n::Send {WheelDown}
+!p::Send {WheelUp}
 
 ; Beginning/end of document
 !SC056::Send ^{Home}
 +!SC056::Send ^{End}
 
+; Set mark (toggle shift key state with RCtrl + spacebar)
+RCtrl & Space::
+    If GetKeyState("LShift") ; LShift is logically down. Release it.
+        Send {Blind}{LShift Up}
+    Else ; LShift is logically up. Press it.
+        Send {Blind}{LShift Down}
+    Return
+
 ; Escape
-RCtrl & g::Send {Esc}
+RCtrl & g::
+    Send {Esc}
+    Send {Blind}{LShift Up} ; Make sure to untoggle shift if used with the Set mark binding
+    Return
 
 ; Undo
 RCtrl & _::Send ^z
 
 ; Copy
-Alt & w::Send ^c
+Alt & w::
+    Send ^c
+    Send {Blind}{LShift Up} ; Make sure to untoggle shift if used with the Set mark binding
+    Return
 
 ; Cut
-RCtrl & w::Send ^x
+RCtrl & w::
+    Send ^x
+    Send {Blind}{LShift Up} ; Make sure to untoggle shift if used with the Set mark binding
+    Return
 
 ; Paste
 RCtrl & y::Send ^v
@@ -81,7 +102,7 @@ RCtrl & y::Send ^v
 RCtrl & k::Send +{End}^x
 
 
-;; Hotkeys for only Visual Studio
+;; Hotkeys for only Visual Studio and SQL Server Management Studio
 #If IsVisualStudioActive() or IsManagementStudioActive()
 
 ; Incremental search / C-x-s save
@@ -101,14 +122,6 @@ Return
 
 RCtrl & r::Send +^i
 
-;; Hotkeys for all applications except Linux-ish apps
-#If !IsLinuxApplicationActive()
-
-; Alt + n/p => Scroll
-!n::Send {WheelDown}
-!p::Send {WheelUp}
-
-#If
 
 ;; Hotkeys for all applications except Visual Studio and those with emacs like keybindings
 #If !IsVisualStudioActive() and !IsLinuxApplicationActive()
