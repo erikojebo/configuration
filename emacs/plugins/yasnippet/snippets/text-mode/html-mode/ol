@@ -2,6 +2,6 @@
 #name : <ol>...</ol>
 #group : list
 # --
-<ol>
+<ol$1>
   $0
 </ol>

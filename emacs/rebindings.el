@@ -20,6 +20,8 @@
 (global-set-key (kbd "C-/") 'comment-region)
 (global-set-key (kbd "C-M-/") 'uncomment-region)
 
+(global-set-key (kbd "M-P") 'join-line)
+
 ;; Quick-jump
 (require 'quick-jump)
 (global-set-key (kbd "C-c b") 'quick-jump-go-back)

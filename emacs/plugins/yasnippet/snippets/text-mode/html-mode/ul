@@ -2,6 +2,6 @@
 #name : <ul>...</ul>
 #group : list
 # --
-<ul>
+<ul$1>
   $0
 </ul>

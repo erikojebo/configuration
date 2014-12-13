@@ -2,4 +2,4 @@
 #name : <li>...</li>
 #group : list
 # --
-<li>$1</li>
+<li$1>$0</li>
