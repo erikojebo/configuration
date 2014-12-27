@@ -88,13 +88,29 @@ Goes backward if ARG is negative; error if CHAR not found."
   (interactive (list (eval-last-sexp nil)))
   (kill-sexp -1)
   (insert (format "%S" value)))
-
+    
 (defun duplicate-line()
   (interactive)
-  (move-beginning-of-line 1)
-  (kill-line)
-  (yank)
-  (open-line 1)
-  (next-line 1)
-  (yank)
-)
+  (cond
+   (mark-active
+    (let ((start (region-beginning))
+          (end (region-end)))
+      (kill-region start end)
+      (yank)
+      (yank)
+      (set-mark end)
+      (goto-char (+ end (- end start))) ;; Move the length of the region
+      (setq deactivate-mark nil)
+      ))
+   (t
+    (move-beginning-of-line 1)
+    (kill-line)
+    (yank)
+    (open-line 1)
+    (next-line 1)
+    (yank))
+   ))
+
+
+
+
