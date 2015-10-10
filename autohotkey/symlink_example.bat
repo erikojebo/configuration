@@ -3,4 +3,4 @@ REM startup folder in the start menu, which means that the file will be opened b
 REM the default application when Windows is started.
 
 REM mklink <target> <source>
-mklink "c:\Users\eojebo\appdata\roaming\Microsoft\Windows\Start Menu\Programs\Startup\emacsify.ahkl" c:\code\configuration\autohotkey\emacsify.ahkl 
+mklink "c:\Users\eroj7616\appdata\roaming\Microsoft\Windows\Start Menu\Programs\Startup\emacsify.ahkl" c:\code\configuration\autohotkey\emacsify.ahkl 
