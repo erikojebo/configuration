@@ -5,9 +5,16 @@
 
 
 ;; Setup package-install
+
 (require 'package)
+
+;; M-x package-list-packages, search for neotree, press 'i', then 'x'
+
 (add-to-list 'package-archives 
-            '("melpa" . "http://melpa.milkbox.net/packages/") t)
+             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+(add-to-list 'package-archives
+             '("melpa" . "http://melpa.org/packages/"))
+
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
