@@ -20,6 +20,8 @@
   (add-to-list 'package-archives '("gnu" . "http://elpa.gnu.org/packages/")))
 (package-initialize)
 
+(unless (package-installed-p 'elixir-mode)
+  (package-install 'elixir-mode))
 
 (add-to-list 'load-path "~/configuration/emacs/plugins")
 

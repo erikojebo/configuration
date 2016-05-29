@@ -52,6 +52,9 @@
 ;; Load org-mode for .org files
 (add-to-list 'auto-mode-alist '("\\.org\\'" . org-mode))
 
+;; Elixir mode
+(add-to-list 'auto-mode-alist '("\\.exs\\'" . elixir-mode))
+
 ;; Haskell mode
 (load "~/configuration/emacs/plugins/haskell-mode/haskell-site-file")
 
