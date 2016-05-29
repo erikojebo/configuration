@@ -64,6 +64,10 @@
 ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 
+;; Typescript mode
+(load "~/configuration/emacs/plugins/typescript-mode/typescript-mode.el")
+(add-to-list 'auto-mode-alist '("\\.ts\\'" . typescript-mode))
+
 ;;; iswitch
 (iswitchb-mode 1)
 (setq iswitchb-buffer-ignore '("^ " "*Buffer"))
