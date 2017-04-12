@@ -1,4 +1,6 @@
 ; To run his script you need to have Autohotkey_L
+; The script needs to run as Admin to be able to interact with applications
+; running as admin (i.e. Visual Studio)
 
 ; Maybe add condition that scroll lock should be on to enable the shortcuts?
 ; That would enable to rebind even the most standard Windows controls since
