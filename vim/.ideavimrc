@@ -52,3 +52,13 @@ vmap <S-Down> <Action>(EditorDownWithSelection)
 
 vmap <BS> <Action>(EditorBackSpace)
 
+nnoremap <SPACE> <NOP>
+let mapleader=" "
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>O O<Esc>
+nnoremap <Leader>ur <Action>(Rider.UnitTesting.RunContext)
+nnoremap <Leader>ud <Action>(RiderUnitTestDebugContextAction)
+nnoremap <Leader>uu <Action>(RiderUnitTestRepeatPreviousRunAction)
+"nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
+"nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
+
