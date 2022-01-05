@@ -66,4 +66,8 @@ imap jj <Esc>
 
 
 
+nnoremap <SPACE> <NOP>
+let mapleader=" "
+nnoremap <Leader>o o<Esc>
+nnoremap <Leader>O O<Esc>
 
