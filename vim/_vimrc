@@ -56,6 +56,9 @@ au GUIEnter * simalt ~x
 
 set relativenumber
 set ignorecase
+set hidden
+
+silent! vunmap <C-X>
 
 nmap ä "0p
 nmap Ö ^

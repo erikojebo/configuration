@@ -36,6 +36,8 @@ vmap Ö ^
 nmap ö g_
 vmap ö g_
 imap jj <Esc>
+imap kj <Esc>
+imap <C-j> <CR>
 
 nmap <S-Left> <Action>(EditorLeftWithSelection)
 nmap <S-Right> <Action>(EditorRightWithSelection)
@@ -56,9 +58,11 @@ nnoremap <SPACE> <NOP>
 let mapleader=" "
 nnoremap <Leader>o o<Esc>
 nnoremap <Leader>O O<Esc>
-nnoremap <Leader>ur <Action>(Rider.UnitTesting.RunContext)
-nnoremap <Leader>ud <Action>(RiderUnitTestDebugContextAction)
-nnoremap <Leader>uu <Action>(RiderUnitTestRepeatPreviousRunAction)
+
+" nnoremap does not seem to work with the Rider Actions, use nmap instead
+nmap <Leader>ur <Action>(RiderUnitTestRunContextAction)
+nmap <Leader>ud <Action>(RiderUnitTestDebugContextAction)
+nmap <Leader>uu <Action>(RiderUnitTestRepeatPreviousRunAction)
 "nnoremap <silent> <leader>o :<C-u>call append(line("."),   repeat([""], v:count1))<CR>
 "nnoremap <silent> <leader>O :<C-u>call append(line(".")-1, repeat([""], v:count1))<CR>
 
